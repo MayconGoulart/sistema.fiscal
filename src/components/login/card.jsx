@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from 'react'
 import 'font-awesome/css/font-awesome.min.css'
 
-import style from './card.css'
+import '../login/card.css'
 
 export default class card extends Component {
     render() {
@@ -17,7 +17,7 @@ export default class card extends Component {
                             <label htmlFor="user-email">
                                 &nbsp;Email
                             </label>
-                            <input id="user-email" className="form-content" type="email" name="email" autoComplete="on" required />
+                            <input id="user-email" className="form-content" type="email" name="email" autoComplete="off" required />
                             <div className="form-border"></div>
                             <label htmlFor="user-password" className="password">&nbsp;Senha
                              </label>
