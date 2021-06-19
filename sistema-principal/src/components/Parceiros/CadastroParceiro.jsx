@@ -45,16 +45,26 @@ function CadastroParceiro() {
                             </RadioGroup>
                         </FormControl>
                         <TextField id="nome" label="Nome" />
-                        <TextField id="cpf" label="CPF" />
-                        <TextField id="cnpj" label="CNPJ" />
-                        <TextField id="rg" label="RG" />
+                        {tipoParceiro === "pessoaFisica" && 
+                            <div>
+                                <TextField id="cpf" label="CPF" />
+                                <TextField id="rg" label="RG" />
+                            </div>
+                        }
+
+                        {tipoParceiro === "pessoaJuridica" &&
+                            <div>
+                                <TextField id="cnpj" label="CNPJ" />
+                            </div>
+                        }
+                        
                     </div>
 
                     {tipoParceiro === "pessoaFisica" &&
 
                         <div>
                             <h2>Informações (Pessoa Física)</h2>
-                            <TextField id="inscricao-estadual" label="Inscrição Estadual" />
+                            <TextField id="carog" label="Cargo" />
                             <TextField id="telefone" label="Telefone" />
                             <TextField id="celular" label="Celular" />
                             <TextField id="email" label="E-mail" />
@@ -67,6 +77,7 @@ function CadastroParceiro() {
                         <div>
                             <h2>Informações (Pessoa Jurídica)</h2>
                             <TextField id="nome-legal" label="Nome Legal" />
+                            <TextField id="inscricao-estadual" label="Inscrição Estadual" />
                             <TextField id="telefone" label="Telefone" />
                             <TextField id="celular" label="Celular" />
                             <TextField id="email" label="E-mail" />
@@ -89,34 +100,44 @@ function CadastroParceiro() {
 
                     <div>
                         <h2>Fiscal</h2>
-                        <TextField id="inscricao-municipal" label="Inscrição Municipal" />
-                        <FormControl>
-                            <FormLabel component="legend">Perfil Fiscal (Físico)</FormLabel>
-                            <RadioGroup>
-                                <FormControlLabel value="contribuinte" control={<Radio />} label="Contribuinte" />
-                                <FormControlLabel value="nao-contribuinte" control={<Radio />} label="Não Contribuinte" />
-                                <FormControlLabel value="isento" control={<Radio />} label="Isento" />
-                            </RadioGroup>
-                        </FormControl>
-                        <FormControl>
-                            <FormLabel component="legend">Perfil Fiscal (Jurídico)</FormLabel>
-                            <RadioGroup>
-                                <FormControlLabel value="contribuinte-sn" control={<Radio />} label="Contribuinte Simples Nacional" />
-                                <FormControlLabel value="nao-contribuinte-sn" control={<Radio />} label="Simples Nacional Não Contribuinte" />
-                                <FormControlLabel value="isento-sn" control={<Radio />} label="Simples Nacional Isento" />
-                                <FormControlLabel value="contribuinte" control={<Radio />} label="Contribuinte" />
-                                <FormControlLabel value="nao-contribuinte" control={<Radio />} label="Não Contribuinte" />
-                                <FormControlLabel value="isento" control={<Radio />} label="Isento" />
-                            </RadioGroup>
-                        </FormControl>
-                        <FormControl>
-                            <FormLabel component="legend">Tax Framework</FormLabel>
-                            <RadioGroup>
-                                <FormControlLabel value="simples-nacional" control={<Radio />} label="Simples Nacional" />
-                                <FormControlLabel value="lucro-real" control={<Radio />} label="Lucro Real" />
-                                <FormControlLabel value="lucro-presumido" control={<Radio />} label="Lucro Presumido" />
-                            </RadioGroup>
-                        </FormControl>
+                        {tipoParceiro === "pessoaFisica" &&
+                            <div>
+                                <FormControl>
+                                    <FormLabel component="legend">Perfil Fiscal</FormLabel>
+                                    <RadioGroup>
+                                        <FormControlLabel value="contribuinte" control={<Radio />} label="Contribuinte" />
+                                        <FormControlLabel value="nao-contribuinte" control={<Radio />} label="Não Contribuinte" />
+                                        <FormControlLabel value="isento" control={<Radio />} label="Isento" />
+                                    </RadioGroup>
+                                </FormControl>
+                            </div>
+                        }
+
+                        {tipoParceiro === "pessoaJuridica" &&
+                            <div>
+                                <TextField id="inscricao-municipal" label="Inscrição Municipal" />
+                                <FormControl>
+                                    <FormLabel component="legend">Perfil Fiscal (Jurídico)</FormLabel>
+                                    <RadioGroup>
+                                        <FormControlLabel value="contribuinte-sn" control={<Radio />} label="Contribuinte Simples Nacional" />
+                                        <FormControlLabel value="nao-contribuinte-sn" control={<Radio />} label="Simples Nacional Não Contribuinte" />
+                                        <FormControlLabel value="isento-sn" control={<Radio />} label="Simples Nacional Isento" />
+                                        <FormControlLabel value="contribuinte" control={<Radio />} label="Contribuinte" />
+                                        <FormControlLabel value="nao-contribuinte" control={<Radio />} label="Não Contribuinte" />
+                                        <FormControlLabel value="isento" control={<Radio />} label="Isento" />
+                                    </RadioGroup>
+                                </FormControl>
+                                <FormControl>
+                                    <FormLabel component="legend">Tax Framework</FormLabel>
+                                    <RadioGroup>
+                                        <FormControlLabel value="simples-nacional" control={<Radio />} label="Simples Nacional" />
+                                        <FormControlLabel value="lucro-real" control={<Radio />} label="Lucro Real" />
+                                        <FormControlLabel value="lucro-presumido" control={<Radio />} label="Lucro Presumido" />
+                                    </RadioGroup>
+                                </FormControl>
+                            </div>
+                        }
+
                     </div>
 
                     <div>
