@@ -22,6 +22,7 @@ function CadastroParceiro() {
     const [tipoParceiro, setTipoParceiro] = useInput("");
 
     const [nome, setNome] = useState("");
+<<<<<<< HEAD
     const [cnpj, setCnpj] = useState("");
     const [cpf, setCpf] = useState("");
 
@@ -42,6 +43,15 @@ function CadastroParceiro() {
                 });  
             }
                          
+=======
+    const [cpf, setCpf] = useState("");
+
+    const addContato = () => {
+        Axios.post("http://localhost:3001/insert", {
+            nome: nome,
+            cpf: cpf,
+        });
+>>>>>>> bd68925 ([ADD] Extras Mongoose)
     };
 
     function handleSubmit(e) {
