@@ -4,6 +4,7 @@ const cors = require("cors");
 const app = express();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // const ContatoModel = require("./models/Contato");
 const PessoaJuridicaModel = require("./models/PessoaJuridica");
 const PessoaFisicaModel = require("./models/PessoaFisica");
@@ -11,6 +12,9 @@ const PessoaFisicaModel = require("./models/PessoaFisica");
 const ContatoModel = require("./models/Contato"); 
 >>>>>>> bd68925 ([ADD] Extras Mongoose)
 
+=======
+const ContatoModel = require("./models/Contato");
+>>>>>>> a8d2c0f ([ADD Server Mongo])
 
 app.use(express.json());
 app.use(cors());
@@ -18,15 +22,20 @@ app.use(cors());
 mongoose.connect(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "mongodb+srv://db_admin:senha1234@sistemafiscal.orybm.mongodb.net/fiscal?retryWrites=true&w=majority", 
 =======
     "mongodb+srv://db_user:STolYpHa8G8UZfBs@sistemafiscal.btu8p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", 
 >>>>>>> bd68925 ([ADD] Extras Mongoose)
+=======
+    "mongodb+srv://db_user:STolYpHa8G8UZfBs@cluster0.btu8p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", 
+>>>>>>> a8d2c0f ([ADD Server Mongo])
     {
         useNewUrlParser: true,
     }
 );
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 app.post("/insertJuridica", async (req, res) => {       
 =======
@@ -146,10 +155,25 @@ app.post("/insertFisica", async(req, res) => {
         await pessoaFisica.save();
         res.send("insert Data");
     } catch (err) {
+=======
+app.post("/insert", async (req, res) => {
+    const nome = req.body.Name
+
+    const contato = new ContatoModel({Nome: nome});
+
+    try{
+        await contato.save();
+        res.send("Dado inserido");
+    }catch(err){
+>>>>>>> a8d2c0f ([ADD Server Mongo])
         console.log(err);
     }
 });
 
+<<<<<<< HEAD
 app.listen(3001, () => {
+=======
+app.listen(3001, ()=> {
+>>>>>>> a8d2c0f ([ADD Server Mongo])
     console.log("Server running on port 3001....");
 });
