@@ -1,20 +1,11 @@
 const mongoose = require("mongoose");
-<<<<<<< HEAD:sistema-principal/Server/models/PessoaFisica.js
 const PessoaFisicaSchema = new mongoose.Schema({
         Nome: {
-=======
-
-const ContatoSchema = new mongoose.Schema({
-        nome: {
->>>>>>> bd68925 ([ADD] Extras Mongoose):sistema-principal/Server/models/Contato.js
             type: String,
             required: true,
         },
-<<<<<<< HEAD:sistema-principal/Server/models/PessoaFisica.js
         CPF: {
-=======
-        cpf: {
->>>>>>> bd68925 ([ADD] Extras Mongoose):sistema-principal/Server/models/Contato.js
+            required: true,
             type: String,
         },
         /*RG: {
@@ -64,10 +55,5 @@ const ContatoSchema = new mongoose.Schema({
         }, */    
 });
 
-<<<<<<< HEAD:sistema-principal/Server/models/PessoaFisica.js
 const pessoaFisica = mongoose.model("pFisica", PessoaFisicaSchema);
 module.exports = pessoaFisica;
-=======
-const ContatoModel = mongoose.model("Contato", ContatoSchema);
-module.exports = ContatoModel;
->>>>>>> bd68925 ([ADD] Extras Mongoose):sistema-principal/Server/models/Contato.js
