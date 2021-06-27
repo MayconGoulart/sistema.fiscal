@@ -5,7 +5,7 @@ const PessoaFisicaSchema = new mongoose.Schema({
             required: true,
         },
         CPF: {
-            type: String,
+            type: String
         },
         /*RG: {
             type: String,
