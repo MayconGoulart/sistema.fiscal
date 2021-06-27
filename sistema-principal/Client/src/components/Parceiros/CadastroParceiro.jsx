@@ -22,15 +22,31 @@ function CadastroParceiro() {
     const [tipoParceiro, setTipoParceiro] = useInput("");
 
     const [nome, setNome] = useState("");
+    const [cnpj, setCnpj] = useState("");
+    const [cpf, setCpf] = useState("");
+
+
+
 
     const addContato = () => {
-        Axios.post("http://localhost:3001/insert", {
-            nome: nome
-        });
+            
+            if(tipoParceiro === 'pessoaJuridica'){
+                Axios.post("http://localhost:3001/insertJuridica", {
+                    nome: nome,
+                    cnpj:cnpj,            
+                });     
+            }else{
+                Axios.post("http://localhost:3001/insertFisica", {
+                    nome: nome,
+                    cpf: cpf,            
+                });  
+            }
+                         
     };
 
     function handleSubmit(e) {
         e.preventDefault();
+        console.log(e);
         console.log(tipoParceiro);
     }
 
@@ -56,20 +72,24 @@ function CadastroParceiro() {
                         </FormControl>
                         <TextField id="nome" label="Nome" onChange={(event) => {
                             setNome(event.target.value);
-                        }}/>
-                        {tipoParceiro === "pessoaFisica" && 
+                        }} />
+                        {tipoParceiro === "pessoaFisica" &&
                             <div>
-                                <TextField id="cpf" label="CPF" />
+                                <TextField id="cpf" label="CPF" onChange={(event) => {
+                                    setCpf(event.target.value);
+                                }}/>
                                 <TextField id="rg" label="RG" />
                             </div>
                         }
 
                         {tipoParceiro === "pessoaJuridica" &&
                             <div>
-                                <TextField id="cnpj" label="CNPJ" />
+                                <TextField id="cnpj" label="CNPJ" onChange={(event) => {
+                                    setCnpj(event.target.value);
+                                }} />
                             </div>
                         }
-                        
+
                     </div>
 
                     {tipoParceiro === "pessoaFisica" &&

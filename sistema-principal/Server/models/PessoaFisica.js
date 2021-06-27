@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
-
-const ContatoSchema = new mongoose.Schema({
+const PessoaFisicaSchema = new mongoose.Schema({
         Nome: {
-            type: String,
-        },
-        /*CPF: {
             type: String,
             required: true,
         },
-        RG: {
+        CPF: {
+            type: String,
+            required: true,
+        },
+        /*RG: {
             type: String,
         },
         Cargo: {
@@ -55,5 +55,5 @@ const ContatoSchema = new mongoose.Schema({
         }, */    
 });
 
-const Contato = mongoose.model("Contato", ContatoSchema);
-module.exports = Contato;
+const pessoaFisica = mongoose.model("pFisica", PessoaFisicaSchema);
+module.exports = pessoaFisica;
