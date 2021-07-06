@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 const PessoaJuridicaSchema = new mongoose.Schema({
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> db9418f (Inserts de todos os dados completos)
     Nome: {
         type: String,
         required: true,
@@ -69,6 +72,7 @@ const PessoaJuridicaSchema = new mongoose.Schema({
         type: String,
     },
 
+<<<<<<< HEAD
 =======
         nome: {
             type: String,
@@ -109,6 +113,8 @@ const PessoaJuridicaSchema = new mongoose.Schema({
         
           
 >>>>>>> c5c0c5d (att models e conexão Banco.)
+=======
+>>>>>>> db9418f (Inserts de todos os dados completos)
 });
 
 const PessoaJuridica = mongoose.model("pJuridica", PessoaJuridicaSchema);
