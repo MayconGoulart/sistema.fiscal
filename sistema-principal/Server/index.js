@@ -8,8 +8,12 @@ const app = express();
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 076ddf3 ([ADD] Extras Mongoose)
+=======
+
+>>>>>>> ad75f89 (Revert "Merge branch 'freature/new_project/banco_parceiros' of https://github.com/ygcarvalh/sistema.fiscal into freature/new_project/banco_parceiros")
 // const ContatoModel = require("./models/Contato");
 const PessoaJuridicaModel = require("./models/PessoaJuridica");
 const PessoaFisicaModel = require("./models/PessoaFisica");
@@ -33,6 +37,8 @@ const PessoaFisicaModel = require("./models/PessoaFisica");
 const PessoaJuridicaModel = require("./models/PessoaJuridica");
 const PessoaFisicaModel = require("./models/PessoaFisica");
 >>>>>>> ed261c8 (conexão banco)
+
+
 
 app.use(express.json());
 app.use(cors());
@@ -84,6 +90,7 @@ app.post("/insertJuridica", async (req, res) => {
     }
 );
 app.post("/insertJuridica", async(req, res) => {
+<<<<<<< HEAD
 >>>>>>> 86cbf45 (Inserts de todos os dados completos)
     const nome = req.body.nome;
     const cnpj = req.body.cnpj;
@@ -206,6 +213,8 @@ app.post("/insert", async (req, res) => {
 =======
 >>>>>>> ed261c8 (conexão banco)
 app.post("/insertJuridica", async (req, res) => {       
+=======
+>>>>>>> ad75f89 (Revert "Merge branch 'freature/new_project/banco_parceiros' of https://github.com/ygcarvalh/sistema.fiscal into freature/new_project/banco_parceiros")
     const nome = req.body.nome;
     const cnpj = req.body.cnpj;
     const nomelegal = req.body.nomelegal;
@@ -277,7 +286,8 @@ app.post("/insert", async (req, res) => {
 =======
 >>>>>>> ed261c8 (conexão banco)
 
-app.post("/insertFisica", async (req, res) => {       
+
+app.post("/insertFisica", async(req, res) => {
     const nome = req.body.nome;
     const cpf = req.body.cpf;
     const rg = req.body.cpf;

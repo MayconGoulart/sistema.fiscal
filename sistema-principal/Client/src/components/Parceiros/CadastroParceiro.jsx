@@ -97,7 +97,6 @@ function CadastroParceiro() {
                     pais: pais,
                 });  
             }
-                         
     };
 
     function handleSubmit(e) {

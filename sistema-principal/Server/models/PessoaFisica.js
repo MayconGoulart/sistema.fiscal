@@ -64,5 +64,6 @@ const PessoaFisicaSchema = new mongoose.Schema({
     },
 });
 
+
 const pessoaFisica = mongoose.model("pFisica", PessoaFisicaSchema);
 module.exports = pessoaFisica;
