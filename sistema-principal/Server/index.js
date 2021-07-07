@@ -7,6 +7,7 @@ const app = express();
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 076ddf3 ([ADD] Extras Mongoose)
 // const ContatoModel = require("./models/Contato");
@@ -27,11 +28,17 @@ const PessoaFisicaModel = require("./models/PessoaFisica");
 >>>>>>> c5c0c5d (att models e conexão Banco.)
 =======
 >>>>>>> 076ddf3 ([ADD] Extras Mongoose)
+=======
+// const ContatoModel = require("./models/Contato");
+const PessoaJuridicaModel = require("./models/PessoaJuridica");
+const PessoaFisicaModel = require("./models/PessoaFisica");
+>>>>>>> ed261c8 (conexão banco)
 
 app.use(express.json());
 app.use(cors());
 
 mongoose.connect(
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -53,11 +60,15 @@ mongoose.connect(
     "mongodb+srv://db_user:STolYpHa8G8UZfBs@sistemafiscal.btu8p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", 
 >>>>>>> bd68925 ([ADD] Extras Mongoose)
 >>>>>>> 076ddf3 ([ADD] Extras Mongoose)
+=======
+    "mongodb+srv://db_admin:senha1234@sistemafiscal.orybm.mongodb.net/fiscal?retryWrites=true&w=majority", 
+>>>>>>> ed261c8 (conexão banco)
     {
         useNewUrlParser: true,
     }
 );
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -188,6 +199,8 @@ app.post("/insert", async (req, res) => {
 =======
 =======
 >>>>>>> 076ddf3 ([ADD] Extras Mongoose)
+=======
+>>>>>>> ed261c8 (conexão banco)
 app.post("/insertJuridica", async (req, res) => {       
     const nome = req.body.nome;
     const cnpj = req.body.cnpj;
@@ -201,6 +214,7 @@ app.post("/insertJuridica", async (req, res) => {
     }
 });
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> c5c0c5d (att models e conexão Banco.)
 =======
 =======
@@ -213,6 +227,8 @@ app.post("/insert", async (req, res) => {
     console.log(contato);
 >>>>>>> bd68925 ([ADD] Extras Mongoose)
 >>>>>>> 076ddf3 ([ADD] Extras Mongoose)
+=======
+>>>>>>> ed261c8 (conexão banco)
 
 app.post("/insertFisica", async (req, res) => {       
     const nome = req.body.nome;

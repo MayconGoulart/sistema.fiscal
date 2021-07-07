@@ -62,8 +62,6 @@ const PessoaFisicaSchema = new mongoose.Schema({
     País: {
         type: String,
     },
-
-
 });
 
 const pessoaFisica = mongoose.model("pFisica", PessoaFisicaSchema);
