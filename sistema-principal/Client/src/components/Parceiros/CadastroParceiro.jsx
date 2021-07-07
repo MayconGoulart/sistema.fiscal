@@ -25,9 +25,6 @@ function CadastroParceiro() {
     const [cnpj, setCnpj] = useState("");
     const [cpf, setCpf] = useState("");
 
-
-
-
     const addContato = () => {
             
             if(tipoParceiro === 'pessoaJuridica'){

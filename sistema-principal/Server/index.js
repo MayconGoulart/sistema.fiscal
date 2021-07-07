@@ -6,12 +6,16 @@ const app = express();
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 076ddf3 ([ADD] Extras Mongoose)
 // const ContatoModel = require("./models/Contato");
 const PessoaJuridicaModel = require("./models/PessoaJuridica");
 const PessoaFisicaModel = require("./models/PessoaFisica");
 =======
 const ContatoModel = require("./models/Contato"); 
 >>>>>>> bd68925 ([ADD] Extras Mongoose)
+<<<<<<< HEAD
 
 =======
 const ContatoModel = require("./models/Contato");
@@ -21,11 +25,14 @@ const ContatoModel = require("./models/Contato");
 const PessoaJuridicaModel = require("./models/PessoaJuridica");
 const PessoaFisicaModel = require("./models/PessoaFisica");
 >>>>>>> c5c0c5d (att models e conexão Banco.)
+=======
+>>>>>>> 076ddf3 ([ADD] Extras Mongoose)
 
 app.use(express.json());
 app.use(cors());
 
 mongoose.connect(
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -40,11 +47,18 @@ mongoose.connect(
 =======
     "mongodb+srv://db_admin:senha1234@sistemafiscal.orybm.mongodb.net/fiscal?retryWrites=true&w=majority", 
 >>>>>>> c5c0c5d (att models e conexão Banco.)
+=======
+    "mongodb+srv://db_admin:senha1234@sistemafiscal.orybm.mongodb.net/fiscal?retryWrites=true&w=majority", 
+=======
+    "mongodb+srv://db_user:STolYpHa8G8UZfBs@sistemafiscal.btu8p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", 
+>>>>>>> bd68925 ([ADD] Extras Mongoose)
+>>>>>>> 076ddf3 ([ADD] Extras Mongoose)
     {
         useNewUrlParser: true,
     }
 );
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -172,6 +186,8 @@ app.post("/insert", async (req, res) => {
 
     const contato = new ContatoModel({Nome: nome});
 =======
+=======
+>>>>>>> 076ddf3 ([ADD] Extras Mongoose)
 app.post("/insertJuridica", async (req, res) => {       
     const nome = req.body.nome;
     const cnpj = req.body.cnpj;
@@ -184,7 +200,19 @@ app.post("/insertJuridica", async (req, res) => {
         console.log(err);
     }
 });
+<<<<<<< HEAD
 >>>>>>> c5c0c5d (att models e conexão Banco.)
+=======
+=======
+app.post("/insert", async (req, res) => {
+    const nome = req.body.nome;
+    const cpf = req.body.cpf;
+
+    const contato = new ContatoModel({nome: nome, cpf: cpf});
+
+    console.log(contato);
+>>>>>>> bd68925 ([ADD] Extras Mongoose)
+>>>>>>> 076ddf3 ([ADD] Extras Mongoose)
 
 app.post("/insertFisica", async (req, res) => {       
     const nome = req.body.nome;
