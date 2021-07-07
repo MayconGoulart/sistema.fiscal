@@ -19,7 +19,7 @@ Para executar esse projeto, é necessário realizar os seguintes comandos:
 		 `npm install @material-ui/icons`
 		 `npm install react-bootstrap`
 		 `npm install --save use-input-hook`
-
+r
 
  4. 💻 No terminal, rodar o comando: `npm start`
 
