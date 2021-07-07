@@ -9,8 +9,6 @@ import Parceiros from './components/Parceiros/Parceiros';
 import Template from './components/template/Template';
 import Formulario from './components/template/TemplateFormulario';
 import CadastroPessoaFisica from './components/Parceiros/CadastroParceiro';
-import CadastroInventario from './components/Inventario/CadastroInventario';
-import Inventario from './components/Inventario/Inventario';
 
 // IMPORTAÇÃO DOS ESTILOS
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -37,13 +35,6 @@ function App() {
                     </Route>
                     <Route path="/cadastroParceiro">
                         <CadastroPessoaFisica />
-                    </Route>
-
-                    <Route path="/inventario">
-                        <Inventario />
-                    </Route>
-                    <Route path="/cadastroInventario">
-                        <CadastroInventario />
                     </Route>
 
                     <Route>
