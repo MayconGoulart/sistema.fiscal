@@ -8,12 +8,14 @@ import Page404 from './components/Principal/Page404';
 import Parceiros from './components/Parceiros/Parceiros';
 import Template from './components/template/Template';
 import Formulario from './components/template/TemplateFormulario';
+import Inventario from './components/Inventario/Inventario';
+import CadastroInventario from './components/Inventario/CadastroInventario';
 
 // IMPORTAÇÃO DOS ESTILOS
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
-import CadastroPessoaFisica from './components/Parceiros/CadastroParceiro';
+import CadastroParceiro from './components/Parceiros/CadastroParceiro';
 
 function App() {
 
@@ -31,11 +33,19 @@ function App() {
                     </Route>
 
                     <Route path="/cadastroParceiro">
-                        <CadastroPessoaFisica />
+                        <CadastroParceiro />
                     </Route>
 
                     <Route path="/cadastro">
                         <Formulario />
+                    </Route>
+
+                    <Route path="/inventario">
+                        <Inventario />
+                    </Route>
+
+                    <Route path="/cadastroInventario">
+                        <CadastroInventario />
                     </Route>
 
                     <Route>
