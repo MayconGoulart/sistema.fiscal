@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const PessoaJuridicaSchema = new mongoose.Schema({
+<<<<<<< HEAD
     Nome: {
         type: String,
         required: true,
@@ -68,6 +69,46 @@ const PessoaJuridicaSchema = new mongoose.Schema({
         type: String,
     },
 
+=======
+        nome: {
+            type: String,
+            required:true,
+        },
+        CNPJ: {
+            type: String,
+            required:true,
+        },
+        // nomeLegal: {
+        //     type: String,
+        //     required:true,
+        // },
+        // IE: {
+        //     type: String,
+        //     required:true,
+        // },
+        // tel: {
+        //     type: String,
+        //     required:true,
+        // },
+        // cel: {
+        //     type: String,
+        //     required:true,
+        // },
+        // email: {
+        //     type: String,
+        //     required:true,
+        // },
+        // empresa: {
+        //     type: String,
+        //     required:true,
+        // },
+        // endereco: {
+        //     type: String,
+        //     required:true,
+        // },
+        
+          
+>>>>>>> c5c0c5d (att models e conexão Banco.)
 });
 
 const PessoaJuridica = mongoose.model("pJuridica", PessoaJuridicaSchema);

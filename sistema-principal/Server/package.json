@@ -13,10 +13,14 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "mongoose": "^5.13.1",
 =======
     "mongoose": "^5.12.14",
 >>>>>>> a8d2c0f ([ADD Server Mongo])
+=======
+    "mongoose": "^5.12.15",
+>>>>>>> c5c0c5d (att models e conexão Banco.)
     "nodemon": "^2.0.7"
   }
 }

@@ -5,6 +5,7 @@ const app = express();
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // const ContatoModel = require("./models/Contato");
 const PessoaJuridicaModel = require("./models/PessoaJuridica");
 const PessoaFisicaModel = require("./models/PessoaFisica");
@@ -15,11 +16,17 @@ const ContatoModel = require("./models/Contato");
 =======
 const ContatoModel = require("./models/Contato");
 >>>>>>> a8d2c0f ([ADD Server Mongo])
+=======
+// const ContatoModel = require("./models/Contato");
+const PessoaJuridicaModel = require("./models/PessoaJuridica");
+const PessoaFisicaModel = require("./models/PessoaFisica");
+>>>>>>> c5c0c5d (att models e conexão Banco.)
 
 app.use(express.json());
 app.use(cors());
 
 mongoose.connect(
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -30,11 +37,15 @@ mongoose.connect(
 =======
     "mongodb+srv://db_user:STolYpHa8G8UZfBs@cluster0.btu8p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", 
 >>>>>>> a8d2c0f ([ADD Server Mongo])
+=======
+    "mongodb+srv://db_admin:senha1234@sistemafiscal.orybm.mongodb.net/fiscal?retryWrites=true&w=majority", 
+>>>>>>> c5c0c5d (att models e conexão Banco.)
     {
         useNewUrlParser: true,
     }
 );
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 app.post("/insertJuridica", async (req, res) => {       
@@ -160,10 +171,29 @@ app.post("/insert", async (req, res) => {
     const nome = req.body.Name
 
     const contato = new ContatoModel({Nome: nome});
-
+=======
+app.post("/insertJuridica", async (req, res) => {       
+    const nome = req.body.nome;
+    const cnpj = req.body.cnpj;
+    const pessoaJuridica = new PessoaJuridicaModel({nome: nome, CNPJ: cnpj});
+    console.log("teste");
     try{
-        await contato.save();
-        res.send("Dado inserido");
+        await pessoaJuridica.save();
+        res.send("insert Data");
+    }catch(err){
+        console.log(err);
+    }
+});
+>>>>>>> c5c0c5d (att models e conexão Banco.)
+
+app.post("/insertFisica", async (req, res) => {       
+    const nome = req.body.nome;
+    const cpf = req.body.cpf;
+    
+    const pessoaFisica = new PessoaFisicaModel({Nome: nome, CPF:cpf});    
+    try{
+        await pessoaFisica.save();
+        res.send("insert Data");
     }catch(err){
 >>>>>>> a8d2c0f ([ADD Server Mongo])
         console.log(err);
