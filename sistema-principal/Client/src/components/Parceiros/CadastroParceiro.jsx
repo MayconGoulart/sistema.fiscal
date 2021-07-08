@@ -33,13 +33,13 @@ function CadastroParceiro() {
     const [cnpj, setCnpj] = useState("");
     const [ie, setIe] = useState("");
     const [nomelegal, setNomeLegal] = useState("");
-    const [empresa, setEmpresa] = useState("");
     const [tx, setTx] = useState("");
       
     //fisica
     const [cpf, setCpf] = useState("");
     const [rg, setRg] = useState("");
     const [cargo, setCargo] = useState("");
+    const [empresa, setEmpresa] = useState("");
     
     //Endereço
     const [cep, setCep] = useState("");
@@ -60,7 +60,6 @@ function CadastroParceiro() {
                     cnpj:cnpj,
                     ie: ie,
                     nomelegal: nomelegal,
-                    empresa: empresa,
                     telefone: telefone,
                     celular: celular,
                     email: email,
@@ -82,6 +81,7 @@ function CadastroParceiro() {
                     cpf: cpf,
                     rg: rg,
                     cargo: cargo,
+                    empresa: empresa,
                     telefone: telefone,
                     celular: celular,
                     email: email,
@@ -153,9 +153,6 @@ function CadastroParceiro() {
 
                         <div>
                             <h2>Informações (Pessoa Física)</h2>
-                            <TextField id="cargo" label="Cargo" onChange={(event) => {
-                                    setCargo(event.target.value);
-                                }}/>
                             <TextField id="telefone" label="Telefone" onChange={(event) => {
                                     setTelefone(event.target.value);
                                 }} />
@@ -167,6 +164,12 @@ function CadastroParceiro() {
                                 }}/>
                             <TextField id="website" label="Website" onChange={(event) => {
                                     setWebsite(event.target.value);
+                                }}/>
+                            <TextField id="cargo" label="Cargo" onChange={(event) => {
+                                    setCargo(event.target.value);
+                                }}/>
+                            <TextField id="empresa" label="Empresa" onChange={(event) => {
+                                    setEmpresa(event.target.value);
                                 }}/>
                         </div>
                     }
@@ -189,9 +192,6 @@ function CadastroParceiro() {
                                 }}/>
                             <TextField id="email" label="E-mail" onChange={(event) => {
                                     setEmail(event.target.value);
-                                }}/>
-                            <TextField id="empresa" label="Empresa" onChange={(event) => {
-                                    setEmpresa(event.target.value);
                                 }}/>
                             <TextField id="website" label="Website" onChange={(event) => {
                                     setWebsite(event.target.value);

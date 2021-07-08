@@ -16,6 +16,10 @@ const PessoaFisicaSchema = new mongoose.Schema({
     },
     Cargo: {
         type: String,
+        required: false,
+    },
+    Empresa: {
+        type: String,
         required: true,
     },
     Telefone: {
@@ -32,7 +36,7 @@ const PessoaFisicaSchema = new mongoose.Schema({
     },
     WebSite: {
         type: String,
-        required: true,
+        required: false,
     },
     PerfilFiscal: {
         type: String,
@@ -40,27 +44,35 @@ const PessoaFisicaSchema = new mongoose.Schema({
     },
     CEP: {
         type: String,
+        required: true,
     },
     Rua: {
         type: String,
+        required: true,
     },
     Numero: {
         type: String,
+        required: false,
     },
     Complemento: {
         type: String,
+        required: false,
     },
     Distrito: {
         type: String,
+        required: false,
     },
     Cidade: {
         type: String,
+        required: true,
     },
     Estado: {
         type: String,
+        required: true,
     },
     País: {
         type: String,
+        required: false,
     },
 
 

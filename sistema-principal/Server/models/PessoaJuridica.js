@@ -18,54 +18,59 @@ const PessoaJuridicaSchema = new mongoose.Schema({
     },
     Telefone: {
         type: String,
-        required: true,
+        required: false,
     },
     Celular: {
         type: String,
-        required: true,
+        required: false,
     },
     Email: {
         type: String,
         required: true,
     },
-    Empresa: {
-        type: String,
-        required: true,
-    },
     WebSite: {
         type: String,
-        required: true,
+        required: false,
     },
     CEP: {
         type: String,
+        required: true,
     },
     Rua: {
         type: String,
+        required: true,
     },
     Numero: {
         type: String,
+        required: false,
     },
     Complemento: {
         type: String,
+        required: false,
     },
     Distrito: {
         type: String,
-        defaut: null,
+        required: false,
     },
     Cidade: {
         type: String,
+        required: true,
     },
     Estado: {
         type: String,
+        required: true,
     },
     País: {
         type: String,
+        required: true,
     },
     PerfilFiscal: {
         type: String,
+        required: true,
     },
     Tx: {
         type: String,
+        required: true,
     },
 
 });
