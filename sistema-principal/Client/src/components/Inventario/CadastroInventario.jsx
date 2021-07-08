@@ -52,13 +52,13 @@ function CadastroInventario() {
                         <div class="info-gerais-2">
                             <FormControl>
                                 <Select>
-                                    <MenuItem value={1}>15%</MenuItem>
-                                    <MenuItem value={1}>20%</MenuItem>
-                                    <MenuItem value={1}>30%</MenuItem>
+                                    <MenuItem value={0}>00%</MenuItem>
+                                    <MenuItem value={1}>10%</MenuItem>
+                                    <MenuItem value={2}>20%</MenuItem>
                                 </Select>
                             </FormControl>
                             <TextField id="preco" label="Preço de Venda" />
-                            <TextField id="custo" label="Taxa do Cliente" />
+                            <TextField id="custo" label="Custo de Compra" />
                             <TextField id="fornecedor" label="Fornecedor" />
                         </div>
                         </div>
