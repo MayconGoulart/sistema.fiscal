@@ -4,6 +4,20 @@
     padding: 0.5%;
 }
 
+
+/* ESTILO GERAL */
+
+body {
+    background-color: #E5E5E5;
+}
+
+.titulo-info-gerais {
+    color: #1280CF;
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-size: 1.7rem;
+}
+
 .infos-card {
     width: 80%;
     margin: 0 auto;
