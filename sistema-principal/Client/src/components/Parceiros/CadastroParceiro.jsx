@@ -1,6 +1,7 @@
 // IMPORTAÇÃO DOS MÓDULOS DO REACT
 import React, { useState } from 'react';
 import useInput from 'use-input-hook';
+import { Link } from 'react-router-dom';
 
 // IMPORTAÇÃO DOS COMPONENTES
 import { Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@material-ui/core';
@@ -270,7 +271,10 @@ function CadastroParceiro() {
                     </div>
 
                     <div>
-                        <Button onClick={addContato} variant="success">Salvar</Button>
+                        <Button onClick={addContato} variant="success">
+                            Salvar
+                            <Link to="/parceiros" />
+                        </Button>
                         <Button variant="danger">Cancelar</Button>
                     </div>
 
