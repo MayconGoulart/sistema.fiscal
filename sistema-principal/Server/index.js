@@ -3,28 +3,12 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 076ddf3 ([ADD] Extras Mongoose)
-=======
-
->>>>>>> ad75f89 (Revert "Merge branch 'freature/new_project/banco_parceiros' of https://github.com/ygcarvalh/sistema.fiscal into freature/new_project/banco_parceiros")
 // const ContatoModel = require("./models/Contato");
 const PessoaJuridicaModel = require("./models/PessoaJuridica");
 const PessoaFisicaModel = require("./models/PessoaFisica");
 =======
 const ContatoModel = require("./models/Contato"); 
 >>>>>>> bd68925 ([ADD] Extras Mongoose)
-<<<<<<< HEAD
-
-=======
-const ContatoModel = require("./models/Contato");
->>>>>>> a8d2c0f ([ADD Server Mongo])
 =======
 // const ContatoModel = require("./models/Contato");
 const PessoaJuridicaModel = require("./models/PessoaJuridica");
@@ -44,17 +28,8 @@ app.use(express.json());
 app.use(cors());
 
 mongoose.connect(
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     "mongodb+srv://db_admin:senha1234@sistemafiscal.orybm.mongodb.net/fiscal?retryWrites=true&w=majority", 
-=======
-    "mongodb+srv://db_user:STolYpHa8G8UZfBs@sistemafiscal.btu8p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", 
->>>>>>> bd68925 ([ADD] Extras Mongoose)
 =======
     "mongodb+srv://db_user:STolYpHa8G8UZfBs@cluster0.btu8p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", 
 >>>>>>> a8d2c0f ([ADD Server Mongo])
