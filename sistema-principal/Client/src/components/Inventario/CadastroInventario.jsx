@@ -102,8 +102,10 @@ function CadastroInventario() {
                             <FormControl>
                             <InputLabel>NCM</InputLabel>
                             <Select>
-                                <MenuItem value={1}>0000.00.00</MenuItem>
-                                <MenuItem value={2}>Necessário Preencher - Disponibilizado pelo MF</MenuItem>
+                                <MenuItem value={1}>0000.00.00 - Sem NCM</MenuItem>
+                                <MenuItem value={2}>7200.00.00 - Ferro fundido, ferro e aço</MenuItem>
+                                <MenuItem value={3}>8100.00.00 - Outros metais comuns; cermets; obras desses materiais</MenuItem>
+                                <MenuItem value={4}>8300.00.00 - Obras diversas de metais comuns</MenuItem>
                             </Select>
                         </FormControl>
                         <FormControl>
@@ -116,12 +118,10 @@ function CadastroInventario() {
                         <FormControl>
                             <InputLabel>Gênero Fiscal</InputLabel>
                             <Select>
-                                <MenuItem value={0}>Serviço</MenuItem>
-                                <MenuItem value={1}>Animais Vivos</MenuItem>
-                                <MenuItem value={2}>Carnes e miudezas, comestíveis</MenuItem>
-                                <MenuItem value={3}>Peixes e crusstáceos, moluscos e os outros invertebrados aquáticos</MenuItem>
-                                <MenuItem value={4}>Leite e laticínios; mel natural; produtos comestíveis de origem animal, não especificados nem compreendidos em outros Capítulos do TIPI</MenuItem>
-                                <MenuItem value={5}>Inserir Mais com o Tempo</MenuItem>
+                                <MenuItem value={0}>00 - Serviço</MenuItem>
+                                <MenuItem value={1}>70 - Vidros e suas obras</MenuItem>
+                                <MenuItem value={2}>72 - Ferro fundido, ferro e aço</MenuItem>
+                                <MenuItem value={3}>83 - Obras diversas de metais comuns</MenuItem>
                             </Select>
                         </FormControl>
 
@@ -130,25 +130,28 @@ function CadastroInventario() {
                             <FormControl>
                             <InputLabel>CEST</InputLabel>
                             <Select>
-                            <MenuItem value={1}>Necessário Preencher - Disponibilizado pelo MF</MenuItem>
+                                <MenuItem value={1}>01.004.00 - Reservatórios de óleo</MenuItem>
+                                <MenuItem value={2}>01.016.00 - Espelhos retrovisores</MenuItem>
+                                <MenuItem value={3}>01.017.00 - Lentes de faróis, lanternas e outros utensílios</MenuItem>
                             </Select>
                         </FormControl>
                         <FormControl>
                             <InputLabel>NBM</InputLabel>
                             <Select>
-                                <MenuItem value={1}>Necessário Preencher - Disponibilizado pelo MF</MenuItem>
+                                <MenuItem value={1}>4016.10.10 - Partes de veículos automóveis, tratores e máquinas autopropulsadas</MenuItem>
+                                <MenuItem value={2}>8408.20.00 - Motores dos tipos utilizados para propulsão de veículos automotores</MenuItem>
                             </Select>
                         </FormControl>
                         <FormControl>
                             <InputLabel>NBS (Quando Tipo Fiscal for Serviço)</InputLabel>
                             <Select>
-                                <MenuItem value={1}>Necessário Preencher - Disponibilizado pelo MF</MenuItem>
+                                <MenuItem value={1}>1.2001.3 - Serviços de manutenção e reparação de máquiário e equipamentos de transporte</MenuItem>
                             </Select>
                         </FormControl>
                         <FormControl>
-                            <InputLabel>Tipo de Serviço - LC 166 (Quanto Tipo Fiscal for Serviço)</InputLabel>
+                            <InputLabel>Tipo de Serviço - LC 116 (Quanto Tipo Fiscal for Serviço)</InputLabel>
                             <Select>
-                                <MenuItem value={1}>Necessário Preencher - Disponibilizado pelo MF</MenuItem>
+                                <MenuItem value={1}>14.01 - Lubrificação, limpeza, lustração (...)</MenuItem>
                             </Select>
                         </FormControl>
                         <TextField id="deducoes" label="Deduções Fiscais" />
