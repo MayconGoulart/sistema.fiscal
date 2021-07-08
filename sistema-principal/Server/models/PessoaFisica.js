@@ -62,6 +62,8 @@ const PessoaFisicaSchema = new mongoose.Schema({
     País: {
         type: String,
     },
+
+
 });
 
 
