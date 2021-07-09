@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // IMPORTAÇÃO DOS COMPONENTES\
 import Cabecalho from './components/Principal/Cabecalho';
+import Home from './components/Home/home';
 import Page404 from './components/Principal/Page404';
 import Parceiros from './components/Parceiros/Parceiros';
 import Template from './components/template/Template';
@@ -26,7 +27,7 @@ function App() {
             <Router>
                 <Switch>
                     <Route exact path="/">
-                        <Template />
+                        <Home />
                     </Route>
                     <Route path="/parceiros">
                         <Parceiros />
@@ -54,8 +55,6 @@ function App() {
                 </Switch>
             </Router>
         </>
-        
-
     );
 
 }

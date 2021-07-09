@@ -22,13 +22,7 @@ function Template() {
 
     return (
         <>
-            <div className="botoes">
-                <Button variant="contained" color="primary">
-                    <Link to="/cadastroInventario">Novo Registro</Link>
-                </Button>
-            </div>
-
-
+            
             <Container maxWidth="md" className="container-generico">
 
                 <div className="container-fluid d-flex flex-wrap div-generico">
@@ -92,6 +86,12 @@ function Template() {
                 </div>
 
             </Container>
+
+            <div className="botoes">
+                <Button variant="contained" color="primary">
+                    <Link to="/cadastroInventario">Novo Registro</Link>
+                </Button>
+            </div>
 
             <Switch>
                 <Route path={`/cadastroInventario`}>

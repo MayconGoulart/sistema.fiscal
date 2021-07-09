@@ -1,5 +1,4 @@
 .container-generico {
-    background-color: aliceblue;
     margin-top: 5%;
     padding: 0.5%;
 }
@@ -9,13 +8,6 @@
 
 body {
     background-color: #E5E5E5;
-}
-
-.titulo-info-gerais {
-    color: #1280CF;
-    text-transform: uppercase;
-    font-weight: bolder;
-    font-size: 1.7rem;
 }
 
 .infos-card {

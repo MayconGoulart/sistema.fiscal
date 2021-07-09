@@ -22,14 +22,8 @@ function Template() {
 
     return (
         <>
-            <div className="botoes">
-                <Button variant="contained" color="primary">
-                    <Link to="/cadastro">Novo Registro</Link>
-                </Button>
-            </div>
-
-
-            <Container maxWidth="md" className="container-generico">
+           
+            <section maxWidth="md" className="container-generico">
 
                 <div className="container-fluid d-flex flex-wrap div-generico">
                     <Card style={{ width: '18rem'}} className="card-generico">
@@ -91,7 +85,14 @@ function Template() {
                     </Card>
                 </div>
 
-            </Container>
+            </section>
+
+            <div className="botoes">
+                <Button variant="contained">
+                    <Link to="/cadastro">Novo Registro</Link>
+                </Button>
+            </div>
+
 
             <Switch>
                 <Route path="/cadastro">

@@ -31,11 +31,7 @@ function Parceiros() {
     return (
 
         <>
-            <div className="botoes">
-                <Button variant="contained" color="primary">
-                    <Link to="cadastroParceiro">Novo Registro</Link>
-                </Button>
-            </div>
+
             <Container maxWidth="md" className="container-generico">
                 <div  className="container-fluid d-flex flex-wrap div-generico">
                     {pessoaFisica.map(response => (
@@ -56,6 +52,12 @@ function Parceiros() {
                 </div>
             </Container>
 
+            <div className="botoes">
+                <Button variant="contained" color="primary">
+                    <Link to="cadastroParceiro">Novo Registro</Link>
+                </Button>
+            </div>
+            
             <Switch>
                 <Route path={`/cadastroParceiro`}>
                     <Formulario />

@@ -1,0 +1,34 @@
+.card-home {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    box-shadow: 7px 9px 37px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.cards-home {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 40%;
+    margin: 0 auto;
+}
+
+.card-home h4 {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.card-home:hover {
+    box-shadow: 11px 16px 37px rgb(0 0 0 / 25%);
+}
+
+.cards-home1,
+.cards-home2 {
+    display: grid;
+    grid-gap: 2rem;
+    width: 200px;
+    margin-top: 5rem;
+}
