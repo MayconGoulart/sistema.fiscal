@@ -1,0 +1,75 @@
+.container-generico {
+    margin-top: 5%;
+    padding: 0.5%;
+}
+
+
+/* ESTILO GERAL */
+
+body {
+    background-color: #E5E5E5;
+}
+
+.infos-card {
+    width: 80%;
+    margin: 0 auto;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 12px rgb(0 0 0 / 25%);
+    padding: 3rem 5rem;
+}
+
+.info-inicial {
+    display: flex;
+    align-items: center;
+    padding-bottom: 2rem;
+}
+
+.icon-inicial {
+    background: #FFFFFF;
+    box-shadow: 1px 5px 13px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    margin-right: 3rem;
+    padding: 1rem;
+}
+
+.info-inicial .MuiFormControl-root {
+    padding-bottom: 1rem;
+}
+
+.info-inicial .MuiFormGroup-root .MuiFormControlLabel-root span.PrivateSwitchBase-root-1 {
+    padding: 1px 6px;
+}
+
+.info-gerais {
+    padding: 3rem 0;
+}
+
+.info-gerais .info-gerais-conteudo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5rem;
+}
+
+.info-gerais-1,
+.info-gerais-2 {
+    display: grid;
+}
+
+.btn-salvar {
+    text-align: center;
+}
+
+.btn-salver button {
+    margin: 1rem;
+}
+
+.card-generico {
+    margin: 2%;
+    margin-left: 0%;
+    padding: 2px;
+}
+
+.div-generico {
+    padding-left: 0%;
+    padding-right: 0%;
+}

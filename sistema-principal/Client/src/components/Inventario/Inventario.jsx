@@ -10,8 +10,8 @@ import { BorderColor, Delete } from '@material-ui/icons';
 
 // IMPORTAÇÃO DOS ESTILOS
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './template.css';
-import Formulario from './TemplateFormulario';
+import './inventario.css';
+import CadastroInventario from './CadastroInventario';
 
 function Template() {
 
@@ -22,8 +22,8 @@ function Template() {
 
     return (
         <>
-           
-            <section maxWidth="md" className="container-generico">
+            
+            <Container maxWidth="md" className="container-generico">
 
                 <div className="container-fluid d-flex flex-wrap div-generico">
                     <Card style={{ width: '18rem'}} className="card-generico">
@@ -85,18 +85,17 @@ function Template() {
                     </Card>
                 </div>
 
-            </section>
+            </Container>
 
             <div className="botoes">
-                <Button variant="contained">
-                    <Link to="/cadastro">Novo Registro</Link>
+                <Button variant="contained" color="primary">
+                    <Link to="/cadastroInventario">Novo Registro</Link>
                 </Button>
             </div>
 
-
             <Switch>
-                <Route path="/cadastro">
-                    <Formulario />
+                <Route path={`/cadastroInventario`}>
+                    <CadastroInventario />
                 </Route>
             </Switch>
         </>

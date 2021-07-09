@@ -1,79 +1,93 @@
 const mongoose = require("mongoose");
-const PessoaJuridicaSchema = new mongoose.Schema({
+const InventarioProdutoSchema = new mongoose.Schema({
     Nome: {
         type: String,
         required: true,
     },
-    CNPJ: {
+    PodeSerVendido: {
+        type: Boolean,
+        required: true,
+    },
+    PodeSerComprado: {
+        type: Boolean,
+        required: true,
+    },
+    Categoria: {
         type: String,
         required: true,
     },
-    NomeLegal: {
+    Referencia: {
         type: String,
         required: true,
     },
-    IE: {
-        type: String,
-        required: true,
-    },
-    Telefone: {
+    CodigoBarras: {
         type: String,
         required: false,
     },
-    Celular: {
+    Taxa: {
         type: String,
         required: false,
     },
-    Email: {
+    PrecoVenda: {
         type: String,
         required: true,
     },
-    WebSite: {
+    CustoCommpra: {
+        type: String,
+        required: true,
+    },
+    Fornecedor: {
+        type: String,
+        required: true,
+    },
+
+    //Informações Fiscais
+    TipoFiscal: {
+        type: String,
+        required: true,
+    },
+    ICMSOrigem: {
         type: String,
         required: false,
     },
-    CEP: {
-        type: String,
-        required: true,
-    },
-    Rua: {
-        type: String,
-        required: true,
-    },
-    Numero: {
+    NCM: {
         type: String,
         required: false,
     },
-    Complemento: {
+    ICMSouISSQN: {
+        type: String,
+        required: true,
+    },
+    GeneroFiscal: {
+        type: String,
+        required: true,
+    },
+    CEST: {
         type: String,
         required: false,
     },
-    Distrito: {
+    NBM: {
         type: String,
         required: false,
     },
-    Cidade: {
+    NBS: {
         type: String,
         required: true,
     },
-    Estado: {
+    TipoServico: {
         type: String,
         required: true,
     },
-    País: {
+    DeducaoFiscal: {
         type: String,
-        required: true,
+        required: false,
     },
-    PerfilFiscal: {
+    Unidade: {
         type: String,
-        required: true,
-    },
-    Tx: {
-        type: String,
-        required: true,
+        required: false,
     },
 
 });
 
-const PessoaJuridica = mongoose.model("pJuridica", PessoaJuridicaSchema);
-module.exports = PessoaJuridica;
+const inventarioProduto = mongoose.model("inventarioProduto", InventarioProdutoSchema);
+module.exports = inventarioProduto;
