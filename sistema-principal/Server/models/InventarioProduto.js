@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const InventarioServicoSchema = new mongoose.Schema({
+const InventarioProdutoSchema = new mongoose.Schema({
     Nome: {
         type: String,
         required: true,
@@ -81,5 +81,5 @@ const InventarioServicoSchema = new mongoose.Schema({
 
 });
 
-const inventarioServico = mongoose.model("inventarioServico", InventarioServicoSchema);
-module.exports = inventarioServico;
+const inventarioProduto = mongoose.model("inventarioProdutos", InventarioProdutoSchema);
+module.exports = inventarioProduto;
