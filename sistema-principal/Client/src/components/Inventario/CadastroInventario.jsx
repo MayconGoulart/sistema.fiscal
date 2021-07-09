@@ -11,6 +11,7 @@ import StoreIcon from '@material-ui/icons/Store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './inventario.css';
 import { ToysSharp } from '@material-ui/icons';
+import Axios from "axios";
 
 function CadastroInventario() {
 
@@ -37,6 +38,7 @@ function CadastroInventario() {
     };
 
     // Informações Gerais
+    const [nome, setNome] = useState("");
     const [categoria, setCategoria] = useState("");
     const [referencia, setReferencia] = useState("");
     const [codigoBarras, setCodigoBarras] = useState("");
@@ -47,18 +49,17 @@ function CadastroInventario() {
     const [fornecedor, setFornecedor] = useState("");
 
 
-    const [tipoFiscal, setTipoFiscal] = useState(-1);
+    //Fiscal
 
+    const [tipoFiscal, setTipoFiscal] = useState(-1);
     const [icmsOrigem, setICMSOrigem] = useState(-1);
     const [ncm, setNCM] = useState(-1);
     const [icms_issqn, setICMS_ISSQN] = useState(-1);
-
     const [generoFiscal, setGeneroFiscal] = useState(-1);
     const [cest, setCest] = useState(-1);
     const [nbm, setNBM] = useState(-1);
     const [nbs, setNBS] = useState("");
     const [tipoServicoFiscal, setTipoServicoFiscal] = useState(-1);
-
     const [deducoes, setDeducoes] = useState("");
     const [unidade, setUnidades] = useState("");
 
@@ -67,30 +68,59 @@ function CadastroInventario() {
     //setNCM
 
     const add = () => {
-
-         console.log(precoVenda);
-         console.log(custoCompra);
-         console.log(fornecedor);
-
-        // console.log(statusVendido);
-        // console.log(statusComprado);
-        // console.log(tipo);
-        // console.log(categoria);
-        // console.log(referencia);
-        // console.log(codigoBarras);
-        // console.log(tipoFiscal);
-        // console.log(icmsOrigem);
-        // console.log(ncm);
-        // console.log(icms_issqn);
-        // console.log(generoFiscal);
-        // console.log(cest);
-        // console.log(nbm);
-        // console.log(tipoServicoFiscal);
-        // console.log(tipoServicoFiscal);
-        // console.log(deducoes);
-        // console.log(unidade);
-
-    }
+             console.log(tipo);
+        if(tipo === 'produto'){
+            Axios.post("http://localhost:3001/insertInventarioProduto", {
+                 // Informações Gerais
+                Nome: nome,
+                PodeSerVendido: statusVendido,
+                PodeSerComprado: statusComprado,
+                Categoria: categoria,
+                Referencia: referencia,
+                CodigoBarras: codigoBarras,
+                Taxa: taxas,
+                PrecoVenda: precoVenda,
+                CustoCommpra: custoCompra,
+                Fornecedor: fornecedor,
+                //informações fiscais
+                TipoFiscal: tipoFiscal,
+                ICMSOrigem: icmsOrigem,
+                NCM: ncm,
+                ICMSouISSQN: icms_issqn,
+                GeneroFiscal: generoFiscal,
+                CEST: cest,   
+                NBM: nbm,
+                DeducaoFiscal: deducoes,
+                Unidade: unidade,
+            });     
+        }else{                
+            Axios.post("http://localhost:3001/insertInventarioServico", {
+                // Informações Gerais
+                Nome: nome,
+                PodeSerVendido: statusVendido,
+                PodeSerComprado: statusComprado,
+                Categoria: categoria,
+                Referencia: referencia,
+                CodigoBarras: codigoBarras,
+                Taxa: taxas,
+                PrecoVenda: precoVenda,
+                CustoCommpra: custoCompra,
+                Fornecedor: fornecedor,
+                //informações fiscais
+                TipoFiscal: tipoFiscal,
+                ICMSOrigem: icmsOrigem,
+                NCM: ncm,
+                ICMSouISSQN: icms_issqn,
+                GeneroFiscal: generoFiscal,
+                CEST: cest,   
+                NBM: nbm,
+                NBS: nbm,
+                TipoServico: nbm,
+                DeducaoFiscal: deducoes,
+                Unidade: unidade,
+            });  
+        }
+};
 
     return (
         <>
@@ -105,7 +135,9 @@ function CadastroInventario() {
                         </div>
 
                         <div>
-                            <TextField id="nome" label="Nome" />
+                            <TextField id="nome" label="Nome" onChange={(event) => {
+                                        setNome(event.target.value);
+                            }}/>
                             <FormGroup>
                                 <FormControlLabel onChange={(event) => {
                                     setStatusVedido(event.target.checked);

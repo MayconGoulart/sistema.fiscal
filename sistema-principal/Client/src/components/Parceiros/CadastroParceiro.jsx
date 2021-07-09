@@ -170,6 +170,9 @@ function CadastroParceiro() {
                                     <TextField id="website" label="Website" onChange={(event) => {
                                         setWebsite(event.target.value);
                                     }}/>
+                                    <TextField id="empresa" label="Empresa" onChange={(event) => {
+                                        setEmpresa(event.target.value);
+                                    }}/>
                                 </div>
                             </div>
                             
@@ -201,10 +204,7 @@ function CadastroParceiro() {
                                         }}/>
                                     <TextField id="email" label="E-mail" onChange={(event) => {
                                             setEmail(event.target.value);
-                                        }}/>
-                                    <TextField id="empresa" label="Empresa" onChange={(event) => {
-                                            setEmpresa(event.target.value);
-                                        }}/>
+                                        }}/>                                    
                                     <TextField id="website" label="Website" onChange={(event) => {
                                             setWebsite(event.target.value);
                                         }}/>
