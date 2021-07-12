@@ -222,7 +222,7 @@ function CadastroInventario() {
                                         <MenuItem value={4}>Produto Acabado</MenuItem>
                                         <MenuItem value={5}>Subproduto</MenuItem>
                                         <MenuItem value={6}>Produto Intermediário</MenuItem>
-                                        <MenuItem value={7}>MAterial de Uso e Consumo</MenuItem>
+                                        <MenuItem value={7}>Material de Uso e Consumo</MenuItem>
                                         <MenuItem value={8}>Ativo Imobilizado</MenuItem>
                                         <MenuItem value={9}>Serviços</MenuItem>
                                         <MenuItem value={10}>Outros Insumos</MenuItem>

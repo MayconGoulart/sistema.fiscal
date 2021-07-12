@@ -1,11 +1,9 @@
 // IMPORTAÇÃO DOS MÓDULOS DO REACT
 import React, { useState } from 'react';
 import useInput from 'use-input-hook';
-import { Link } from 'react-router-dom';
 
 // IMPORTAÇÃO DOS COMPONENTES
 import { Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@material-ui/core';
-import { Container } from '@material-ui/core';
 import { Button } from 'react-bootstrap';
 import { TextField } from '@material-ui/core';
 import { Person, Search } from '@material-ui/icons';
