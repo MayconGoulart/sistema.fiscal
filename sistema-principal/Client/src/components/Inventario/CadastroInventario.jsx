@@ -63,7 +63,7 @@ function CadastroInventario() {
     const [deducoes, setDeducoes] = useState("");
     const [unidade, setUnidades] = useState("");
 
-
+    //comentario para testar git
     // setICMS_ISSQN
     //setNCM
 
