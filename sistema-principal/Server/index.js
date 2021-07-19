@@ -7,6 +7,7 @@ const PessoaJuridicaModel = require("./models/PessoaJuridica");
 const PessoaFisicaModel = require("./models/PessoaFisica");
 const InventarioProduto = require("./models/InventarioProduto");
 const InventarioServico = require("./models/InventarioServico");
+const ConfiguracaoModel = require("./models/Configuracao");
 
 app.use(express.json());
 app.use(cors());
@@ -238,7 +239,84 @@ app.post("/insertInventarioServico", async(req, res) => {
     }
 })
 
+app.post("/insertConfiguracao", async(req, res) => {
+    const nomecompanhia = req.body.NomeCompanhia;
+    const nomelegal = req.body.NomeLegal;
+    const cnpj = req.body.CNPJ;
+    const inscricaoestadual = req.body.InscricaoEstadual;
+    const inscricaomunicipal = req.body.InscricaoMunicipal; 
+    const telefone = req.body.Telefone;
+    const celular = req.body.Celular;
+    const email = req.body.Email;
+    const website = req.body.Website;
 
+    //endereço
+    const cep = req.body.CEP;
+    const rua = req.body.Rua;
+    const numero = req.body.Numero;
+    const complemento = req.body.Complemento;
+    const distrito = req.body.Distrito;
+    const cidade = req.body.Cidade;
+    const estado = req.body.Estado;
+    const pais = req.body.Pais;
+
+    //fiscal
+    const quadroFiscal = req.body.QuadroFiscal;
+    const calculoLucro = req.body.CalculoLucro;
+    const rendaAnual = req.body.RendaAnual;
+    const faixaImpostoSimplificado = req.body.FaixaImpostoSimplificado;
+    const porcentagemSimplificado = req.body.PorcentagemImpostoSimplificado;
+    const pisCofins = req.body.PisCofins;
+    const ipi = req.body.IPI;
+    const icms = req.body.ICMS;
+    const issqn = req.body.ISSQN;
+    const csll = req.body.CSLL;
+    const irpj = req.body.IRPJ;
+    const inss = req.body.INSS;
+
+    const configuracao = new ConfiguracaoModel({
+        NomeCompanhia: nomecompanhia,
+        NomeLegal: nomelegal,
+        CNPJ: cnpj,
+        InscricaoEstadual: inscricaoestadual,
+        InscricaoMunicipal: inscricaomunicipal,
+        Telefone: telefone,
+        Celular: celular,
+        Email: email,
+        WebSite: website,
+
+        //endereço
+        CEP: cep,
+        Rua: rua,
+        Numero: numero,
+        Complemento: complemento,
+        Distrito: distrito,
+        Cidade: cidade,
+        Estado: estado,
+        Pais: pais,
+
+        //Fiscal
+        QuadroFiscal: quadroFiscal,
+        CalculoLucro: calculoLucro,
+        RendaAnual: rendaAnual,
+        FaixaImpostoSimplificado: faixaImpostoSimplificado,
+        PorcentagemImpostoSimplificado: porcentagemSimplificado,
+        PisCofins: pisCofins,
+        IPI: ipi,
+        ICMS: icms,
+        ISSQN: issqn,
+        CSLL: csll,
+        IRPJ: irpj,
+        INSS: inss,
+    });
+
+    try {
+        await configuracao.save();
+        res.send("insert Data");
+    } catch (err) {
+        console.log(err);
+    }
+})
 
 app.listen(3001, () => {
     console.log("Server running on port 3001....");

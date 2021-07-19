@@ -7,10 +7,10 @@ import Cabecalho from './components/Principal/Cabecalho';
 import Home from './components/Home/home';
 import Page404 from './components/Principal/Page404';
 import Parceiros from './components/Parceiros/Parceiros';
-import Template from './components/template/Template';
 import Formulario from './components/template/TemplateFormulario';
 import Inventario from './components/Inventario/Inventario';
 import CadastroInventario from './components/Inventario/CadastroInventario';
+import MenuConfiguracao from './components/Configuracao/MenuConfiguracao';
 
 // IMPORTAÇÃO DOS ESTILOS
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -49,6 +49,9 @@ function App() {
                         <CadastroInventario />
                     </Route>
 
+                    <Route path="/configuracoes">
+                        <MenuConfiguracao />
+                    </Route>
                     <Route>
                         <Page404 />
                     </Route>
