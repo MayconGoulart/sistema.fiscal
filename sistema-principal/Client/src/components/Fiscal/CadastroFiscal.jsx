@@ -149,6 +149,11 @@ function CadastroFiscal() {
                     </div>
 
                     <div className="info-gerais">
+                        <h2 className="titulo-info-gerais">Produtos e Serviços</h2>
+
+                    </div>
+
+                    <div className="info-gerais">
                         <h2 className="titulo-info-gerais">Totais</h2>
 
                         <h3>ICMS</h3>
