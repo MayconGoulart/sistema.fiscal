@@ -1,5 +1,5 @@
 // IMPORTAÇÃO DOS MÓDULOS DO REACT
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Switch } from 'react-router-dom';
 import { useRouteMatch, Route } from 'react-router';
 
@@ -12,35 +12,71 @@ import Formulario from '../template/TemplateFormulario';
 // IMPORTAÇÃO DOS ESTILOS
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './parceiros.css';
+import Axios from "axios";
 
 function Parceiros() {
-
+  
     const { path, url } = useRouteMatch();
-    const [pessoaFisica, setPessoaFisica] = useState([
+    const [pessoaFisica, setPessoaFisica] = useState([])
+    const [pessoaJuridica, setPessoaJuridica] = useState([])
 
-        { id: 1, nome: "Carlos Pereira", cidade: "São Paulo", estado: "São Paulo", pais: "Brasil" },
-        { id: 1, nome: "Ana carolina", cidade: "Paraisópolis", estado: "Minas Gerais", pais: "Brasil" },
-        { id: 1, nome: "Rodrigo Souza", cidade: "Porto Alegre", estado: "Rio Grande do Sul", pais: "Brasil" },
-        { id: 1, nome: "Jhon Steven", cidade: "Miami", estado: "Flórida", pais: "USA" },
-        { id: 1, nome: "Maria aparecida", cidade: "São Paulo", estado: "São Paulo", pais: "Brasil" }
+    // pessoa fisica
+    useEffect(async ()=>{
 
-    ])
-    console.log(url);
-    console.log(path);
+        const response = await fetch("http://localhost:3001/pessoaFisica");
+        const data = await response.json();
+
+        setPessoaFisica(data);
+    }, []);
+
+    //pessoa juridica
+    useEffect(async ()=>{
+
+        const response = await fetch("http://localhost:3001/pessoaJuridica");
+        const data = await response.json();
+
+        setPessoaJuridica(data);
+    }, []);
+
+   
+    console.log(pessoaFisica);
+
+    // console.log(url);
+    // console.log(path);
 
     return (
 
         <>
-
             <Container maxWidth="md" className="container-generico">
                 <div  className="container-fluid d-flex flex-wrap div-generico">
                     {pessoaFisica.map(response => (
-                        <Card key={response.id} style={{ width: '13rem' }} className="card-generico">
+                        <Card key={response._id} style={{ width: '13rem' }} className="card-generico">
                             <Card.Body>
-                                <Card.Title>Pessoa Física - {response.nome}</Card.Title>
-                                <Card.Subtitle>{response.pais}</Card.Subtitle>
+                                <Card.Title>Pessoa Física - {response.Nome}</Card.Title>
+                                <Card.Subtitle></Card.Subtitle>
                                 <Card.Text>
-                                    {response.estado} - {response.cidade}
+                                    {response.Estado} - {response.Cidade}
+                                </Card.Text>
+                                <footer>
+                                    <BorderColor />
+                                    <Delete />
+                                </footer>
+                            </Card.Body>
+                        </Card>
+                    ))}
+                </div>
+            </Container>
+
+
+            <Container maxWidth="md" className="container-generico">
+                <div  className="container-fluid d-flex flex-wrap div-generico">
+                    {pessoaJuridica.map(response => (
+                        <Card key={response._id} style={{ width: '13rem' }} className="card-generico">
+                            <Card.Body>
+                                <Card.Title>Pessoa Jurídica - {response.Nome}</Card.Title>
+                                <Card.Subtitle></Card.Subtitle>
+                                <Card.Text>
+                                    {response.Estado} - {response.Cidade}
                                 </Card.Text>
                                 <footer>
                                     <BorderColor />
@@ -64,6 +100,8 @@ function Parceiros() {
                 </Route>
             </Switch>
         </>
+
+    
     );
 
 }

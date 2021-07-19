@@ -17,6 +17,28 @@ mongoose.connect(
         useNewUrlParser: true,
     }
 )
+
+app.get("/pessoaFisica", async (req, res) =>    {
+    PessoaFisicaModel.find((error, data) => {
+        if (error) {
+            return next(error)
+        } else {
+            res.json(data)
+        }
+    })
+})
+
+app.get("/pessoaJuridica", async (req, res) =>    {
+    PessoaJuridicaModel.find((error, data) => {
+        if (error) {
+            return next(error)
+        } else {
+            res.json(data)
+        }
+    })
+})
+
+
 app.post("/insertJuridica", async(req, res) => {
     const nome = req.body.nome;
     const cnpj = req.body.cnpj;
