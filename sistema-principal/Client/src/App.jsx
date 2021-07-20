@@ -11,6 +11,7 @@ import Formulario from './components/template/TemplateFormulario';
 import Inventario from './components/Inventario/Inventario';
 import CadastroInventario from './components/Inventario/CadastroInventario';
 import MenuConfiguracao from './components/Configuracao/MenuConfiguracao';
+import ConsultaParceiro from './components/Parceiros/ConsultaParceiro';
 
 // IMPORTAÇÃO DOS ESTILOS
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -35,6 +36,10 @@ function App() {
 
                     <Route path="/cadastroParceiro">
                         <CadastroParceiro />
+                    </Route>
+
+                    <Route path="/consultaParceiro/:id">
+                        <ConsultaParceiro />
                     </Route>
 
                     <Route path="/cadastro">

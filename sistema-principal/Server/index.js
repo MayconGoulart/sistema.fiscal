@@ -18,6 +18,19 @@ mongoose.connect(
     }
 )
 
+
+// Get single user
+app.get("/pessoaFisicaPorId/:id", async (req, res) => {
+    PessoaFisicaModel.findById(req.params.id, (error, data) => {
+        if (error) {
+            return next(error)
+        } else {
+            res.json(data)
+        }
+    })
+})
+
+
 app.get("/pessoaFisica", async (req, res) =>    {
     PessoaFisicaModel.find((error, data) => {
         if (error) {

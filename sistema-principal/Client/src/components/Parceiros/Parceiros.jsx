@@ -8,11 +8,11 @@ import { Container, Button } from '@material-ui/core';
 import { Card } from 'react-bootstrap';
 import { BorderColor, Delete } from '@material-ui/icons';
 import Formulario from '../template/TemplateFormulario';
+import ConsultaParceiro from './ConsultaParceiro';
 
 // IMPORTAÇÃO DOS ESTILOS
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './parceiros.css';
-import Axios from "axios";
 
 function Parceiros() {
   
@@ -50,7 +50,7 @@ function Parceiros() {
             <Container maxWidth="md" className="container-generico">
                 <div  className="container-fluid d-flex flex-wrap div-generico">
                     {pessoaFisica.map(response => (
-                        <Card key={response._id} style={{ width: '13rem' }} className="card-generico">
+                        <Card key={response._id} style={{ width: '17rem' }} className="card-generico">
                             <Card.Body>
                                 <Card.Title>Pessoa Física - {response.Nome}</Card.Title>
                                 <Card.Subtitle></Card.Subtitle>
@@ -58,8 +58,18 @@ function Parceiros() {
                                     {response.Estado} - {response.Cidade}
                                 </Card.Text>
                                 <footer>
-                                    <BorderColor />
-                                    <Delete />
+                                    <div className = "row">
+                                        <div className = "col-md-6">
+                                            <Button variant="contained" color="primary">
+                                                <Link to={{pathname: "consultaParceiro/"+ response._id}}>editar</Link>
+                                            </Button>
+                                        </div>
+                                        <div className = "col-md-6">
+                                            <Button variant="contained" color="secondary">
+                                               
+                                            </Button>
+                                        </div>
+                                    </div>
                                 </footer>
                             </Card.Body>
                         </Card>
@@ -71,16 +81,26 @@ function Parceiros() {
             <Container maxWidth="md" className="container-generico">
                 <div  className="container-fluid d-flex flex-wrap div-generico">
                     {pessoaJuridica.map(response => (
-                        <Card key={response._id} style={{ width: '13rem' }} className="card-generico">
-                            <Card.Body>
+                        <Card key={response._id} style={{ width: '17rem' }} className="card-generico">
+                        <Card.Body>
                                 <Card.Title>Pessoa Jurídica - {response.Nome}</Card.Title>
                                 <Card.Subtitle></Card.Subtitle>
                                 <Card.Text>
                                     {response.Estado} - {response.Cidade}
                                 </Card.Text>
                                 <footer>
-                                    <BorderColor />
-                                    <Delete />
+                                <div className = "row">
+                                        <div className = "col-md-6">
+                                            <Button variant="contained" color="primary">
+                                                <Link to="consultaParceiro">editar</Link>
+                                            </Button>
+                                        </div>
+                                        <div className = "col-md-6">
+                                            <Button variant="contained" color="secondary">
+                                                <Link to="consultaParceiro">Deletar</Link>
+                                            </Button>
+                                        </div>
+                                    </div>
                                 </footer>
                             </Card.Body>
                         </Card>
@@ -93,15 +113,9 @@ function Parceiros() {
                     <Link to="cadastroParceiro">Novo Registro</Link>
                 </Button>
             </div>
-            
-            <Switch>
-                <Route path={`/cadastroParceiro`}>
-                    <Formulario />
-                </Route>
-            </Switch>
+          
         </>
 
-    
     );
 
 }

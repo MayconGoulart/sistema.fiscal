@@ -1,5 +1,5 @@
 // IMPORTAÇÃO DOS MÓDULOS DO REACT
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useInput from 'use-input-hook';
 
 // IMPORTAÇÃO DOS COMPONENTES
@@ -15,10 +15,12 @@ import './parceiros.css';
 import Axios from "axios";
 
 
+
 function CadastroParceiro() {
 
     const [data] = useState({ pessoaFisica: "pessoaFisica", pessoaJuridica: "pessoaJuridica" });
     const [tipoParceiro, setTipoParceiro] = useInput("");
+
 
     //ambos
     const [nome, setNome] = useState("");
