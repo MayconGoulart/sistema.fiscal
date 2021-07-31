@@ -12,6 +12,8 @@ import Inventario from './components/Inventario/Inventario';
 import CadastroInventario from './components/Inventario/CadastroInventario';
 import MenuConfiguracao from './components/Configuracao/MenuConfiguracao';
 import ConsultaParceiro from './components/Parceiros/ConsultaParceiro';
+import Fiscal from './components/Fiscal/Fiscal';
+import CadastroFiscal from './components/Fiscal/CadastroFiscal';
 
 // IMPORTAÇÃO DOS ESTILOS
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -57,6 +59,15 @@ function App() {
                     <Route path="/configuracoes">
                         <MenuConfiguracao />
                     </Route>
+
+                    <Route path="/fiscal">
+                        <Fiscal />
+                    </Route>
+
+                    <Route path="/cadastroFiscal">
+                        <CadastroFiscal />
+                    </Route>
+
                     <Route>
                         <Page404 />
                     </Route>
