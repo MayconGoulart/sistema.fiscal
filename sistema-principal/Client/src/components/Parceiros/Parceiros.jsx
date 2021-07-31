@@ -8,7 +8,7 @@ import { Container, Button } from '@material-ui/core';
 import { Card } from 'react-bootstrap';
 import { BorderColor, Delete } from '@material-ui/icons';
 import Formulario from '../template/TemplateFormulario';
-import ConsultaParceiro from './ConsultaParceiro';
+import ConsultaParceiroPessoaFisica from './ConsultaParceiroPessoaFisica';
 
 // IMPORTAÇÃO DOS ESTILOS
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -61,12 +61,12 @@ function Parceiros() {
                                     <div className = "row">
                                         <div className = "col-md-6">
                                             <Button variant="contained" color="primary">
-                                                <Link to={{pathname: "consultaParceiro/"+ response._id}}>editar</Link>
+                                                <Link to={{pathname: "consultaParceiroPessoaFisica/"+ response._id}}>editar</Link>
                                             </Button>
                                         </div>
                                         <div className = "col-md-6">
                                             <Button variant="contained" color="secondary">
-                                               
+                                                <Link>Deletar</Link>
                                             </Button>
                                         </div>
                                     </div>
@@ -92,12 +92,12 @@ function Parceiros() {
                                 <div className = "row">
                                         <div className = "col-md-6">
                                             <Button variant="contained" color="primary">
-                                                <Link to="consultaParceiro">editar</Link>
+                                            <Link to={{pathname: "consultaParceiroPessoaJuridica/"+ response._id}}>editar</Link>
                                             </Button>
                                         </div>
                                         <div className = "col-md-6">
                                             <Button variant="contained" color="secondary">
-                                                <Link to="consultaParceiro">Deletar</Link>
+                                                <Link>Deletar</Link>
                                             </Button>
                                         </div>
                                     </div>

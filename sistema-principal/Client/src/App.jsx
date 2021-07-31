@@ -11,7 +11,9 @@ import Formulario from './components/template/TemplateFormulario';
 import Inventario from './components/Inventario/Inventario';
 import CadastroInventario from './components/Inventario/CadastroInventario';
 import MenuConfiguracao from './components/Configuracao/MenuConfiguracao';
-import ConsultaParceiro from './components/Parceiros/ConsultaParceiro';
+import ConsultaParceiro from './components/Parceiros/ConsultaParceiroPessoaFisica';
+import ConsultaParceiroJuridico from './components/Parceiros/ConsultaParceiroPessoaJuridica';
+
 import Fiscal from './components/Fiscal/Fiscal';
 import CadastroFiscal from './components/Fiscal/CadastroFiscal';
 
@@ -40,8 +42,12 @@ function App() {
                         <CadastroParceiro />
                     </Route>
 
-                    <Route path="/consultaParceiro/:id">
+                    <Route path="/consultaParceiroPessoaFisica/:id">
                         <ConsultaParceiro />
+                    </Route>
+                    
+                    <Route path="/consultaParceiroPessoaJuridica/:id">
+                        <ConsultaParceiroJuridico />
                     </Route>
 
                     <Route path="/cadastro">
