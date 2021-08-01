@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 
 // IMPORTAÇÃO DOS COMPONENTES
-import { Button } from 'react-bootstrap';
+import { Button, Modal, Table } from 'react-bootstrap';
 import { FormControlLabel, TextField, Select, FormControl, MenuItem, InputLabel } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
@@ -18,8 +18,13 @@ function CadastroFiscal() {
     const [pessoaJuridica, setPessoaJuridica] = useState([])
 
     const [id_parceiro, setIDParceiro] = useState(-1);
-
     const [perfilFiscal, setPerfilFiscal] = useState("");
+
+
+    const [produto, setProduto] = useState([])
+    const [servico, setServico] = useState([])
+    const [id_produto_servico, setIDProdutoServico] = useState(-1);
+
 
     //juridica
     const [cnpj, setCnpj] = useState("");
@@ -43,6 +48,12 @@ function CadastroFiscal() {
     const [estado, setEstado] = useState("");
     const [pais, setPais] = useState("");
 
+    // modal
+    const [lgShow, setLgShow] = useState(false);
+
+    //tabela
+    const [infos, setInfos] = useState([]);
+
 
     // pessoa fisica
     useEffect(async () => {
@@ -51,17 +62,67 @@ function CadastroFiscal() {
         const data = await response.json();
 
         setPessoaFisica(data);
+
+        const response2 = await fetch("http://localhost:3001/pessoaJuridica");
+        const data2 = await response2.json();
+
+        setPessoaJuridica(data2);
+
+        const response3 = await fetch("http://localhost:3001/inventarioProduto");
+        const data3 = await response3.json();
+
+        setProduto(data3);
+
+        const response4 = await fetch("http://localhost:3001/inventarioServico");
+        const data4 = await response4.json();
+
+        setServico(data4);
+
     }, []);
 
-    //pessoa juridica
-    useEffect(async () => {
 
-        const response = await fetch("http://localhost:3001/pessoaJuridica");
-        const data = await response.json();
+    //adiciona novos produtos ao vetor
+    function novoProdutoServico() {
 
-        setPessoaJuridica(data);
-    }, []);
 
+        let nomeProdutoServico = "";
+
+        //busca pelos servicos
+        servico.forEach(element => {
+            if (element._id == id_produto_servico) {
+
+                console.log('achou serv')
+                console.log(element.Nome)
+
+                nomeProdutoServico = element.Nome;
+            }
+
+        });
+
+        //busca pelos produtos
+        produto.forEach(element => {
+            if (element._id == id_produto_servico) {
+                console.log('achou prod')
+
+                nomeProdutoServico = element.Nome;
+
+            }
+
+        });
+
+        console.log(nomeProdutoServico);
+
+        // mantem os dados cadastrados e adiciona o novo
+        setInfos([
+            ...infos,
+            {   _id: Math.random(4),
+                nome: nomeProdutoServico
+            }
+
+        ]);
+
+        console.log(infos);
+    }
 
     function setDadosParceiro(id_parceiro) {
 
@@ -72,7 +133,7 @@ function CadastroFiscal() {
             if (element._id == id_parceiro) {
 
                 setEmpresa(element.Empresa);
-            
+
                 setCep(element.CEP);
                 setRua(element.Rua);
                 setNumero(element.Numero);
@@ -238,13 +299,13 @@ function CadastroFiscal() {
                         </div>
 
                         <TextField value={nomelegal} label="Nome Legal da Empresa " />
-                        <TextField value={empresa}label="Nome da Empresa" />
+                        <TextField value={empresa} label="Nome da Empresa" />
                         <TextField value={cnpj} label="CNPJ" />
                         <TextField label="Inscrição Estadual" />
                         <TextField value={ie} label="Inscrição Municipal" />
                         <TextField label="Quadro Fiscal" />
                         <TextField value={cidade} label="Cidade" />
-                        <TextField value={distrito}label="Distrito" />
+                        <TextField value={distrito} label="Distrito" />
                         <TextField value={rua} label="Rua" />
                         <TextField value={numero} label="Número" />
                         <TextField value={estado} label="Estado" />
@@ -255,7 +316,71 @@ function CadastroFiscal() {
 
                     <div className="info-gerais">
                         <h2 className="titulo-info-gerais">Produtos e Serviços</h2>
-                        <Button variant="success">Adicionar</Button>
+                        <Button onClick={() => setLgShow(true)}>Adicionar</Button>
+
+                        <Modal
+                            size="lg"
+                            show={lgShow}
+                            onHide={() => setLgShow(false)}
+                            aria-labelledby="example-modal-sizes-title-lg"
+                        >
+                            <Modal.Header closeButton>
+                                <Modal.Title id="example-modal-sizes-title-lg">
+                                    Produtos/Serviços
+                                </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <InputLabel id="produto-servico">Produtos/Serviços</InputLabel>
+                                <Select value={id_produto_servico} onChange={(event) => {
+                                    setIDProdutoServico(event.target.value);
+                                }} id="produto-servico">
+                                    <MenuItem key={-1} value={-1} disabled>Selecione...</MenuItem>
+
+                                    {produto.map(response => (
+                                        <MenuItem key={response._id} value={response._id}>Produto - {response.Nome}</MenuItem>
+                                    ))}
+                                    {servico.map(response => (
+                                        <MenuItem key={response._id} value={response._id}>Serviço - {response.Nome}</MenuItem>
+                                    ))}
+                                </Select>
+                                <br /><br />
+                                <h5>Montante</h5>
+                                <TextField label="Quantidade Bruta" />
+                                <TextField label="Valor do Desconto" />
+                                <TextField label="Valor do Seguro" />
+                                <TextField label="Valor do Frete" />
+                                <TextField label="Outros Custos" />
+                                <TextField label="Imposto" />
+                                <TextField label="Total" />
+
+                                <br />  <br />  <br />
+                                <Button onClick={() => novoProdutoServico(true)}>Adicionar</Button>
+                                <br />  <br />  <br />
+                                <h5>Adicionados</h5>
+
+                                <Table striped bordered hover>
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {infos.map(response => (
+                                            <tr key={response._id}>
+                                                <td>{response.Nome}</td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        ))}
+
+                                    </tbody>
+                                </Table>
+                            </Modal.Body>
+                        </Modal>
+
                     </div>
 
                     <div className="info-gerais">
