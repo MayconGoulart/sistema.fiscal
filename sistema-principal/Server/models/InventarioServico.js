@@ -29,11 +29,11 @@ const InventarioServicoSchema = new mongoose.Schema({
         required: false,
     },
     PrecoVenda: {
-        type: String,
+        type: Number,
         required: true,
     },
     CustoCommpra: {
-        type: String,
+        type: Number,
         required: true,
     },
     Fornecedor: {
