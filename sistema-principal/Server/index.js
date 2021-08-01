@@ -39,6 +39,28 @@ app.get("/pessoaJuridica", async (req, res) =>    {
     })
 })
 
+app.get("/inventarioServico", async (req, res) =>    {
+    InventarioServico.find((error, data) => {
+        if (error) {
+            return next(error)
+        } else {
+            res.json(data)
+        }
+    })
+})
+
+
+app.get("/inventarioProduto", async (req, res) =>    {
+    InventarioProduto.find((error, data) => {
+        if (error) {
+            return next(error)
+        } else {
+            res.json(data)
+        }
+    })
+})
+
+
 
 app.post("/insertJuridica", async(req, res) => {
     const nome = req.body.nome;

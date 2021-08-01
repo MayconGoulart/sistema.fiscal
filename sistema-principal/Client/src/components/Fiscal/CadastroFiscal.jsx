@@ -252,7 +252,7 @@ function CadastroFiscal() {
 
                     <div className="info-gerais">
                         <h2 className="titulo-info-gerais">Produtos e Serviços</h2>
-
+                        <Button variant="success">Adicionar</Button>
                     </div>
 
                     <div className="info-gerais">

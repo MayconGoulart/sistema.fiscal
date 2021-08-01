@@ -1,5 +1,5 @@
 // IMPORTAÇÃO DOS MÓDULOS DO REACT
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Switch } from 'react-router-dom';
 import { useRouteMatch, Route } from 'react-router';
 
@@ -17,74 +17,96 @@ function Template() {
 
     const { path, url } = useRouteMatch();
 
-    console.log(url);
-    console.log(path);
+    const [inventarioProduto, setInventarioProduto] = useState([])
+    const [inventarioServico, setInventarioServico] = useState([])
+
+    //produtos
+    useEffect(async () => {
+
+        const response = await fetch("http://localhost:3001/inventarioProduto");
+        const data = await response.json();
+
+        setInventarioProduto(data);
+    }, []);
+
+    //serviços
+    useEffect(async () => {
+
+        const response = await fetch("http://localhost:3001/inventarioServico");
+        const data = await response.json();
+
+        setInventarioServico(data);
+    }, []);
 
     return (
         <>
-            
+
             <Container maxWidth="md" className="container-generico">
 
                 <div className="container-fluid d-flex flex-wrap div-generico">
-                    <Card style={{ width: '18rem'}} className="card-generico">
-                        <Card.Body>
-                            <Card.Title>Título do Card</Card.Title>
-                            <Card.Subtitle>Subtítulo (Não necessário)</Card.Subtitle>
-                            <Card.Text>
-                                Aqui irão algumas informações básicas.
-                            </Card.Text>
-                            <footer>
-                                <BorderColor />
-                                <Delete />
-                            </footer>
-                        </Card.Body>
-                    </Card>
+                    {inventarioProduto.map(response => (
+                        <Card key={response._id} style={{ width: '17rem' }} className="card-generico">
+                            <Card.Body>
+                                <Card.Title>Produto - {response.Nome}</Card.Title>
+                                <Card.Subtitle>{response.Categoria}</Card.Subtitle>
+                                <Card.Text>
+                                    Custo compra: {response.CustoCommpra} <br />
+                                    Preço venda: {response.PrecoVenda}
+                                </Card.Text>
+                                <footer>
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <Button variant="contained" color="primary">
+                                                <Link>Editar</Link>
+                                            </Button>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <Button variant="contained" color="secondary">
+                                                <Link>Deletar</Link>
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </footer>
+                            </Card.Body>
+                        </Card>
+                    ))}
 
-                    <Card style={{ width: '18rem'}} className="card-generico">
-                        <Card.Body>
-                            <Card.Title>Título do Card</Card.Title>
-                            <Card.Subtitle>Subtítulo (Não necessário)</Card.Subtitle>
-                            <Card.Text>
-                                Aqui irão algumas informações básicas.
-                            </Card.Text>
-                            <footer>
-                                <BorderColor />
-                                <Delete />
-                            </footer>
-                        </Card.Body>
-                    </Card>
                 </div>
+            </Container>
 
-                <div className="container-fluid d-flex flex-wrap">
-                    <Card style={{ width: '18rem'}} className="card-generico">
-                        <Card.Body>
-                            <Card.Title>Título do Card</Card.Title>
-                            <Card.Subtitle>Subtítulo (Não necessário)</Card.Subtitle>
-                            <Card.Text>
-                                Aqui irão algumas informações básicas.
-                            </Card.Text>
-                            <footer>
-                                <BorderColor />
-                                <Delete />
-                            </footer>
-                        </Card.Body>
-                    </Card>
 
-                    <Card style={{ width: '18rem'}} className="card-generico">
-                        <Card.Body>
-                            <Card.Title>Título do Card</Card.Title>
-                            <Card.Subtitle>Subtítulo (Não necessário)</Card.Subtitle>
-                            <Card.Text>
-                                Aqui irão algumas informações básicas.
-                            </Card.Text>
-                            <footer>
-                                <BorderColor />
-                                <Delete />
-                            </footer>
-                        </Card.Body>
-                    </Card>
+
+            <Container maxWidth="md" className="container-generico">
+
+                <div className="container-fluid d-flex flex-wrap div-generico">
+                    {inventarioServico.map(response => (
+                        <Card key={response._id} style={{ width: '17rem' }} className="card-generico">
+                            <Card.Body>
+                                <Card.Title>Serviço - {response.Nome}</Card.Title>
+                                <Card.Subtitle>{response.Categoria}</Card.Subtitle>
+                                <Card.Text>
+                                    Custo compra: {response.CustoCommpra} <br />
+                                    Preço venda: {response.PrecoVenda}
+                                </Card.Text>
+                                <footer>
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <Button variant="contained" color="primary">
+                                                <Link>Editar</Link>
+                                            </Button>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <Button variant="contained" color="secondary">
+                                                <Link>Deletar</Link>
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </footer>
+                            </Card.Body>
+                        </Card>
+                    ))}
+
                 </div>
-
             </Container>
 
             <div className="botoes">

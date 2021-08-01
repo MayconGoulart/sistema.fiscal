@@ -189,11 +189,11 @@ function CadastroInventario() {
                                         <MenuItem value={2}>20%</MenuItem>
                                     </Select>
                                 </FormControl>
-                                <TextField onChange={(event) => {
+                                <TextField pattern="[0-9]*" onChange={(event) => {
                                     setPrecoVenda(event.target.value);
                                 }} value={precoVenda} id="preco" label="Preço de Venda" />
 
-                                <TextField onChange={(event) => {
+                                <TextField pattern="[0-9]*"  onChange={(event) => {
                                     setCustoCompra(event.target.value);
                                 }} value={custoCompra} id="custo" label="Custo de Compra" />
 
