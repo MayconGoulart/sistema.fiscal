@@ -64,7 +64,7 @@ function ConsultaParceiroPessoaFisica() {
                 setPerfilFiscal(element.PerfilFiscal)
             
                 setCpf(element.CPF);
-                setRg(element.CPF);
+                setRg(element.rg);
                 setCargo(element.Cargo);
                 setEmpresa(element.Empresa);
             

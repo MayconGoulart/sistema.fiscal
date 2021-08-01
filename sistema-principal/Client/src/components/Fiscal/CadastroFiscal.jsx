@@ -1,5 +1,5 @@
 // IMPORTAÇÃO DOS MÓDULOS DO REACT
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 // IMPORTAÇÃO DOS COMPONENTES
 import { Button } from 'react-bootstrap';
@@ -11,13 +11,107 @@ import './fiscal.css';
 
 function CadastroFiscal() {
 
+    const [pessoaFisica, setPessoaFisica] = useState([])
+    const [pessoaJuridica, setPessoaJuridica] = useState([])
+
+    const [id_parceiro, setIDParceiro] = useState(-1);
+
+    const [perfilFiscal, setPerfilFiscal] = useState("");
+
+    //juridica
+    const [cnpj, setCnpj] = useState("");
+    const [ie, setIe] = useState("");
+    const [nomelegal, setNomeLegal] = useState("");
+    const [tx, setTx] = useState("");
+
+    //fisica
+    const [cpf, setCpf] = useState("");
+    const [rg, setRg] = useState("");
+    const [cargo, setCargo] = useState("");
+    const [empresa, setEmpresa] = useState("");
+
+    //Endereço
+    const [cep, setCep] = useState("");
+    const [rua, setRua] = useState("");
+    const [numero, setNumero] = useState("");
+    const [complemento, setComplemento] = useState("");
+    const [distrito, setDistrito] = useState("");
+    const [cidade, setCidade] = useState("");
+    const [estado, setEstado] = useState("");
+    const [pais, setPais] = useState("");
+
+
+    // pessoa fisica
+    useEffect(async () => {
+
+        const response = await fetch("http://localhost:3001/pessoaFisica");
+        const data = await response.json();
+
+        setPessoaFisica(data);
+    }, []);
+
+    //pessoa juridica
+    useEffect(async () => {
+
+        const response = await fetch("http://localhost:3001/pessoaJuridica");
+        const data = await response.json();
+
+        setPessoaJuridica(data);
+    }, []);
+
+
+    function setDadosParceiro(id_parceiro) {
+
+        setIDParceiro(id_parceiro);
+
+        //busca pelas pessoas físicas
+        pessoaFisica.forEach(element => {
+            if (element._id == id_parceiro) {
+
+                setEmpresa(element.Empresa);
+            
+                setCep(element.CEP);
+                setRua(element.Rua);
+                setNumero(element.Numero);
+                setComplemento(element.Complemento);
+                setDistrito(element.Distrito);
+                setCidade(element.Cidade);
+                setEstado(element.Estado);
+                setPais(element.Pais);
+
+                setPerfilFiscal(element.PerfilFiscal);
+            }
+
+        });
+
+        //busca pelas pessoas juridicas 
+        pessoaJuridica.forEach(element => {
+            if (element._id == id_parceiro) {
+
+                setEmpresa(element.Empresa);
+
+                setCnpj(element.cnpj);
+                setIe(element.ie);
+                setNomeLegal(element.nomelegal);
+                setCidade(element.Cidade);
+                setEstado(element.Estado);
+                setPais(element.Pais);
+                setDistrito(element.Distrito);
+                setRua(element.Rua)
+
+
+            }
+
+        });
+    }
+
     return (
         <>
 
             <section className="infos-card">
-                
+
                 <form>
-                    
+
                     <div className="info-inicial">
 
                         <h2 className="titulo-info-gerais">"Tipo Documento" : "Número (APÓS CONFIRMAÇÃO)</h2>
@@ -25,7 +119,7 @@ function CadastroFiscal() {
                     </div>
 
                     <div className="info-gerais">
-                        
+
                         <div>
                             <FormControl>
                                 <InputLabel id="operacao-fiscal">Operação</InputLabel>
@@ -125,26 +219,34 @@ function CadastroFiscal() {
                         <div>
                             <FormControl>
                                 <InputLabel id="parceiro-fisico-juridico">Parceiro</InputLabel>
-                                <Select id="parceiro-fisico-juridico">
-                                    <MenuItem value={"1"}>Parceiro Físico 1</MenuItem>
-                                    <MenuItem value={"2"}>Parceiro Jurídico 2</MenuItem>
+                                <Select value={id_parceiro} onChange={(event) => {
+                                    setDadosParceiro(event.target.value);
+                                }} id="parceiro-fisico-juridico">
+                                    <MenuItem key={-1} value={-1} disabled>Selecione...</MenuItem>
+
+                                    {pessoaFisica.map(response => (
+                                        <MenuItem key={response._id} value={response._id}>Pessoa Física - {response.Nome}</MenuItem>
+                                    ))}
+                                    {pessoaJuridica.map(response => (
+                                        <MenuItem key={response._id} value={response._id}>Pessoa Jurídica - {response.Nome}</MenuItem>
+                                    ))}
                                 </Select>
                             </FormControl>
                         </div>
 
-                        <TextField label="Nome Legal da Empresa " />
-                        <TextField label="Nome da Empresa" />
-                        <TextField label="CNPJ" />
+                        <TextField value={nomelegal} label="Nome Legal da Empresa " />
+                        <TextField value={empresa}label="Nome da Empresa" />
+                        <TextField value={cnpj} label="CNPJ" />
                         <TextField label="Inscrição Estadual" />
-                        <TextField label="Inscrição Municipal" />
+                        <TextField value={ie} label="Inscrição Municipal" />
                         <TextField label="Quadro Fiscal" />
-                        <TextField label="Cidade" />
-                        <TextField label="Distrito" />
-                        <TextField label="Rua" />
-                        <TextField label="Número" />
-                        <TextField label="Estado" />
-                        <TextField label="País" />
-                        <TextField label="CEP" />
+                        <TextField value={cidade} label="Cidade" />
+                        <TextField value={distrito}label="Distrito" />
+                        <TextField value={rua} label="Rua" />
+                        <TextField value={numero} label="Número" />
+                        <TextField value={estado} label="Estado" />
+                        <TextField value={pais} label="País" />
+                        <TextField value={cep} label="CEP" />
 
                     </div>
 
@@ -222,7 +324,7 @@ function CadastroFiscal() {
                     </div>
 
                 </form>
-                
+
             </section>
 
 
