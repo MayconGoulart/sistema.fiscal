@@ -175,65 +175,6 @@ const [inss, setInss] = useState("");
                     </div>
 
                     <div className="info-gerais">
-                        <h2 className="titulo-info-gerais">Informações Fiscais</h2>
-                        <div>
-                            <FormControl>
-                                <InputLabel id="quadro-fiscal-empresa">Quadro Fiscal</InputLabel>
-                                <Select id="quadro-fiscal-empresa" onChange={(event) => {
-                                    setQuadroFiscal(event.target.value);
-                                }}>
-                                    <MenuItem value={"simples-nacional"}>Simples Nacional</MenuItem>
-                                    <MenuItem value={"simples-nacional-excecao"}>Simples Nacional - excesso de sublimite da receita bruta</MenuItem>
-                                    <MenuItem value={"normal"}>Regime Normal</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </div>
-
-                        <div>
-                            <h3 className="titulo-info-gerais">Regime Normal</h3>
-                            <div>
-                                <FormControl>
-                                    <InputLabel id="regime-normal">Cálculo de Lucro </InputLabel>
-                                    <Select  labelId="regime-normal" onChange={(event) => {
-                                        setCalculoLucro(event.target.value);
-                                    }}>
-                                        <MenuItem value={"presumido"}>Lucro Presumido</MenuItem>
-                                        <MenuItem value={"real"}>Lucro Real</MenuItem>
-                                        <MenuItem value={"arbitrario"}>Lucro Arbitrário</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h3 className="titulo-info-gerais">Simples Nacional</h3>
-                            <div>
-                                <TextField label="Renda Anual" />
-                                <FormControl>
-                                    <InputLabel id="anexos-simples-nacional">Imposto Simplificado</InputLabel>
-                                    <Select  labelId="anexos-simples-nacional" onChange={(event) => {
-                                        setRendaAnual(event.target.value);
-                                    }}>
-                                        <MenuItem value={"anexo1"}>Anexo 1 - Comércio</MenuItem>
-                                        <MenuItem value={"anexo2"}>Anexo 2 - Indústria</MenuItem>
-                                        <MenuItem value={"anexo3"}>Anexo 3 - Prestadores de Serviço I</MenuItem>
-                                        <MenuItem value={"anexo4"}>Anexo 4 - Prestadores de Serviço II</MenuItem>
-                                        <MenuItem value={"anexo5"}>Anexo 5 - Prestadores de Serviço III</MenuItem>
-                                    </Select>
-                                </FormControl>
-                                {/* Faixa de Imposto Simplificado é definido de acordo com a renda bruta anual da empresa */}
-                                <TextField label="Faixa de Imposto Simplificado" onChange={(event) => {
-                                    setFaixaImpostoSimplificado(event.target.value);
-                                }}/>
-                                {/* PERCENTAGEM = [(RENDA BRUTA ANUAL * ALIQUOTA FAIXA ANEXO) - PARCELA A DEDUZIR ANEXO] / RENDA BRUTA ANUAL */}
-                                <TextField label="Percentagem de Imposto Simplificado" onChange={(event) => {
-                                    setPorcentagemImpostoSimplificado(event.target.value);
-                                }}/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="info-gerais">
                         <h2 className="titulo-info-gerais">Impostos</h2>
 
                         <div>
@@ -273,16 +214,10 @@ const [inss, setInss] = useState("");
                                 <Select id="icms" onChange={(event) => {
                                     setIcms(event.target.value);
                                 }}>
-                                    <MenuItem value={"icms-101"}>ICMS SN com Permissão de Crédito</MenuItem>
-                                    <MenuItem value={"icms-102"}>ICMS SN sem Permissão de Crédito</MenuItem>
-                                    <MenuItem value={"icms-103"}>ICMS SN Isento para a Faixa de Receita Bruta</MenuItem>
-                                    <MenuItem value={"icms-201"}>ICMS SN com Permissão de Crédito e Cobrança do ICMS por ST</MenuItem>
-                                    <MenuItem value={"icms-202"}>ICMS SN sem Permissão de Crédito e Cobrança do ICMS por ST</MenuItem>
-                                    <MenuItem value={"icms-203"}>ICMS SN Isento para a Faixa de Receita Bruta e Cobrança do ICMS por ST</MenuItem>
-                                    <MenuItem value={"icms-300"}>ICMS SN Imune</MenuItem>
-                                    <MenuItem value={"icms-400"}>ICMS SN Não Tributado</MenuItem>
-                                    <MenuItem value={"icms-500"}>ICMS SN Cobrado Anteriormente por ST ou por Antecipação</MenuItem>
-                                    <MenuItem value={"icms-900"}>ICMS SN Outros</MenuItem>
+                                    <MenuItem value={"icms-10"}>ICMS 10%</MenuItem>
+                                    <MenuItem value={"icms-20"}>ICMS 20%</MenuItem>
+                                    <MenuItem value={"icms-30"}>ICMS 30%</MenuItem>
+                                    <MenuItem value={"icms-nt"}>ICMS NT</MenuItem>
                                 </Select>
                             </FormControl>
                         </div>

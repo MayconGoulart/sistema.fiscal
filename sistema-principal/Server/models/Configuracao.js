@@ -68,26 +68,6 @@ const ConfiguracaoSchema = new mongoose.Schema({
         type: String,
         required: false,
     },
-    QuadroFiscal: {
-        type: String,
-        required: true,
-    },
-    CalculoLucro: {
-        type: String,
-        required: true,
-    },
-    RendaAnual: {
-        type: String,
-        required: false,
-    },
-    FaixaImpostoSimplificado: {
-        type: String,
-        required: false,
-    },
-    PorcentagemImpostoSimplificado: {
-        type: String,
-        required: false,
-    },
     PisCofins: {
         type: String,
         required: true,
