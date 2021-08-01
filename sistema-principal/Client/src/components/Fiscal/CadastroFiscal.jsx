@@ -261,11 +261,6 @@ function CadastroFiscal() {
                         <h3>ICMS</h3>
                         <TextField label="ICMS Base" />
                         <TextField label="ICMS Value" />
-                        <TextField label="ICMSSN Value" />
-
-                        <h3>ICMS ST</h3>
-                        <TextField label="ICMS ST Base" />
-                        <TextField label="ICMS ST Value" />
 
                         <h3>IPI</h3>
                         <TextField label="IPI Base" />
@@ -274,38 +269,26 @@ function CadastroFiscal() {
                         <h3>ISSQN</h3>
                         <TextField label="ISSQN Base" />
                         <TextField label="ISSQN Value" />
-                        <TextField label="ISSQN Ret Base" />
-                        <TextField label="ISSQN Ret Value" />
 
                         <h3>PIS</h3>
                         <TextField label="PIS Base" />
                         <TextField label="PIS Value" />
-                        <TextField label="PIS Ret Base" />
-                        <TextField label="PIS Ret Value" />
 
                         <h3>COFINS</h3>
                         <TextField label="COFINS Base" />
                         <TextField label="COFINS Value" />
-                        <TextField label="COFINS Ret Base" />
-                        <TextField label="COFINS Ret Value" />
 
                         <h3>CSLL</h3>
                         <TextField label="CSLL Base" />
                         <TextField label="CSLL Value" />
-                        <TextField label="CSLL Ret Base" />
-                        <TextField label="CSLL Ret Value" />
 
                         <h3>IRPJ</h3>
                         <TextField label="IRPJ Base" />
                         <TextField label="IRPJ Value" />
-                        <TextField label="IRPJ Ret Base" />
-                        <TextField label="IRPJ Ret Value" />
 
                         <h3>INSS</h3>
                         <TextField label="INSS Base" />
                         <TextField label="INSS Value" />
-                        <TextField label="INSS Ret Base" />
-                        <TextField label="INSS Ret Value" />
 
                         <h3>Montante</h3>
                         <TextField label="Quantidade Bruta" />
