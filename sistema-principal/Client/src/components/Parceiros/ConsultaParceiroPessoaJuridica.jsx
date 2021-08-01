@@ -5,6 +5,7 @@ import useInput from 'use-input-hook';
 
 // IMPORTAÇÃO DOS COMPONENTES
 import { Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { TextField } from '@material-ui/core';
 import { Person, Search } from '@material-ui/icons';
@@ -15,6 +16,8 @@ import './parceiros.css';
 
 
 function ConsultaParceiroPessoaJuridica() {
+
+    const history = useHistory();
 
     let { id } = useParams();
 
@@ -246,9 +249,9 @@ function ConsultaParceiroPessoaJuridica() {
 
                     </div>
 
-                    <div className="btn-salvar">
-                        <Button  variant="success">Salvar</Button>
-                        <Button variant="danger">Cancelar</Button>
+                    <div className="botoes">
+                        <Button variant="success">Salvar</Button>
+                        <Button onClick={() => history.goBack()} variant="danger">Cancel</Button>
                     </div>
 
                 </form>

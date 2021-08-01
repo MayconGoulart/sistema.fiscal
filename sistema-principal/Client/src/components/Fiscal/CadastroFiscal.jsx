@@ -4,12 +4,15 @@ import React, { useState, useEffect } from 'react';
 // IMPORTAÇÃO DOS COMPONENTES
 import { Button } from 'react-bootstrap';
 import { FormControlLabel, TextField, Select, FormControl, MenuItem, InputLabel } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
 // IMPORTAÇÃO DOS ESTILOS
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './fiscal.css';
 
 function CadastroFiscal() {
+
+    const history = useHistory();
 
     const [pessoaFisica, setPessoaFisica] = useState([])
     const [pessoaJuridica, setPessoaJuridica] = useState([])
@@ -303,7 +306,7 @@ function CadastroFiscal() {
 
                     <div>
                         <Button variant="success">Salvar</Button>
-                        <Button variant="danger">Cancelar</Button>
+                        <Button onClick={() => history.goBack()} variant="danger">Cancel</Button>
                     </div>
 
                 </form>

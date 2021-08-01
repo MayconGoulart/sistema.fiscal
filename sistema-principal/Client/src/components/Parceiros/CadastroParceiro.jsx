@@ -4,6 +4,7 @@ import useInput from 'use-input-hook';
 
 // IMPORTAÇÃO DOS COMPONENTES
 import { Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { TextField } from '@material-ui/core';
 import { Person, Search } from '@material-ui/icons';
@@ -17,6 +18,8 @@ import Axios from "axios";
 
 
 function CadastroParceiro() {
+
+    const history = useHistory();
 
     const [data] = useState({ pessoaFisica: "pessoaFisica", pessoaJuridica: "pessoaJuridica" });
     const [tipoParceiro, setTipoParceiro] = useInput("");
@@ -305,7 +308,7 @@ function CadastroParceiro() {
 
                     <div class="btn-salvar">
                         <Button onClick={addContato} variant="success">Salvar</Button>
-                        <Button variant="danger">Cancelar</Button>
+                        <Button onClick={() => history.goBack()} variant="danger">Cancel</Button>
                     </div>
 
                 </form>

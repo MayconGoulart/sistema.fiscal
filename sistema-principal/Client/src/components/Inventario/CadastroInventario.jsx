@@ -6,6 +6,7 @@ import { Checkbox, FormControlLabel, FormGroup, Select, FormControl, MenuItem, I
 import { Button } from 'react-bootstrap';
 import { TextField } from '@material-ui/core';
 import StoreIcon from '@material-ui/icons/Store';
+import { useHistory } from 'react-router-dom';
 
 // IMPORTAÇÃO DOS ESTILOS
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,6 +15,8 @@ import { ToysSharp } from '@material-ui/icons';
 import Axios from "axios";
 
 function CadastroInventario() {
+
+    const history = useHistory();
 
     //checkbox
     const [statusVendido, setStatusVedido] = useState(false);
@@ -345,7 +348,7 @@ function CadastroInventario() {
 
                     <div class="btn-salvar">
                         <Button onClick={add} variant="success">Salvar</Button>
-                        <Button variant="danger">Cancelar</Button>
+                        <Button onClick={() => history.goBack()} variant="danger">Cancel</Button>
                     </div>
 
                 </form>

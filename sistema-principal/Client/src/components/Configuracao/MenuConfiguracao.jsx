@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 // IMPORTAÇÃO DOS COMPONENTES
 import { Container, FormControl, TextField, Select, MenuItem, InputLabel } from '@material-ui/core';
 import { Button } from 'react-bootstrap';
-import { Person, Search } from '@material-ui/icons'
+import { Person, Search } from '@material-ui/icons';
+import { useHistory } from 'react-router-dom';
 
 // IMPORTAÇÃO DOS ESTILOS
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,6 +14,8 @@ import './configuracao.css';
 import Axios from "axios";
 
 function Formulario() {
+
+    const history = useHistory();
 
 // Informações Gerais
 const [nomeCompanhia, setNomeCompanhia] = useState("");
@@ -347,7 +350,7 @@ const [inss, setInss] = useState("");
                         </div>
                         <div>
                             <Button onClick={add} variant="success">Salvar</Button>
-                            <Button variant="danger">Cancelar</Button>
+                            <Button onClick={() => history.goBack()} variant="danger">Cancel</Button>
                         </div>
 
                     </div>
