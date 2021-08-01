@@ -11,7 +11,6 @@ import { useHistory } from 'react-router-dom';
 // IMPORTAÇÃO DOS ESTILOS
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './inventario.css';
-import { ToysSharp } from '@material-ui/icons';
 import Axios from "axios";
 
 function CadastroInventario() {

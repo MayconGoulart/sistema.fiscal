@@ -17,39 +17,39 @@ function Formulario() {
 
     const history = useHistory();
 
-// Informações Gerais
-const [nomeCompanhia, setNomeCompanhia] = useState("");
-const [nomeLegal, setNomeLegal] = useState("");
-const [cnpj, setCNPJ] = useState("");
-const [inscricaoEstadual, setInscricaoEstadual] = useState("");
-const [inscricaoMunicipal, setInscricaoMunicipal] = useState("");
-const [telefone, setTelefone] = useState("");
-const [celular, setCelular] = useState("");
-const [email, setEmail] = useState("");
-const [website, setWebSite] = useState("");
+    // Informações Gerais
+    const [nomeCompanhia, setNomeCompanhia] = useState("");
+    const [nomeLegal, setNomeLegal] = useState("");
+    const [cnpj, setCNPJ] = useState("");
+    const [inscricaoEstadual, setInscricaoEstadual] = useState("");
+    const [inscricaoMunicipal, setInscricaoMunicipal] = useState("");
+    const [telefone, setTelefone] = useState("");
+    const [celular, setCelular] = useState("");
+    const [email, setEmail] = useState("");
+    const [website, setWebSite] = useState("");
 
-const [cep, setCep] = useState("");
-const [rua, setRua] = useState("");
-const [numero, setNumero] = useState("");
-const [complemento, setComplemento] = useState("");
-const [distrito, setDistrito] = useState(-1);
-const [cidade, setCidade] = useState("");
-const [estado, setEstado] = useState("");
-const [pais, setPais] = useState("");
+    const [cep, setCep] = useState("");
+    const [rua, setRua] = useState("");
+    const [numero, setNumero] = useState("");
+    const [complemento, setComplemento] = useState("");
+    const [distrito, setDistrito] = useState(-1);
+    const [cidade, setCidade] = useState("");
+    const [estado, setEstado] = useState("");
+    const [pais, setPais] = useState("");
 
-//Fiscal
-const [quadroFiscal, setQuadroFiscal] = useState("");
-const [calculoLucro, setCalculoLucro] = useState("");
-const [rendaAnual, setRendaAnual] = useState("");
-const [faixaImpostoSimplificado, setFaixaImpostoSimplificado] = useState("");
-const [porcentagemSimplificado, setPorcentagemImpostoSimplificado] = useState("");
-const [pisCofins, setPisCofins] = useState(-1);
-const [ipi, setIpi] = useState("");
-const [icms, setIcms] = useState("");
-const [issqn, setIssqn] = useState("");
-const [csll, setCsll] = useState(-1);
-const [irpj, setIrpj] = useState("");
-const [inss, setInss] = useState("");
+    //Fiscal
+    const [quadroFiscal, setQuadroFiscal] = useState("");
+    const [calculoLucro, setCalculoLucro] = useState("");
+    const [rendaAnual, setRendaAnual] = useState("");
+    const [faixaImpostoSimplificado, setFaixaImpostoSimplificado] = useState("");
+    const [porcentagemSimplificado, setPorcentagemImpostoSimplificado] = useState("");
+    const [pisCofins, setPisCofins] = useState(-1);
+    const [ipi, setIpi] = useState("");
+    const [icms, setIcms] = useState("");
+    const [issqn, setIssqn] = useState("");
+    const [csll, setCsll] = useState(-1);
+    const [irpj, setIrpj] = useState("");
+    const [inss, setInss] = useState("");
 
     const add = () => {
         Axios.post("http://localhost:3001/insertConfiguracao", {

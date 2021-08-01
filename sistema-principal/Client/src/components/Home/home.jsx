@@ -4,15 +4,11 @@ import { Link, Switch } from 'react-router-dom';
 import { useRouteMatch, Route } from 'react-router';
 
 // IMPORTAÇÃO DOS COMPONENTES
-import { Container, Button } from '@material-ui/core';
-import { Card } from 'react-bootstrap';
-import { BorderColor, Delete } from '@material-ui/icons';
 import {Assignment, Group, Assessment, Folder} from '@material-ui/icons';
 
 // IMPORTAÇÃO DOS ESTILOS
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './home.css';
-import Formulario from '../template/TemplateFormulario';
 
 function Template() {
 
@@ -71,14 +67,6 @@ function Template() {
 
             </section>
 
-        
-
-
-            <Switch>
-                <Route path="/cadastro">
-                    <Formulario />
-                </Route>
-            </Switch>
         </>
 
     );

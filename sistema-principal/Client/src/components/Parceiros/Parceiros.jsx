@@ -7,7 +7,6 @@ import { useRouteMatch, Route } from 'react-router';
 import { Container, Button } from '@material-ui/core';
 import { Card } from 'react-bootstrap';
 import { BorderColor, Delete } from '@material-ui/icons';
-import Formulario from '../template/TemplateFormulario';
 import ConsultaParceiroPessoaFisica from './ConsultaParceiroPessoaFisica';
 
 // IMPORTAÇÃO DOS ESTILOS
