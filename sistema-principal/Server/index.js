@@ -363,6 +363,59 @@ app.post("/insertConfiguracao", async(req, res) => {
     }
 })
 
+app.put("/updatePFisica", async (req, res) => {
+    const id = req.body.id;
+    const nome = req.body.nome;
+    const cpf = req.body.cpf;
+    const rg = req.body.cpf;
+    const cargo = req.body.cargo;
+    const telefone = req.body.telefone;
+    const celular = req.body.celular;
+    const email = req.body.email;
+    const website = req.body.website;
+    const perfilFiscal = req.body.perfilFiscal;
+    const empresa = req.body.empresa;
+
+
+    //endereço
+    const cep = req.body.cep;
+    const rua = req.body.rua;
+    const numero = req.body.numero;
+    const complemento = req.body.complemento;
+    const distrito = req.body.distrito;
+    const cidade = req.body.cidade;
+    const estado = req.body.estado;
+    const pais = req.body.pais;
+
+    try {
+        await PessoaFisicaModel.findById(id, (err, updateFisica) => {
+            updateFisica.Nome = nome,
+            updateFisica.CPF = cpf,
+            updateFisica.Rg = rg,
+            updateFisica.Cargo = cargo,
+            updateFisica.Telefone = telefone,
+            updateFisica.Celular = celular,
+            updateFisica.Email = email,
+            updateFisica.WebSite = website,
+            updateFisica.PerfilFiscal = perfilFiscal,
+            updateFisica.Empresa = empresa,
+            //endereço
+            updateFisica.CEP = cep,
+            updateFisica.Rua = rua,
+            updateFisica.Numero = numero,
+            updateFisica.Complemento = complemento,
+            updateFisica.Distrito = distrito,
+            updateFisica.Cidade = cidade,
+            updateFisica.Estado = estado,
+            updateFisica.Pais = pais,
+            updateFisica.save();
+            res.send("Update Data");
+        });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
 app.listen(3001, () => {
     console.log("Server running on port 3001....");
 });

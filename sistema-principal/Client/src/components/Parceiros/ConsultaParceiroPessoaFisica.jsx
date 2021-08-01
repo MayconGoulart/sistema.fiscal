@@ -14,6 +14,7 @@ import { Person, Search } from '@material-ui/icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './parceiros.css';
 
+import Axios from "axios";
 
 function ConsultaParceiroPessoaFisica() {
 
@@ -88,10 +89,30 @@ function ConsultaParceiroPessoaFisica() {
 
     }, []);
 
-    function atualizaDados (){
+    const updateFisica = (id) =>{
+        Axios.put("http://localhost:3001/updatePFisica", {
+            id: id,
+            nome: nome,
+            cpf: cpf,
+            rg: rg,
+            cargo: cargo,
+            empresa: empresa,
+            telefone: telefone,
+            celular: celular,
+            email: email,
+            website: website,
+            perfilFiscal: perfilFiscal,
+            cep: cep,
+            rua: rua,
+            numero: numero,
+            complemento: complemento,
+            distrito: distrito,
+            cidade: cidade,
+            estado: estado,
+            pais: pais,
+        })
 
-      //chamar a função para atualizar
-    }
+    };
 
     return (
         <>
@@ -207,8 +228,8 @@ function ConsultaParceiroPessoaFisica() {
 
                     </div>
 
-                    <div className="botoes">
-                        <Button variant="success">Salvar</Button>
+                    <div className="botoes">                       
+                        <Button onClick={()=> updateFisica(id)} variant="success">Atualizar</Button>
                         <Button onClick={() => history.goBack()} variant="danger">Cancel</Button>
                     </div>
 
