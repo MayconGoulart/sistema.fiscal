@@ -1,5 +1,5 @@
 // IMPORTAÇÃO DOS MÓDULOS DO REACT
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Switch } from 'react-router-dom';
 import { useRouteMatch, Route } from 'react-router';
 
@@ -20,70 +20,52 @@ function Fiscal() {
     console.log(url);
     console.log(path);
 
+    const [notaFiscal, setNotaFiscal] = useState([])
+
+    // pessoa fisica
+    useEffect(async () => {
+
+        const response = await fetch("http://localhost:3001/notaFiscal");
+        const data = await response.json();
+
+        setNotaFiscal(data);
+
+    }, []);
+
     return (
         <>
-           
+
             <section maxWidth="md" className="container-generico">
 
-                <div className="container-fluid d-flex flex-wrap div-generico">
-                    <Card style={{ width: '18rem'}} className="card-generico">
-                        <Card.Body>
-                            <Card.Title>Título do Card</Card.Title>
-                            <Card.Subtitle>Subtítulo (Não necessário)</Card.Subtitle>
-                            <Card.Text>
-                                Aqui irão algumas informações básicas.
-                            </Card.Text>
-                            <footer>
-                                <BorderColor />
-                                <Delete />
-                            </footer>
-                        </Card.Body>
-                    </Card>
-
-                    <Card style={{ width: '18rem'}} className="card-generico">
-                        <Card.Body>
-                            <Card.Title>Título do Card</Card.Title>
-                            <Card.Subtitle>Subtítulo (Não necessário)</Card.Subtitle>
-                            <Card.Text>
-                                Aqui irão algumas informações básicas.
-                            </Card.Text>
-                            <footer>
-                                <BorderColor />
-                                <Delete />
-                            </footer>
-                        </Card.Body>
-                    </Card>
-                </div>
-
-                <div className="container-fluid d-flex flex-wrap">
-                    <Card style={{ width: '18rem'}} className="card-generico">
-                        <Card.Body>
-                            <Card.Title>Título do Card</Card.Title>
-                            <Card.Subtitle>Subtítulo (Não necessário)</Card.Subtitle>
-                            <Card.Text>
-                                Aqui irão algumas informações básicas.
-                            </Card.Text>
-                            <footer>
-                                <BorderColor />
-                                <Delete />
-                            </footer>
-                        </Card.Body>
-                    </Card>
-
-                    <Card style={{ width: '18rem'}} className="card-generico">
-                        <Card.Body>
-                            <Card.Title>Título do Card</Card.Title>
-                            <Card.Subtitle>Subtítulo (Não necessário)</Card.Subtitle>
-                            <Card.Text>
-                                Aqui irão algumas informações básicas.
-                            </Card.Text>
-                            <footer>
-                                <BorderColor />
-                                <Delete />
-                            </footer>
-                        </Card.Body>
-                    </Card>
-                </div>
+                <Container maxWidth="md" className="container-generico">
+                    <div className="container-fluid d-flex flex-wrap div-generico">
+                        {notaFiscal.map(response => (
+                            <Card key={response._id} style={{ width: '17rem' }} className="card-generico">
+                                <Card.Body>
+                                    <Card.Title>Nota - {response.Operacao}</Card.Title>
+                                    <Card.Subtitle>{response.Finalidade}</Card.Subtitle>
+                                    <Card.Text>
+                                        {response.ConsumidorFinal} - {response.TipoDocumento}
+                                    </Card.Text>
+                                    <footer>
+                                        <div className="row">
+                                            {/* <div className="col-md-6">
+                                                <Button variant="contained" color="primary">
+                                                    <Link>Editar</Link>
+                                                </Button>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <Button variant="contained" color="secondary">
+                                                    <Link>Deletar</Link>
+                                                </Button>
+                                            </div> */}
+                                        </div>
+                                    </footer>
+                                </Card.Body>
+                            </Card>
+                        ))}
+                    </div>
+                </Container>
 
             </section>
 

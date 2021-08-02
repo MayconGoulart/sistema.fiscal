@@ -8,6 +8,7 @@ const PessoaFisicaModel = require("./models/PessoaFisica");
 const InventarioProduto = require("./models/InventarioProduto");
 const InventarioServico = require("./models/InventarioServico");
 const ConfiguracaoModel = require("./models/Configuracao");
+const Fiscal = require("./models/Fiscal");
 
 app.use(express.json());
 app.use(cors());
@@ -17,6 +18,17 @@ mongoose.connect(
         useNewUrlParser: true,
     }
 )
+
+
+app.get("/notaFiscal", async (req, res) =>    {
+    Fiscal.find((error, data) => {
+        if (error) {
+            return next(error)
+        } else {
+            res.json(data)
+        }
+    })
+})
 
 
 app.get("/pessoaFisica", async (req, res) =>    {
