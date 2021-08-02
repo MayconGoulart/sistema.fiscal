@@ -344,13 +344,9 @@ function CadastroFiscal() {
                                     ))}
                                 </Select>
                                 <br /><br />
-                                <h5>Montante</h5>
-                                <TextField label="Quantidade Bruta" />
-                                <TextField label="Valor do Desconto" />
-                                <TextField label="Valor do Seguro" />
-                                <TextField label="Valor do Frete" />
-                                <TextField label="Outros Custos" />
-                                <TextField label="Imposto" />
+                                <TextField label="Valor"/>
+                                <TextField label="Quantidade"/>
+                                <h5>Impostos</h5>
                                 <TextField label="Total" />
 
                                 <br />  <br />  <br />
@@ -419,11 +415,7 @@ function CadastroFiscal() {
                         <TextField label="INSS Value" />
 
                         <h3>Montante</h3>
-                        <TextField label="Quantidade Bruta" />
-                        <TextField label="Valor do Desconto" />
-                        <TextField label="Valor do Seguro" />
-                        <TextField label="Valor do Frete" />
-                        <TextField label="Outros Custos" />
+                        <TextField label="Valor Bruto" />
                         <TextField label="Imposto" />
                         <TextField label="Total" />
 

@@ -281,9 +281,6 @@ function Formulario() {
 
                     <div>
                         <div>
-                            <Button variant="warning">Editar</Button>
-                        </div>
-                        <div>
                             <Button onClick={add} variant="success">Salvar</Button>
                             <Button onClick={() => history.goBack()} variant="danger">Cancel</Button>
                         </div>
