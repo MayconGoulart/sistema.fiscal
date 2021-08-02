@@ -428,6 +428,87 @@ app.put("/updatePFisica", async (req, res) => {
     }
 });
 
+app.put("/updatePJuridica", async (req, res) => {
+    const id = req.body.id;
+    const nome = req.body.nome;
+    const cnpj = req.body.cnpj;
+    const nomelegal = req.body.nomelegal;
+    const ie = req.body.ie;
+    const telefone = req.body.telefone;
+    const celular = req.body.celular;
+    const email = req.body.email;
+    const website = req.body.website;
+    const perfilFiscal = req.body.perfilFiscal;
+    const tx = req.body.tx;
+
+    //endereço
+    const cep = req.body.cep;
+    const rua = req.body.rua;
+    const numero = req.body.numero;
+    const complemento = req.body.complemento;
+    const distrito = req.body.distrito;
+    const cidade = req.body.cidade;
+    const estado = req.body.estado;
+    const pais = req.body.pais;
+
+    try {
+        await PessoaJuridicaModel.findById(id, (err, updateJuridica) => {
+            updateJuridica.Nome = nome,
+            updateJuridica.CNPJ = cnpj,
+            updateJuridica.NomeLegal = nomelegal,
+            updateJuridica.IE = ie,
+            updateJuridica.Telefone = telefone,
+            updateJuridica.Celular = celular,
+            updateJuridica.Email = email,
+            updateJuridica.WebSite = website,
+            updateJuridica.PerfilFiscal = perfilFiscal,
+            updateJuridica.Tx = tx,
+    
+            //endereço
+            updateJuridica.CEP = cep,
+            updateJuridica.Rua = rua,
+            updateJuridica.Numero = numero,
+            updateJuridica.Complemento = complemento,
+            updateJuridica.Distrito = distrito,
+            updateJuridica.Cidade = cidade,
+            updateJuridica.Estado = estado,
+            updateJuridica.País = pais,
+            updateJuridica.save();
+            res.send("Update Data");
+        });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+app.delete("/deletePFisica/:id", async (req, res) => {
+    const id = req.params.id;
+
+    await PessoaFisicaModel.findByIdAndRemove(id).exec();
+     res.send("Deleted");
+});
+
+app.delete("/deletePJuridica/:id", async (req, res) => {
+    const id = req.params.id;
+
+    await PessoaJuridicaModel.findByIdAndRemove(id).exec();
+     res.send("Deleted");
+});
+
+app.delete("/deleteIProduto/:id", async (req, res) => {
+    const id = req.params.id;
+
+    await InventarioProduto.findByIdAndRemove(id).exec();
+     res.send("Deleted");
+});
+
+app.delete("/deleteIServico/:id", async (req, res) => {
+    const id = req.params.id;
+
+    await InventarioServico.findByIdAndRemove(id).exec();
+     res.send("Deleted");
+});
+
 app.listen(3001, () => {
     console.log("Server running on port 3001....");
 });

@@ -13,6 +13,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './inventario.css';
 import CadastroInventario from './CadastroInventario';
 
+import Axios from "axios";
+
 function Template() {
 
     const { path, url } = useRouteMatch();
@@ -38,6 +40,14 @@ function Template() {
         setInventarioServico(data);
     }, []);
 
+    const deleteProduto = (id) => {
+        Axios.delete(`http://localhost:3001/deleteIProduto/${id}`);
+    };
+
+    const deleteServico = (id) => {
+        Axios.delete(`http://localhost:3001/deleteIServico/${id}`);
+    };
+
     return (
         <>
 
@@ -61,7 +71,7 @@ function Template() {
                                             </Button>
                                         </div>
                                         <div className="col-md-6">
-                                            <Button variant="contained" color="secondary">
+                                            <Button onClick={()=> deleteProduto(response._id)} variant="contained" color="secondary">
                                                 <Link>Deletar</Link>
                                             </Button>
                                         </div>
@@ -96,7 +106,7 @@ function Template() {
                                             </Button>
                                         </div>
                                         <div className="col-md-6">
-                                            <Button variant="contained" color="secondary">
+                                            <Button onClick={()=> deleteServico(response._id)} variant="contained" color="secondary">
                                                 <Link>Deletar</Link>
                                             </Button>
                                         </div>

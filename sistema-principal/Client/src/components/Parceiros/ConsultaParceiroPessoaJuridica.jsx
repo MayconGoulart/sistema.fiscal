@@ -14,6 +14,7 @@ import { Person, Search } from '@material-ui/icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './parceiros.css';
 
+import Axios from "axios";
 
 function ConsultaParceiroPessoaJuridica() {
 
@@ -95,10 +96,30 @@ function ConsultaParceiroPessoaJuridica() {
 
     }, []);
 
-    function atualizaDados() {
+    const updateJuridica = (id) =>{
+        Axios.put("http://localhost:3001/updatePJuridica", {
+            id: id,
+            nome: nome,
+            cnpj:cnpj,
+            ie: ie,
+            nomelegal: nomelegal,
+            telefone: telefone,
+            celular: celular,
+            email: email,
+            website: website,
+            cep: cep,
+            rua: rua,
+            numero: numero,
+            complemento: complemento,
+            distrito: distrito,
+            cidade: cidade,
+            estado: estado,
+            pais: pais,   
+            perfilFiscal: perfilFiscal,
+            tx: tx,
+        })
 
-        //chamar a função para atualizar
-    }
+    };
 
     return (
         <>
@@ -250,7 +271,7 @@ function ConsultaParceiroPessoaJuridica() {
                     </div>
 
                     <div className="botoes">
-                        <Button variant="success">Salvar</Button>
+                        <Button onClick={()=> updateJuridica(id)} variant="success">Atualizar</Button>
                         <Button onClick={() => history.goBack()} variant="danger">Cancel</Button>
                     </div>
 

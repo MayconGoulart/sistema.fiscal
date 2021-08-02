@@ -13,6 +13,8 @@ import ConsultaParceiroPessoaFisica from './ConsultaParceiroPessoaFisica';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './parceiros.css';
 
+import Axios from "axios";
+
 function Parceiros() {
   
     const { path, url } = useRouteMatch();
@@ -40,8 +42,13 @@ function Parceiros() {
    
     console.log(pessoaFisica);
 
-    // console.log(url);
-    // console.log(path);
+    const deleteJuridica = (id) => {
+        Axios.delete(`http://localhost:3001/deletePJuridica/${id}`);
+    };
+
+    const deleteFisica = (id) => {
+        Axios.delete(`http://localhost:3001/deletePFisica/${id}`);
+    };
 
     return (
 
@@ -64,7 +71,7 @@ function Parceiros() {
                                             </Button>
                                         </div>
                                         <div className = "col-md-6">
-                                            <Button variant="contained" color="secondary">
+                                            <Button onClick={()=> deleteFisica(response._id)} variant="contained" color="secondary">
                                                 <Link>Deletar</Link>
                                             </Button>
                                         </div>
@@ -95,7 +102,7 @@ function Parceiros() {
                                             </Button>
                                         </div>
                                         <div className = "col-md-6">
-                                            <Button variant="contained" color="secondary">
+                                            <Button onClick={()=> deleteJuridica(response._id)} variant="contained" color="secondary">
                                                 <Link>Deletar</Link>
                                             </Button>
                                         </div>
