@@ -26,6 +26,14 @@ function CadastroFiscal() {
     const [id_produto_servico, setIDProdutoServico] = useState(-1);
 
 
+
+    const [valor, setValor] = useState(0);
+    const [qtd, setQtd] = useState(0);
+    const [valorTotal, setValorTotal] = useState(0);
+
+
+
+
     //juridica
     const [cnpj, setCnpj] = useState("");
     const [ie, setIe] = useState("");
@@ -86,15 +94,15 @@ function CadastroFiscal() {
 
 
         let nomeProdutoServico = "";
+        let varVenda = 0;
 
         //busca pelos servicos
         servico.forEach(element => {
             if (element._id == id_produto_servico) {
 
-                console.log('achou serv')
-                console.log(element.Nome)
-
                 nomeProdutoServico = element.Nome;
+                varVenda = element.PrecoVenda;
+             
             }
 
         });
@@ -102,9 +110,9 @@ function CadastroFiscal() {
         //busca pelos produtos
         produto.forEach(element => {
             if (element._id == id_produto_servico) {
-                console.log('achou prod')
 
                 nomeProdutoServico = element.Nome;
+                varVenda = element.PrecoVenda;
 
             }
 
@@ -115,8 +123,11 @@ function CadastroFiscal() {
         // mantem os dados cadastrados e adiciona o novo
         setInfos([
             ...infos,
-            {   _id: Math.random(4),
-                nome: nomeProdutoServico
+            {
+                _id: Math.random(),
+                nome: nomeProdutoServico,
+                valorVenda:varVenda,
+                valTotal: valorTotal
             }
 
         ]);
@@ -168,6 +179,44 @@ function CadastroFiscal() {
 
         });
     }
+
+    function attValorTotalQtd(val) {
+
+        setQtd(val);
+        setValorTotal(valor * val);
+    }
+
+
+   async function attValor(id) {
+
+        setIDProdutoServico(id);
+
+        //busca pelos servicos
+        servico.forEach(element => {
+            if (element._id == id) {
+                console.log(element)
+                setValor(element.PrecoVenda);
+            }
+
+        });
+
+        //busca pelos produtos
+        produto.forEach(element => {
+            if (element._id == id) {
+                console.log(element)
+                setValor(element.PrecoVenda);
+
+            }
+
+        });
+    }
+
+    function addProduto(){
+
+        console.log(infos);
+        setLgShow(true);
+    }
+
 
     return (
         <>
@@ -332,7 +381,7 @@ function CadastroFiscal() {
                             <Modal.Body>
                                 <InputLabel id="produto-servico">Produtos/Serviços</InputLabel>
                                 <Select value={id_produto_servico} onChange={(event) => {
-                                    setIDProdutoServico(event.target.value);
+                                    attValor(event.target.value);
                                 }} id="produto-servico">
                                     <MenuItem key={-1} value={-1} disabled>Selecione...</MenuItem>
 
@@ -344,13 +393,15 @@ function CadastroFiscal() {
                                     ))}
                                 </Select>
                                 <br /><br />
-                                <TextField label="Valor"/>
-                                <TextField label="Quantidade"/>
+                                <TextField disabled value={valor} label="Valor" />
+                                <TextField value={qtd} onChange={(event) => {
+                                    attValorTotalQtd(event.target.value);
+                                }} label="Quantidade" />
                                 <h5>Impostos</h5>
-                                <TextField label="Total" />
+                                <TextField disabled value={valorTotal} label="Total" />
 
                                 <br />  <br />  <br />
-                                <Button onClick={() => novoProdutoServico(true)}>Adicionar</Button>
+                                <Button onClick={novoProdutoServico}>Adicionar</Button>
                                 <br />  <br />  <br />
                                 <h5>Adicionados</h5>
 
@@ -358,22 +409,24 @@ function CadastroFiscal() {
                                     <thead>
                                         <tr>
                                             <th>Nome</th>
-                                            <th></th>
-                                            <th></th>
+                                            <th>Valor Venda</th>
+                                            <th>Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                         {infos.map(response => (
                                             <tr key={response._id}>
-                                                <td>{response.Nome}</td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>{response.nome}</td>
+                                                <td>{response.valorVenda}</td>
+                                                <td>{response.valTotal}</td>
                                             </tr>
                                         ))}
 
                                     </tbody>
                                 </Table>
+
+                                <Button onClick={addProduto}>Adicionar produtos a nota</Button>
                             </Modal.Body>
                         </Modal>
 
