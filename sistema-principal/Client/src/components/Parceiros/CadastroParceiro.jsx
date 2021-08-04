@@ -100,16 +100,6 @@ function CadastroParceiro() {
                
                 return false;
             }
-            if (!perfilFiscal) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Selecione um perfil fiscal.!'
-                });
-               
-                
-                return false;
-            }
         }
         if (tipoParceiro === "pessoaFisica") {
             if (cpf === "" && cpf.length !== 12) {

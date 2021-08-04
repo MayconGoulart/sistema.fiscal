@@ -210,7 +210,6 @@ function CadastroFiscal() {
     }
 
     function attValorTotalQtd(val) {
-
         setQtd(val);
         setValorTotal(valor * val);
     }
@@ -448,6 +447,7 @@ function CadastroFiscal() {
                                 <TextField value={qtd} onChange={(event) => {
                                     attValorTotalQtd(event.target.value);
                                 }} label="Quantidade" />
+
                                 <br />  <br />  <br />
                                 <h5>Impostos</h5>
                                 <TextField disabled value={valorTotal} label="Total" />

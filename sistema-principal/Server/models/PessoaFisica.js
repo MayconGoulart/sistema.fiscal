@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const PessoaFisicaSchema = new mongoose.Schema({
     Nome: {
-
         type: String,
         required: true,
     },
@@ -20,19 +19,19 @@ const PessoaFisicaSchema = new mongoose.Schema({
     },
     Empresa: {
         type: String,
-        required: true,
+        required: false,
     },
     Telefone: {
         type: String,
-        required: true,
+        required: false,
     },
     Celular: {
         type: String,
-        required: true,
+        required: false,
     },
     Email: {
         type: String,
-        required: true,
+        required: false,
     },
     WebSite: {
         type: String,
@@ -52,7 +51,7 @@ const PessoaFisicaSchema = new mongoose.Schema({
     },
     Numero: {
         type: String,
-        required: false,
+        required: true,
     },
     Complemento: {
         type: String,
@@ -60,7 +59,7 @@ const PessoaFisicaSchema = new mongoose.Schema({
     },
     Distrito: {
         type: String,
-        required: false,
+        required: true,
     },
     Cidade: {
         type: String,
@@ -72,7 +71,7 @@ const PessoaFisicaSchema = new mongoose.Schema({
     },
     País: {
         type: String,
-        required: false,
+        required: true,
     },
 
 
