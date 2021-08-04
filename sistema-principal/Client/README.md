@@ -20,6 +20,7 @@ Para executar esse projeto, é necessário realizar os seguintes comandos:
 		 `npm install react-bootstrap`
 		 `npm install --save use-input-hook`
 		 `npm install axios`
+		 `npm install sweetalert2`
 
  4. 💻 No terminal, rodar o comando: `npm start`
 

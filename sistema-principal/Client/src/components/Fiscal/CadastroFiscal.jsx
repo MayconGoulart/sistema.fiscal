@@ -6,6 +6,8 @@ import { Button, Modal, Table } from 'react-bootstrap';
 import { FormControlLabel, TextField, Select, FormControl, MenuItem, InputLabel } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
+import Swal from 'sweetalert2'
+
 // IMPORTAÇÃO DOS ESTILOS
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './fiscal.css';
@@ -93,6 +95,27 @@ function CadastroFiscal() {
     function novoProdutoServico() {
 
 
+        if (id_produto_servico == -1) {
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Selecione um produto ou serviço!'
+            })
+            return;
+        }
+
+        if (valorTotal <= 0) {
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Valor total inválido!'
+            })
+            return;
+
+        }
+
         let nomeProdutoServico = "";
         let varVenda = 0;
 
@@ -102,7 +125,7 @@ function CadastroFiscal() {
 
                 nomeProdutoServico = element.Nome;
                 varVenda = element.PrecoVenda;
-             
+
             }
 
         });
@@ -126,7 +149,7 @@ function CadastroFiscal() {
             {
                 _id: Math.random(),
                 nome: nomeProdutoServico,
-                valorVenda:varVenda,
+                valorVenda: varVenda,
                 valTotal: valorTotal
             }
 
@@ -187,7 +210,7 @@ function CadastroFiscal() {
     }
 
 
-   async function attValor(id) {
+    async function attValor(id) {
 
         setIDProdutoServico(id);
 
@@ -211,7 +234,7 @@ function CadastroFiscal() {
         });
     }
 
-    function addProduto(){
+    function addProduto() {
 
         console.log(infos);
         setLgShow(false);
@@ -367,26 +390,26 @@ function CadastroFiscal() {
                         <h2 className="titulo-info-gerais">Produtos e Serviços</h2>
 
                         <Table striped bordered hover>
-                                    <thead>
-                                        <tr>
-                                            <th>Nome</th>
-                                            <th>Valor Venda</th>
-                                            <th>Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Valor Venda</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                                        {infos.map(response => (
-                                            <tr key={response._id}>
-                                                <td>{response.nome}</td>
-                                                <td>{response.valorVenda}</td>
-                                                <td>{response.valTotal}</td>
-                                            </tr>
-                                        ))}
+                                {infos.map(response => (
+                                    <tr key={response._id}>
+                                        <td>{response.nome}</td>
+                                        <td>{response.valorVenda}</td>
+                                        <td>{response.valTotal}</td>
+                                    </tr>
+                                ))}
 
-                                    </tbody>
-                                </Table>
-                                
+                            </tbody>
+                        </Table>
+
                         <Button onClick={() => setLgShow(true)}>Adicionar</Button>
 
                         <Modal
@@ -419,7 +442,7 @@ function CadastroFiscal() {
                                 <TextField value={qtd} onChange={(event) => {
                                     attValorTotalQtd(event.target.value);
                                 }} label="Quantidade" />
-                                  <br />  <br />  <br />
+                                <br />  <br />  <br />
                                 <h5>Impostos</h5>
                                 <TextField disabled value={valorTotal} label="Total" />
 
