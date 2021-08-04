@@ -214,7 +214,7 @@ function CadastroFiscal() {
     function addProduto(){
 
         console.log(infos);
-        setLgShow(true);
+        setLgShow(false);
     }
 
 
@@ -397,6 +397,7 @@ function CadastroFiscal() {
                                 <TextField value={qtd} onChange={(event) => {
                                     attValorTotalQtd(event.target.value);
                                 }} label="Quantidade" />
+                                  <br />  <br />  <br />
                                 <h5>Impostos</h5>
                                 <TextField disabled value={valorTotal} label="Total" />
 
