@@ -19,7 +19,7 @@ function Cabecalho(){
                 <div>
                     <Navbar.Brand herf="#home">Auto Peças Goulart</Navbar.Brand>
                 </div>
-                <div class="navegacao">
+                <div className="navegacao">
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/parceiros">Parceiros</Nav.Link>
                     <Nav.Link href="/inventario">Inventário</Nav.Link>

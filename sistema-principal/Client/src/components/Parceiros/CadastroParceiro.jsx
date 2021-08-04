@@ -55,9 +55,46 @@ function CadastroParceiro() {
     const [estado, setEstado] = useState("");
     const [pais, setPais] = useState("");
 
+    function verifica() {
+        if (email.indexOf("@") === -1 || email.indexOf(".") === -1 || email === ""){
+            alert("Digite um e-mail válido.");
+            return false;
+        }
+        if (rg.length !== 12){
+            alert("RG Inválido.");
+            return false;
+        }
+        if (cep.indexOf("-") === -1 || rua === "" || numero === "" || distrito === "" || cidade === "" || pais === "" || estado === ""){
+            alert("Digite um endereço válido.");
+            return false;
+        }
+        if (tipoParceiro === "pessoaJuridica") {
+            if (cnpj === "" && cnpj.length !== 18){
+                alert("CNPJ Inválido");
+                return false;
+            }
+            if (!tx){
+                alert("Selecione um Tax Framework");
+                return false;
+            }
+            if (!perfilFiscal) {
+                alert("Selecione um perfil fiscal.");
+                return false;
+            }
+        }
+        if (tipoParceiro === "pessoaFisica") {
+            if (cpf === "" && cpf.length !== 12){
+                alert("CPF Inválido");
+                return false;
+            }
+        }
+        return true;
+    }
     
     const addContato = () => {
-            
+        var response = verifica();
+        if (response){
+            console.log("AQUI");
             if(tipoParceiro === 'pessoaJuridica'){
                 Axios.post("http://localhost:3001/insertJuridica", {
                     nome: nome,
@@ -78,7 +115,7 @@ function CadastroParceiro() {
                     pais: pais,   
                     perfilFiscal: perfilFiscal,
                     tx: tx,
-                });     
+                    });     
             }else{                
                 Axios.post("http://localhost:3001/insertFisica", {
                     nome: nome,
@@ -101,7 +138,8 @@ function CadastroParceiro() {
                     pais: pais,
                 });  
             }
-    };
+        }
+    }
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -112,12 +150,12 @@ function CadastroParceiro() {
     return (
         <>
 
-            <section class="infos-card"> 
+            <section className="infos-card"> 
 
                 <form onSubmit={handleSubmit}>
 
-                    <div class="info-inicial">
-                        <div class="icon-inicial">
+                    <div className="info-inicial">
+                        <div className="icon-inicial">
                              <Person style={{ fontSize: 80 }} />
                         </div>
                        
@@ -145,10 +183,10 @@ function CadastroParceiro() {
 
                     {tipoParceiro === "pessoaFisica" &&
 
-                        <div class="info-gerais">
-                            <h2 class="titulo-info-gerais">Informações (Pessoa Física)</h2>
-                            <div class="info-gerais-conteudo">
-                                <div class="info-gerais-1">
+                        <div className="info-gerais">
+                            <h2 className="titulo-info-gerais">Informações (Pessoa Física)</h2>
+                            <div className="info-gerais-conteudo">
+                                <div className="info-gerais-1">
                                     <TextField id="cpf" label="CPF" onChange={(event) => {
                                         setCpf(event.target.value);
                                     }}/>
@@ -163,7 +201,7 @@ function CadastroParceiro() {
                                     }} />
                                 </div>
                                 
-                                <div class="info-gerais-2">
+                                <div className="info-gerais-2">
                                     <TextField id="celular" label="Celular" onChange={(event) => {
                                         setCelular(event.target.value);
                                     }}/>
@@ -184,10 +222,10 @@ function CadastroParceiro() {
 
                     {tipoParceiro === "pessoaJuridica" &&
 
-                        <div class="info-gerais">
-                            <h2 class="titulo-info-gerais">Informações (Pessoa Jurídica)</h2>
-                            <div class="info-gerais-conteudo">
-                                <div class="info-gerais-1">
+                        <div className="info-gerais">
+                            <h2 className="titulo-info-gerais">Informações (Pessoa Jurídica)</h2>
+                            <div className="info-gerais-conteudo">
+                                <div className="info-gerais-1">
                                     <TextField id="nome-legal" label="Nome Legal" onChange={(event) => {
                                     setNomeLegal(event.target.value);
                                         }}/>
@@ -201,7 +239,7 @@ function CadastroParceiro() {
                                             setTelefone(event.target.value);
                                         }}/>
                                     </div>
-                                <div class="info-gerais-2">
+                                <div className="info-gerais-2">
                                      <TextField id="celular" label="Celular" onChange={(event) => {
                                     setCelular(event.target.value);
                                         }}/>
@@ -216,10 +254,10 @@ function CadastroParceiro() {
                         </div>
                     }
 
-                    <div class="info-gerais">
-                        <h2 class="titulo-info-gerais">Endereço</h2>
-                        <div class="info-gerais-conteudo">
-                            <div class="info-gerais-1">
+                    <div className="info-gerais">
+                        <h2 className="titulo-info-gerais">Endereço</h2>
+                        <div className="info-gerais-conteudo">
+                            <div className="info-gerais-1">
                                 <div>
                                     <TextField id="cep" label="CEP" onChange={(event) => {
                                             setCep(event.target.value);
@@ -236,7 +274,7 @@ function CadastroParceiro() {
                                             setComplemento(event.target.value);
                                         }}/>
                             </div>
-                            <div class="info-gerais-2">
+                            <div className="info-gerais-2">
                                 <TextField id="distrito" label="Distrito" onChange={(event) => {
                                         setDistrito(event.target.value);
                                         }}/>
@@ -255,10 +293,10 @@ function CadastroParceiro() {
                        
                     </div>
 
-                    <div class="info-gerais">
+                    <div className="info-gerais">
                         {tipoParceiro === "pessoaFisica" &&
                             <div>
-                                <h2 class="titulo-info-gerais">Fiscal</h2>
+                                <h2 className="titulo-info-gerais">Fiscal</h2>
                                 <FormControl>
                                     <FormLabel component="legend">Perfil Fiscal</FormLabel>
                                     <RadioGroup onChange={(event) => {setPerfilFiscal(event.target.value);}} >
@@ -272,9 +310,9 @@ function CadastroParceiro() {
 
                         {tipoParceiro === "pessoaJuridica" &&
                             <div>
-                                <h2 class="titulo-info-gerais">Fiscal</h2>
+                                <h2 className="titulo-info-gerais">Fiscal</h2>
                                 <TextField id="inscricao-municipal" label="Inscrição Municipal" />
-                                <div class="perfil-taxas info-gerais-conteudo">
+                                <div className="perfil-taxas info-gerais-conteudo">
                                     <div>
                                         <FormControl>
                                         <FormLabel component="legend">Perfil Fiscal (Jurídico)</FormLabel>
@@ -306,7 +344,7 @@ function CadastroParceiro() {
 
                     </div>
 
-                    <div class="btn-salvar">
+                    <div className="btn-salvar">
                         <Button onClick={addContato} variant="success">Salvar</Button>
                         <Button onClick={() => history.goBack()} variant="danger">Cancel</Button>
                     </div>

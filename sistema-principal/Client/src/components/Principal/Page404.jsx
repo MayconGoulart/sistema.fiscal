@@ -12,7 +12,7 @@ function Page404() {
 
     return(
 
-        <main class="error">
+        <main className="error">
             <img src={imagem} alt='Página Não Encontrada'/>
         </main>
 

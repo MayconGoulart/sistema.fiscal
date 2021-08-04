@@ -10,7 +10,7 @@ import {Assignment, Group, Assessment, Folder} from '@material-ui/icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './home.css';
 
-function Template() {
+function Home() {
 
     const { path, url } = useRouteMatch();
 
@@ -20,14 +20,14 @@ function Template() {
     return (
         <>
            
-            <section class="cards-home"> 
+            <section className="cards-home"> 
 
-                <div class="cards-home1">
+                <div className="cards-home1">
                     <Link 
                         to="/fiscal"
                         style={{color: "black"}}
                     >
-                        <div class="card-home">
+                        <div className="card-home">
                             <Assignment  style={{ fontSize: 40 }}/>
                             <h4>Fiscal</h4>
                         </div>
@@ -36,18 +36,18 @@ function Template() {
                         to="/inventario"
                         style={{color: "black"}}
                     >
-                        <div class="card-home">
+                        <div className="card-home">
                             <Folder  style={{ fontSize: 40 }}/>
                             <h4>Inventário</h4>
                         </div>
                     </Link>
                 </div>
-                <div class="cards-home2">
+                <div className="cards-home2">
                     <Link
                         to="/parceiros"
                         style={{color: "black"}}
                     >
-                        <div class="card-home">
+                        <div className="card-home">
                             <Group  style={{ fontSize: 40 }}/>
                             <h4>Parceiros</h4>
                         </div>
@@ -56,7 +56,7 @@ function Template() {
                         to="/contabilidade"
                         style={{color: "black"}}
                     >
-                        <div class="card-home">
+                        <div className="card-home">
                             <Assessment  style={{ fontSize: 40 }}/>
                             <h4>Contabilidade</h4>
 
@@ -73,4 +73,4 @@ function Template() {
 
 }
 
-export default Template;
+export default Home;

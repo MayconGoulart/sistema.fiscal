@@ -93,7 +93,7 @@ function Formulario() {
                 <form>
 
                     <div className="info-inicial">
-                        <div class="icon-inicial">
+                        <div className="icon-inicial">
                              <Person style={{ fontSize: 80 }} />
                         </div>
 
@@ -142,7 +142,7 @@ function Formulario() {
 
                     <div className="ingo-gerais">
                         <h2 className="titulo-info-gerais">Endereço</h2>
-                        <div class="info-gerais-conteudo">
+                        <div className="info-gerais-conteudo">
                             <div className="info-gerais-1">
                                 <TextField label="CEP" onChange={(event) => {
                                     setCep(event.target.value);
