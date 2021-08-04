@@ -59,6 +59,18 @@ function CadastroParceiro() {
     const [pais, setPais] = useState("");
 
     function verifica() {
+        
+        if (!perfilFiscal) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Selecione um perfil fiscal.!'
+            });
+           
+            
+            return false;
+        }
+
         if (email.indexOf("@") === -1 || email.indexOf(".") === -1 || email === "") {
 
             Swal.fire({
@@ -100,16 +112,7 @@ function CadastroParceiro() {
                
                 return false;
             }
-            if (!perfilFiscal) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Selecione um perfil fiscal.!'
-                });
-               
-                
-                return false;
-            }
+           
         }
         if (tipoParceiro === "pessoaFisica") {
             if (cpf === "" && cpf.length !== 12) {
