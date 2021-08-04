@@ -365,6 +365,28 @@ function CadastroFiscal() {
 
                     <div className="info-gerais">
                         <h2 className="titulo-info-gerais">Produtos e Serviços</h2>
+
+                        <Table striped bordered hover>
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Valor Venda</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {infos.map(response => (
+                                            <tr key={response._id}>
+                                                <td>{response.nome}</td>
+                                                <td>{response.valorVenda}</td>
+                                                <td>{response.valTotal}</td>
+                                            </tr>
+                                        ))}
+
+                                    </tbody>
+                                </Table>
+                                
                         <Button onClick={() => setLgShow(true)}>Adicionar</Button>
 
                         <Modal
