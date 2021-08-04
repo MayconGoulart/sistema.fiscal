@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // IMPORTAÇÃO DOS COMPONENTES\
 import Cabecalho from './components/Principal/Cabecalho';
-import Home from './components/Home/Home';
+import Home from './components/Home/home';
 import Page404 from './components/Principal/Page404';
 import Parceiros from './components/Parceiros/Parceiros';
 import Inventario from './components/Inventario/Inventario';

@@ -156,6 +156,12 @@ function CadastroFiscal() {
         ]);
 
         console.log(infos);
+
+        //reseta os campos
+        setIDProdutoServico(-1);
+        setQtd(0);
+        setValor(0);
+        setValorTotal(0);
     }
 
     function setDadosParceiro(id_parceiro) {

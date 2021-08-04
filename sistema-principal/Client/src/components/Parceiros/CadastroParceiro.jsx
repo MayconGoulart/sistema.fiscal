@@ -9,6 +9,9 @@ import { Button } from 'react-bootstrap';
 import { TextField } from '@material-ui/core';
 import { Person, Search } from '@material-ui/icons';
 
+
+import Swal from 'sweetalert2'
+
 // IMPORTAÇÃO DOS ESTILOS
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './parceiros.css';
@@ -38,13 +41,13 @@ function CadastroParceiro() {
     const [ie, setIe] = useState("");
     const [nomelegal, setNomeLegal] = useState("");
     const [tx, setTx] = useState("");
-      
+
     //fisica
     const [cpf, setCpf] = useState("");
     const [rg, setRg] = useState("");
     const [cargo, setCargo] = useState("");
     const [empresa, setEmpresa] = useState("");
-    
+
     //Endereço
     const [cep, setCep] = useState("");
     const [rua, setRua] = useState("");
@@ -56,49 +59,80 @@ function CadastroParceiro() {
     const [pais, setPais] = useState("");
 
     function verifica() {
-        if (email.indexOf("@") === -1 || email.indexOf(".") === -1 || email === ""){
-            alert("Digite um e-mail válido.");
+        if (email.indexOf("@") === -1 || email.indexOf(".") === -1 || email === "") {
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Digite um e-mail válido.!'
+            });
+            return false;
+
+        }
+        if (rg.length !== 12) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'RG Inválido!'
+            });
             return false;
         }
-        if (rg.length !== 12){
-            alert("RG Inválido.");
-            return false;
-        }
-        if (cep.indexOf("-") === -1 || rua === "" || numero === "" || distrito === "" || cidade === "" || pais === "" || estado === ""){
-            alert("Digite um endereço válido.");
+        if (cep.indexOf("-") === -1 || rua === "" || numero === "" || distrito === "" || cidade === "" || pais === "" || estado === "") {
+            
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Digite um endereço válido.!'
+            });
             return false;
         }
         if (tipoParceiro === "pessoaJuridica") {
-            if (cnpj === "" && cnpj.length !== 18){
+            if (cnpj === "" && cnpj.length !== 18) {
                 alert("CNPJ Inválido");
                 return false;
             }
-            if (!tx){
-                alert("Selecione um Tax Framework");
+            if (!tx) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Selecione um Tax Framework.!'
+                });
+               
                 return false;
             }
             if (!perfilFiscal) {
-                alert("Selecione um perfil fiscal.");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Selecione um perfil fiscal.!'
+                });
+               
+                
                 return false;
             }
         }
         if (tipoParceiro === "pessoaFisica") {
-            if (cpf === "" && cpf.length !== 12){
-                alert("CPF Inválido");
+            if (cpf === "" && cpf.length !== 12) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'CPF Inválido!'
+                });
+              
                 return false;
             }
         }
         return true;
     }
-    
+
     const addContato = () => {
         var response = verifica();
-        if (response){
+        if (response) {
             console.log("AQUI");
-            if(tipoParceiro === 'pessoaJuridica'){
+            if (tipoParceiro === 'pessoaJuridica') {
                 Axios.post("http://localhost:3001/insertJuridica", {
                     nome: nome,
-                    cnpj:cnpj,
+                    cnpj: cnpj,
                     ie: ie,
                     nomelegal: nomelegal,
                     telefone: telefone,
@@ -112,11 +146,11 @@ function CadastroParceiro() {
                     distrito: distrito,
                     cidade: cidade,
                     estado: estado,
-                    pais: pais,   
+                    pais: pais,
                     perfilFiscal: perfilFiscal,
                     tx: tx,
-                    });     
-            }else{                
+                });
+            } else {
                 Axios.post("http://localhost:3001/insertFisica", {
                     nome: nome,
                     cpf: cpf,
@@ -136,7 +170,7 @@ function CadastroParceiro() {
                     cidade: cidade,
                     estado: estado,
                     pais: pais,
-                });  
+                });
             }
         }
     }
@@ -150,35 +184,35 @@ function CadastroParceiro() {
     return (
         <>
 
-            <section className="infos-card"> 
+            <section className="infos-card">
 
                 <form onSubmit={handleSubmit}>
 
                     <div className="info-inicial">
                         <div className="icon-inicial">
-                             <Person style={{ fontSize: 80 }} />
+                            <Person style={{ fontSize: 80 }} />
                         </div>
-                       
-                       <div> 
-                           <div>
-                               <TextField id="nome" label="Nome" onChange={(event) => {
+
+                        <div>
+                            <div>
+                                <TextField id="nome" label="Nome" onChange={(event) => {
                                     setNome(event.target.value);
                                 }} />
-                           </div>
-                           <div>
-                               <FormControl>
-                                <RadioGroup>
-                                <FormControlLabel id={data.pessoaFisica} value={data.pessoaFisica}
-                                    checked={data.pessoaFisica === tipoParceiro} onChange={setTipoParceiro}
-                                    control={<Radio />} label="Pessoa Física" />
+                            </div>
+                            <div>
+                                <FormControl>
+                                    <RadioGroup>
+                                        <FormControlLabel id={data.pessoaFisica} value={data.pessoaFisica}
+                                            checked={data.pessoaFisica === tipoParceiro} onChange={setTipoParceiro}
+                                            control={<Radio />} label="Pessoa Física" />
 
-                                <FormControlLabel id={data.pessoaJuridica} value={data.pessoaJuridica}
-                                    checked={data.pessoaJuridica === tipoParceiro} onChange={setTipoParceiro}
-                                    control={<Radio />} label="Pessoa Jurídica" />
-                                </RadioGroup>
+                                        <FormControlLabel id={data.pessoaJuridica} value={data.pessoaJuridica}
+                                            checked={data.pessoaJuridica === tipoParceiro} onChange={setTipoParceiro}
+                                            control={<Radio />} label="Pessoa Jurídica" />
+                                    </RadioGroup>
                                 </FormControl>
-                           </div> 
-                       </div>
+                            </div>
+                        </div>
                     </div>
 
                     {tipoParceiro === "pessoaFisica" &&
@@ -189,34 +223,34 @@ function CadastroParceiro() {
                                 <div className="info-gerais-1">
                                     <TextField id="cpf" label="CPF" onChange={(event) => {
                                         setCpf(event.target.value);
-                                    }}/>
+                                    }} />
                                     <TextField id="rg" label="RG" onChange={(event) => {
                                         setRg(event.target.value);
-                                    }}/>
+                                    }} />
                                     <TextField id="cargo" label="Cargo" onChange={(event) => {
                                         setCargo(event.target.value);
-                                    }}/>
+                                    }} />
                                     <TextField id="telefone" label="Telefone" onChange={(event) => {
                                         setTelefone(event.target.value);
                                     }} />
                                 </div>
-                                
+
                                 <div className="info-gerais-2">
                                     <TextField id="celular" label="Celular" onChange={(event) => {
                                         setCelular(event.target.value);
-                                    }}/>
+                                    }} />
                                     <TextField id="email" label="E-mail" onChange={(event) => {
                                         setEmail(event.target.value);
-                                    }}/>
+                                    }} />
                                     <TextField id="website" label="Website" onChange={(event) => {
                                         setWebsite(event.target.value);
-                                    }}/>
+                                    }} />
                                     <TextField id="empresa" label="Empresa" onChange={(event) => {
                                         setEmpresa(event.target.value);
-                                    }}/>
+                                    }} />
                                 </div>
                             </div>
-                            
+
                         </div>
                     }
 
@@ -227,28 +261,28 @@ function CadastroParceiro() {
                             <div className="info-gerais-conteudo">
                                 <div className="info-gerais-1">
                                     <TextField id="nome-legal" label="Nome Legal" onChange={(event) => {
-                                    setNomeLegal(event.target.value);
-                                        }}/>
+                                        setNomeLegal(event.target.value);
+                                    }} />
                                     <TextField id="cnpj" label="CNPJ" onChange={(event) => {
-                                            setCnpj(event.target.value);
-                                        }} />      
+                                        setCnpj(event.target.value);
+                                    }} />
                                     <TextField id="inscricao-estadual" label="Inscrição Estadual" onChange={(event) => {
-                                            setIe(event.target.value);
-                                        }}/>
+                                        setIe(event.target.value);
+                                    }} />
                                     <TextField id="telefone" label="Telefone" onChange={(event) => {
-                                            setTelefone(event.target.value);
-                                        }}/>
-                                    </div>
+                                        setTelefone(event.target.value);
+                                    }} />
+                                </div>
                                 <div className="info-gerais-2">
-                                     <TextField id="celular" label="Celular" onChange={(event) => {
-                                    setCelular(event.target.value);
-                                        }}/>
+                                    <TextField id="celular" label="Celular" onChange={(event) => {
+                                        setCelular(event.target.value);
+                                    }} />
                                     <TextField id="email" label="E-mail" onChange={(event) => {
-                                            setEmail(event.target.value);
-                                        }}/>                                    
+                                        setEmail(event.target.value);
+                                    }} />
                                     <TextField id="website" label="Website" onChange={(event) => {
-                                            setWebsite(event.target.value);
-                                        }}/>
+                                        setWebsite(event.target.value);
+                                    }} />
                                 </div>
                             </div>
                         </div>
@@ -260,37 +294,37 @@ function CadastroParceiro() {
                             <div className="info-gerais-1">
                                 <div>
                                     <TextField id="cep" label="CEP" onChange={(event) => {
-                                            setCep(event.target.value);
-                                        }}/><Search />
+                                        setCep(event.target.value);
+                                    }} /><Search />
                                 </div>
 
                                 <TextField id="rua" label="Rua" onChange={(event) => {
-                                            setRua(event.target.value);
-                                        }}/>
+                                    setRua(event.target.value);
+                                }} />
                                 <TextField id="numero" label="Número" onChange={(event) => {
-                                            setNumero(event.target.value);
-                                        }}/>
+                                    setNumero(event.target.value);
+                                }} />
                                 <TextField id="complemento" label="Complemento" onChange={(event) => {
-                                            setComplemento(event.target.value);
-                                        }}/>
+                                    setComplemento(event.target.value);
+                                }} />
                             </div>
                             <div className="info-gerais-2">
                                 <TextField id="distrito" label="Distrito" onChange={(event) => {
-                                        setDistrito(event.target.value);
-                                        }}/>
+                                    setDistrito(event.target.value);
+                                }} />
                                 <TextField id="cidade" label="Cidade" onChange={(event) => {
-                                            setCidade(event.target.value);
-                                        }}/>
+                                    setCidade(event.target.value);
+                                }} />
                                 <TextField id="estado" label="Estado" onChange={(event) => {
-                                            setEstado(event.target.value);
-                                        }}/>
+                                    setEstado(event.target.value);
+                                }} />
                                 <TextField id="pais" label="País" onChange={(event) => {
-                                            setPais(event.target.value);
-                                        }}/>
+                                    setPais(event.target.value);
+                                }} />
                             </div>
                         </div>
 
-                       
+
                     </div>
 
                     <div className="info-gerais">
@@ -299,7 +333,7 @@ function CadastroParceiro() {
                                 <h2 className="titulo-info-gerais">Fiscal</h2>
                                 <FormControl>
                                     <FormLabel component="legend">Perfil Fiscal</FormLabel>
-                                    <RadioGroup onChange={(event) => {setPerfilFiscal(event.target.value);}} >
+                                    <RadioGroup onChange={(event) => { setPerfilFiscal(event.target.value); }} >
                                         <FormControlLabel value="contribuinte" control={<Radio />} label="Contribuinte" />
                                         <FormControlLabel value="nao-contribuinte" control={<Radio />} label="Não Contribuinte" />
                                         <FormControlLabel value="isento" control={<Radio />} label="Isento" />
@@ -315,30 +349,30 @@ function CadastroParceiro() {
                                 <div className="perfil-taxas info-gerais-conteudo">
                                     <div>
                                         <FormControl>
-                                        <FormLabel component="legend">Perfil Fiscal (Jurídico)</FormLabel>
-                                        <RadioGroup onChange={(event) => {setPerfilFiscal(event.target.value);}}>
-                                            <FormControlLabel value="contribuinte-sn" control={<Radio />} label="Contribuinte Simples Nacional" />
-                                            <FormControlLabel value="nao-contribuinte-sn" control={<Radio />} label="Simples Nacional Não Contribuinte" />
-                                            <FormControlLabel value="isento-sn" control={<Radio />} label="Simples Nacional Isento" />
-                                            <FormControlLabel value="contribuinte" control={<Radio />} label="Contribuinte" />
-                                            <FormControlLabel value="nao-contribuinte" control={<Radio />} label="Não Contribuinte" />
-                                            <FormControlLabel value="isento" control={<Radio />} label="Isento" />
-                                        </RadioGroup>
+                                            <FormLabel component="legend">Perfil Fiscal (Jurídico)</FormLabel>
+                                            <RadioGroup onChange={(event) => { setPerfilFiscal(event.target.value); }}>
+                                                <FormControlLabel value="contribuinte-sn" control={<Radio />} label="Contribuinte Simples Nacional" />
+                                                <FormControlLabel value="nao-contribuinte-sn" control={<Radio />} label="Simples Nacional Não Contribuinte" />
+                                                <FormControlLabel value="isento-sn" control={<Radio />} label="Simples Nacional Isento" />
+                                                <FormControlLabel value="contribuinte" control={<Radio />} label="Contribuinte" />
+                                                <FormControlLabel value="nao-contribuinte" control={<Radio />} label="Não Contribuinte" />
+                                                <FormControlLabel value="isento" control={<Radio />} label="Isento" />
+                                            </RadioGroup>
                                         </FormControl>
                                     </div>
                                     <div>
-                                         <FormControl>
-                                        <FormLabel component="legend">Tax Framework</FormLabel>
-                                        <RadioGroup onChange={(event) => {setTx(event.target.value);}}>
-                                            <FormControlLabel value="simples-nacional" control={<Radio />} label="Simples Nacional" />
-                                            <FormControlLabel value="lucro-real" control={<Radio />} label="Lucro Real" />
-                                            <FormControlLabel value="lucro-presumido" control={<Radio />} label="Lucro Presumido" />
-                                        </RadioGroup>
-                                    </FormControl>
+                                        <FormControl>
+                                            <FormLabel component="legend">Tax Framework</FormLabel>
+                                            <RadioGroup onChange={(event) => { setTx(event.target.value); }}>
+                                                <FormControlLabel value="simples-nacional" control={<Radio />} label="Simples Nacional" />
+                                                <FormControlLabel value="lucro-real" control={<Radio />} label="Lucro Real" />
+                                                <FormControlLabel value="lucro-presumido" control={<Radio />} label="Lucro Presumido" />
+                                            </RadioGroup>
+                                        </FormControl>
                                     </div>
-                                   
+
                                 </div>
-                                
+
                             </div>
                         }
 
