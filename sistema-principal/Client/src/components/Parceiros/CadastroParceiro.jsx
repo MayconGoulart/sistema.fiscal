@@ -112,7 +112,6 @@ function CadastroParceiro() {
                
                 return false;
             }
-           
         }
         if (tipoParceiro === "pessoaFisica") {
             if (cpf === "" && cpf.length !== 12) {

@@ -11,6 +11,7 @@ import Swal from 'sweetalert2'
 // IMPORTAÇÃO DOS ESTILOS
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './fiscal.css';
+import './../Inventario/inventario.css'
 
 function CadastroFiscal() {
 
@@ -210,7 +211,6 @@ function CadastroFiscal() {
     }
 
     function attValorTotalQtd(val) {
-
         setQtd(val);
         setValorTotal(valor * val);
     }
@@ -320,7 +320,7 @@ function CadastroFiscal() {
                             </FormControl>
                         </div>
 
-                        <div>
+                        <div className="campo-texto">
                             <TextField label="Chave" />
                         </div>
 
@@ -448,6 +448,7 @@ function CadastroFiscal() {
                                 <TextField value={qtd} onChange={(event) => {
                                     attValorTotalQtd(event.target.value);
                                 }} label="Quantidade" />
+
                                 <br />  <br />  <br />
                                 <h5>Impostos</h5>
                                 <TextField disabled value={valorTotal} label="Total" />
@@ -526,7 +527,7 @@ function CadastroFiscal() {
 
                     </div>
 
-                    <div>
+                    <div className="button-save">
                         <Button variant="success">Salvar</Button>
                         <Button onClick={() => history.goBack()} variant="danger">Cancel</Button>
                     </div>

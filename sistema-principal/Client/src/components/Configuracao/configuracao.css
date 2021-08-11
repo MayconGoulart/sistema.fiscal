@@ -46,3 +46,17 @@
 .MuiButton-label a {
     color: white;
 }
+.container-config{
+    width: 80%;
+    margin: 0 auto;
+}
+.info-inicial-config{
+    display: flex;
+    margin-top: 2rem;
+    justify-content: left;
+}
+
+.info-gerais .MuiFormControl-root{
+    padding-bottom: 1rem;
+}
+

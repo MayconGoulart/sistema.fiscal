@@ -42,7 +42,48 @@
 .botoes button:hover {
     background: rgba(18, 128, 207, 0.918);
 }
-
+.button-save{
+    text-align: center;
+}
 .MuiButton-label a {
     color: white;
+}
+
+.info-gerais div .MuiFormControl-root{
+    display: block ruby;
+}
+
+.info-gerais div .MuiFormControl-root .MuiInputBase-root{
+    display: contents;
+}
+
+.campo-texto div{
+    padding-bottom: 0.8rem;
+}
+
+.info-gerais .MuiFormControl-root{
+    padding-right: 2rem;
+}
+
+.info-inicial{
+    text-align: center;
+}
+
+.info-inicial h2{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.info-inicial{
+    justify-content: center;
+}
+
+.titulo-info-gerais{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.info-gerais h3{
+    font-size: 1.3rem;
+    margin-top: 1.8rem;
+    font-weight: bold;
 }

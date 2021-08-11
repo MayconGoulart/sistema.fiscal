@@ -88,11 +88,11 @@ function Formulario() {
     return (
         <>
 
-            <Container className="md container-generico">
+            <Container className="md container-generico container-config">
                 
                 <form>
 
-                    <div className="info-inicial">
+                    <div className="info-inicial-config">
                         <div className="icon-inicial">
                              <Person style={{ fontSize: 80 }} />
                         </div>
@@ -280,7 +280,7 @@ function Formulario() {
                     </div>
 
                     <div>
-                        <div>
+                        <div className="button-save">
                             <Button onClick={add} variant="success">Salvar</Button>
                             <Button onClick={() => history.goBack()} variant="danger">Cancel</Button>
                         </div>
