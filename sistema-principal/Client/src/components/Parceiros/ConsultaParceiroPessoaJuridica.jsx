@@ -13,6 +13,7 @@ import { Person, Search } from '@material-ui/icons';
 // IMPORTAÇÃO DOS ESTILOS
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './parceiros.css';
+import Swal from 'sweetalert2'
 
 import Axios from "axios";
 
@@ -58,49 +59,53 @@ function ConsultaParceiroPessoaJuridica() {
 
     //pessoa juridica
     useEffect(async () => {
+        async function fetchData() {
+            const response = await fetch("http://localhost:3001/pessoaJuridica");
+            dadosRetorno = await response.json();
 
-        const response = await fetch("http://localhost:3001/pessoaJuridica");
-        dadosRetorno = await response.json();
+            dadosRetorno.forEach(element => {
 
-        dadosRetorno.forEach(element => {
+                if (element._id == id) {
 
-            if (element._id == id) {
+                    console.log(element)
+                    setNome(element.Nome)
+                    setTelefone(element.Telefone)
+                    setCelular(element.Celular)
+                    setEmail(element.Email)
+                    setWebsite(element.WebSite)
+                    setPerfilFiscal(element.PerfilFiscal)
 
-                console.log(element)
-                setNome(element.Nome)
-                setTelefone(element.Telefone)
-                setCelular(element.Celular)
-                setEmail(element.Email)
-                setWebsite(element.WebSite)
-                setPerfilFiscal(element.PerfilFiscal)
+                    setCnpj(element.CNPJ);
+                    setIe(element.IE)
+                    setNomeLegal(element.NomeLegal);
+                    setTx(element.Tx);
 
-                setCnpj(element.CNPJ);
-                setIe(element.IE)
-                setNomeLegal(element.NomeLegal);
-                setTx(element.Tx);
+                    setCep(element.CEP);
+                    setRua(element.Rua);
+                    setNumero(element.Numero);
+                    setComplemento(element.Complemento);
+                    setDistrito(element.Distrito);
+                    setCidade(element.Cidade);
+                    setEstado(element.Estado);
+                    setPais(element.Pais);
+                    setEmpresa(element.Empresa)
+                    setPerfilFiscal(element.PerfilFiscal);
 
-                setCep(element.CEP);
-                setRua(element.Rua);
-                setNumero(element.Numero);
-                setComplemento(element.Complemento);
-                setDistrito(element.Distrito);
-                setCidade(element.Cidade);
-                setEstado(element.Estado);
-                setPais(element.Pais);
-                setEmpresa(element.Empresa)
-                setPerfilFiscal(element.PerfilFiscal);
+                }
 
-            }
+            });
 
-        });
+        }
+        fetchData();
 
     }, []);
 
-    const updateJuridica = (id) =>{
+    const updateJuridica = (id) => {
+
         Axios.put("http://localhost:3001/updatePJuridica", {
             id: id,
             nome: nome,
-            cnpj:cnpj,
+            cnpj: cnpj,
             ie: ie,
             nomelegal: nomelegal,
             telefone: telefone,
@@ -114,11 +119,29 @@ function ConsultaParceiroPessoaJuridica() {
             distrito: distrito,
             cidade: cidade,
             estado: estado,
-            pais: pais,   
+            pais: pais,
             perfilFiscal: perfilFiscal,
             tx: tx,
-        })
+        }).then(data => {
 
+            console.log(data);
+            Swal.fire({
+                icon: 'success',
+                title: 'Atualização pessoa Jurídica',
+                text: 'Atualização realizada com sucesso!'
+            });
+
+            history.goBack();
+        })
+            .catch(function (error) {
+
+                // Request made and server responded
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Atualização pessoa Jurídica',
+                    text: 'Não foi possível realizar a Atualização!' + error
+                });
+            });
     };
 
     return (
@@ -139,7 +162,7 @@ function ConsultaParceiroPessoaJuridica() {
                                     setNome(event.target.value);
                                 }} />
                             </div>
-                           
+
                         </div>
                     </div>
 
@@ -155,10 +178,10 @@ function ConsultaParceiroPessoaJuridica() {
                                     <TextField id="cnpj" label="CNPJ" value={cnpj} onChange={(event) => {
                                         setCnpj(event.target.value);
                                     }} />
-                                    <TextField id="inscricao-estadual" value={ie}label="Inscrição Estadual" onChange={(event) => {
+                                    <TextField id="inscricao-estadual" value={ie} label="Inscrição Estadual" onChange={(event) => {
                                         setIe(event.target.value);
                                     }} />
-                                     <TextField id="telefone" label="Telefone" value={telefone} onChange={(event) => {
+                                    <TextField id="telefone" label="Telefone" value={telefone} onChange={(event) => {
                                         setTelefone(event.target.value);
                                     }} />
                                 </div>
@@ -181,33 +204,33 @@ function ConsultaParceiroPessoaJuridica() {
                     }
 
                     <div className="info-gerais">
-                    <h2 className="titulo-info-gerais">Endereço</h2>
+                        <h2 className="titulo-info-gerais">Endereço</h2>
                         <div className="info-gerais-conteudo">
                             <div className="info-gerais-1">
                                 <div>
-                                    <TextField id="cep" label="CEP" value= {cep} onChange={(event) => {
+                                    <TextField id="cep" label="CEP" value={cep} onChange={(event) => {
                                         setCep(event.target.value);
                                     }} /><Search />
                                 </div>
 
-                                <TextField id="rua" label="Rua" value= {rua} onChange={(event) => {
+                                <TextField id="rua" label="Rua" value={rua} onChange={(event) => {
                                     setRua(event.target.value);
                                 }} />
-                                <TextField id="numero" label="Número" value= {numero} onChange={(event) => {
+                                <TextField id="numero" label="Número" value={numero} onChange={(event) => {
                                     setNumero(event.target.value);
                                 }} />
-                                <TextField id="complemento" label="Complemento" value= {complemento} onChange={(event) => {
+                                <TextField id="complemento" label="Complemento" value={complemento} onChange={(event) => {
                                     setComplemento(event.target.value);
                                 }} />
                             </div>
                             <div className="info-gerais-2">
-                                <TextField id="distrito" label="Distrito" value= {distrito} onChange={(event) => {
+                                <TextField id="distrito" label="Distrito" value={distrito} onChange={(event) => {
                                     setDistrito(event.target.value);
                                 }} />
-                                <TextField id="cidade" label="Cidade" value= {cidade} onChange={(event) => {
+                                <TextField id="cidade" label="Cidade" value={cidade} onChange={(event) => {
                                     setCidade(event.target.value);
                                 }} />
-                                <TextField id="estado" label="Estado" value= {estado} onChange={(event) => {
+                                <TextField id="estado" label="Estado" value={estado} onChange={(event) => {
                                     setEstado(event.target.value);
                                 }} />
                                 {/* <TextField id="pais" label="País" value= {pais} onChange={(event) => {
@@ -237,12 +260,12 @@ function ConsultaParceiroPessoaJuridica() {
                         {tipoParceiro === "pessoaJuridica" &&
                             <div>
                                 <h2 className="titulo-info-gerais">Fiscal</h2>
-                                <TextField id="inscricao-municipal" value={ie}label="Inscrição Municipal" onChange={(event) => { setIe(event.target.value); }}/>
+                                <TextField id="inscricao-municipal" value={ie} label="Inscrição Municipal" onChange={(event) => { setIe(event.target.value); }} />
                                 <div className="perfil-taxas info-gerais-conteudo">
                                     <div>
                                         <FormControl>
                                             <FormLabel component="legend">Perfil Fiscal (Jurídico)</FormLabel>
-                                            <RadioGroup value = {perfilFiscal} onChange={(event) => { setPerfilFiscal(event.target.value); }}>
+                                            <RadioGroup value={perfilFiscal} onChange={(event) => { setPerfilFiscal(event.target.value); }}>
                                                 <FormControlLabel value="contribuinte-sn" control={<Radio />} label="Contribuinte Simples Nacional" />
                                                 <FormControlLabel value="nao-contribuinte-sn" control={<Radio />} label="Simples Nacional Não Contribuinte" />
                                                 <FormControlLabel value="isento-sn" control={<Radio />} label="Simples Nacional Isento" />
@@ -271,7 +294,7 @@ function ConsultaParceiroPessoaJuridica() {
                     </div>
 
                     <div className="botoes">
-                        <Button onClick={()=> updateJuridica(id)} variant="success">Atualizar</Button>
+                        <Button onClick={() => updateJuridica(id)} variant="success">Atualizar</Button>
                         <Button onClick={() => history.goBack()} variant="danger">Cancel</Button>
                     </div>
 

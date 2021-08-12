@@ -59,15 +59,15 @@ function CadastroParceiro() {
     const [pais, setPais] = useState("");
 
     function verifica() {
-        
+
         if (!perfilFiscal) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Selecione um perfil fiscal.!'
             });
-           
-            
+
+
             return false;
         }
 
@@ -81,16 +81,18 @@ function CadastroParceiro() {
             return false;
 
         }
-        if (rg.length !== 12) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'RG Inválido!'
-            });
-            return false;
+        if (tipoParceiro === "pessoaFisica") {
+            if (rg.length !== 12) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'RG Inválido!'
+                });
+                return false;
+            }
         }
         if (cep.indexOf("-") === -1 || rua === "" || numero === "" || distrito === "" || cidade === "" || pais === "" || estado === "") {
-            
+
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -109,7 +111,7 @@ function CadastroParceiro() {
                     title: 'Oops...',
                     text: 'Selecione um Tax Framework.!'
                 });
-               
+
                 return false;
             }
         }
@@ -120,9 +122,20 @@ function CadastroParceiro() {
                     title: 'Oops...',
                     text: 'CPF Inválido!'
                 });
-              
+
                 return false;
             }
+        }
+
+        if (pais === "") {
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'País Inválido!'
+            });
+
+            return false;
         }
         return true;
     }
@@ -130,49 +143,113 @@ function CadastroParceiro() {
     const addContato = () => {
         var response = verifica();
         if (response) {
-            console.log("AQUI");
+
             if (tipoParceiro === 'pessoaJuridica') {
-                Axios.post("http://localhost:3001/insertJuridica", {
-                    nome: nome,
-                    cnpj: cnpj,
-                    ie: ie,
-                    nomelegal: nomelegal,
-                    telefone: telefone,
-                    celular: celular,
-                    email: email,
-                    website: website,
-                    cep: cep,
-                    rua: rua,
-                    numero: numero,
-                    complemento: complemento,
-                    distrito: distrito,
-                    cidade: cidade,
-                    estado: estado,
-                    pais: pais,
-                    perfilFiscal: perfilFiscal,
-                    tx: tx,
-                });
+                    Axios.post("http://localhost:3001/insertJuridica", {
+                        nome: nome,
+                        cnpj: cnpj,
+                        ie: ie,
+                        nomelegal: nomelegal,
+                        telefone: telefone,
+                        celular: celular,
+                        email: email,
+                        website: website,
+                        cep: cep,
+                        rua: rua,
+                        numero: numero,
+                        complemento: complemento,
+                        distrito: distrito,
+                        cidade: cidade,
+                        estado: estado,
+                        País: pais,
+                        perfilFiscal: perfilFiscal,
+                        tx: tx,
+                        
+                    }).then(data => {
+
+                        console.log(data);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Cadastro pessoa Jurídica',
+                            text: 'Cadastro realizado com sucesso!'
+                        });
+    
+                        history.goBack();
+                     })
+
+                    .catch(function (error) {
+
+                        // Request made and server responded
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Cadastro pessoa Jurídica',
+                            text: 'Não foi possível realizar o Cadastro!'+ error 
+                        });
+                    });
+
             } else {
-                Axios.post("http://localhost:3001/insertFisica", {
-                    nome: nome,
-                    cpf: cpf,
-                    rg: rg,
-                    cargo: cargo,
-                    empresa: empresa,
-                    telefone: telefone,
-                    celular: celular,
-                    email: email,
-                    website: website,
-                    perfilFiscal: perfilFiscal,
-                    cep: cep,
-                    rua: rua,
-                    numero: numero,
-                    complemento: complemento,
-                    distrito: distrito,
-                    cidade: cidade,
-                    estado: estado,
-                    pais: pais,
-                });
+                try {
+
+                    Axios.post("http://localhost:3001/insertFisica", {
+                        nome: nome,
+                        cpf: cpf,
+                        rg: rg,
+                        cargo: cargo,
+                        empresa: empresa,
+                        telefone: telefone,
+                        celular: celular,
+                        email: email,
+                        website: website,
+                        perfilFiscal: perfilFiscal,
+                        cep: cep,
+                        rua: rua,
+                        numero: numero,
+                        complemento: complemento,
+                        distrito: distrito,
+                        cidade: cidade,
+                        estado: estado,
+                        pais: pais,
+                    }).then(data => {
+
+                        console.log(data);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Cadastro pessoa Física',
+                            text: 'Cadastro realizado com sucesso!'
+                        });
+    
+                        history.goBack();
+                     })
+
+                    .catch(function (error) {
+
+                        // Request made and server responded
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Cadastro pessoa Física',
+                            text: 'Não foi possível realizar o Cadastro!'+ error 
+                        });
+                    });
+
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Cadastro pessoa Física',
+                        text: 'Cadastro realizado com sucesso!'
+                    });
+
+                    history.goBack();
+
+
+                } catch (error) {
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Cadastro pessoa Física',
+                        text: 'Não foi possível realizar o Cadastro!'
+                    });
+                }
+
             }
         }
     }

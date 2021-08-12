@@ -125,6 +125,7 @@ app.post("/insertJuridica", async(req, res) => {
         res.send("insert Data");
     } catch (err) {
         console.log(err);
+        res.sendStatus(503, err);
     }
 })
 
@@ -178,7 +179,7 @@ app.post("/insertFisica", async(req, res) => {
         res.send("insert Data");
     } catch (err) {
         console.log(err);
-    }
+        res.sendStatus(503, err);    }
 });
 
 
@@ -233,8 +234,7 @@ app.post("/insertInventarioProduto", async(req, res) => {
         await inventarioProduto.save();
         res.send("insert Data");
     } catch (err) {
-        console.log(err);
-    }
+        res.sendStatus(503, err);    }
 })
 
 app.post("/insertInventarioServico", async(req, res) => {
@@ -292,8 +292,7 @@ app.post("/insertInventarioServico", async(req, res) => {
         await inventarioServico.save();
         res.send("insert Data");
     } catch (err) {
-        console.log(err);
-    }
+        res.sendStatus(503, err);    }
 })
 
 app.post("/insertConfiguracao", async(req, res) => {
@@ -371,8 +370,7 @@ app.post("/insertConfiguracao", async(req, res) => {
         await configuracao.save();
         res.send("insert Data");
     } catch (err) {
-        console.log(err);
-    }
+        res.sendStatus(503, err);    }
 })
 
 app.put("/updatePFisica", async (req, res) => {
@@ -424,8 +422,7 @@ app.put("/updatePFisica", async (req, res) => {
             res.send("Update Data");
         });
     } catch (err) {
-        console.log(err);
-    }
+        res.sendStatus(503, err);    }
 });
 
 app.put("/updatePJuridica", async (req, res) => {
@@ -477,8 +474,7 @@ app.put("/updatePJuridica", async (req, res) => {
             res.send("Update Data");
         });
     } catch (err) {
-        console.log(err);
-    }
+        res.sendStatus(503, err);    }
 });
 
 app.delete("/deletePFisica/:id", async (req, res) => {

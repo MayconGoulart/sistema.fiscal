@@ -24,12 +24,13 @@ function Fiscal() {
 
     // pessoa fisica
     useEffect(async () => {
+        async function fetchData() {
+            const response = await fetch("http://localhost:3001/notaFiscal");
+            const data = await response.json();
 
-        const response = await fetch("http://localhost:3001/notaFiscal");
-        const data = await response.json();
-
-        setNotaFiscal(data);
-
+            setNotaFiscal(data);
+        }
+        fetchData();
     }, []);
 
     return (
