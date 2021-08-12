@@ -12,6 +12,7 @@ import CadastroInventario from './components/Inventario/CadastroInventario';
 import MenuConfiguracao from './components/Configuracao/MenuConfiguracao';
 import ConsultaParceiro from './components/Parceiros/ConsultaParceiroPessoaFisica';
 import ConsultaParceiroJuridico from './components/Parceiros/ConsultaParceiroPessoaJuridica';
+import ConsultaInventario from './components/Inventario/ConsultaInventario';
 
 import Fiscal from './components/Fiscal/Fiscal';
 import CadastroFiscal from './components/Fiscal/CadastroFiscal';
@@ -47,6 +48,10 @@ function App() {
                     
                     <Route path="/consultaParceiroPessoaJuridica/:id">
                         <ConsultaParceiroJuridico />
+                    </Route>
+
+                    <Route path="/ConsultaInventario/:id/:tipo">
+                        <ConsultaInventario />
                     </Route>
 
                     <Route path="/inventario">

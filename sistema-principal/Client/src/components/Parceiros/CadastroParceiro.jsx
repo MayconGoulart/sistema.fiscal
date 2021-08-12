@@ -188,8 +188,7 @@ function CadastroParceiro() {
                     });
 
             } else {
-                try {
-
+           
                     Axios.post("http://localhost:3001/insertFisica", {
                         nome: nome,
                         cpf: cpf,
@@ -230,26 +229,6 @@ function CadastroParceiro() {
                             text: 'Não foi possível realizar o Cadastro!'+ error 
                         });
                     });
-
-
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Cadastro pessoa Física',
-                        text: 'Cadastro realizado com sucesso!'
-                    });
-
-                    history.goBack();
-
-
-                } catch (error) {
-
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Cadastro pessoa Física',
-                        text: 'Não foi possível realizar o Cadastro!'
-                    });
-                }
-
             }
         }
     }

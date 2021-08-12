@@ -40,63 +40,95 @@ function Parceiros() {
 
     }, []);
 
+    const atualizaPJuridica = async () => {
 
-    console.log(pessoaFisica);
+        const response2 = await fetch("http://localhost:3001/pessoaJuridica");
+        const data2 = await response2.json();
+
+        setPessoaJuridica(data2);
+    }
+
+    const atualizaPFisica = async () => {
+        const response = await fetch("http://localhost:3001/pessoaFisica");
+        const data = await response.json();
+
+        setPessoaFisica(data);
+    }
+
 
     const deleteJuridica = async (id) => {
-        try {
 
-            Axios.delete(`http://localhost:3001/deletePJuridica/${id}`);
-  
-            Swal.fire({
-                icon: 'success',
-                title: 'Exclusão pessoa Jurídica',
-                text: 'Exclusão realizada com sucesso!'
-            });
+        Swal.fire({
+            title: 'Deseja realmente deletar?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, deletar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
 
-            const response2 = await fetch("http://localhost:3001/pessoaJuridica");
-            const data2 = await response2.json();
+                Axios.delete(`http://localhost:3001/deletePJuridica/${id}`).then(data => {
 
-            setPessoaJuridica(data2);
-            
 
-        } catch (error) {
-              
-            Swal.fire({
-                icon: 'error',
-                title: 'Exclusão pessoa Jurídica',
-                text: 'Não foi possível realizar a Exclusão!'
-            });
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Exclusão pessoa Jurídica',
+                        text: 'Exclusão realizada com sucesso!'
+                    });
 
-           
-        }
+                    atualizaPJuridica();
+
+                })
+                    .catch(function (error) {
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Exclusão pessoa Jurídica',
+                            text: 'Não foi possível realizar a Exclusão!'
+                        });
+                    });
+
+            }
+        })
+
     };
 
     const deleteFisica = async (id) => {
 
-        try {
+        Swal.fire({
+            title: 'Deseja realmente deletar?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, deletar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
 
-            Axios.delete(`http://localhost:3001/deletePFisica/${id}`);
-  
-            Swal.fire({
-                icon: 'success',
-                title: 'Exclusão pessoa Física',
-                text: 'Exclusão realizada com sucesso!'
-            });
+                Axios.delete(`http://localhost:3001/deletePFisica/${id}`).then(data => {
 
-            const response = await fetch("http://localhost:3001/pessoaFisica");
-            const data = await response.json();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Exclusão pessoa Física',
+                        text: 'Exclusão realizada com sucesso!'
+                    });
 
-            setPessoaFisica(data);
+                    atualizaPFisica();
 
-        } catch (error) {
-              
-            Swal.fire({
-                icon: 'error',
-                title: 'Exclusão pessoa Física',
-                text: 'Não foi possível realizar a Exclusão!' 
-            });
-        }
+                })
+                    .catch(function (error) {
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Exclusão pessoa Jurídica',
+                            text: 'Não foi possível realizar a Exclusão!'
+                        });
+                    });
+
+            }
+        })
+
     };
 
     return (

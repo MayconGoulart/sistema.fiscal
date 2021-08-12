@@ -1,5 +1,6 @@
 // IMPORTAÇÃO DOS MÓDULOS DO REACT
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
 
 // IMPORTAÇÃO DOS COMPONENTES
 import { Checkbox, FormControlLabel, FormGroup, Select, FormControl, MenuItem, InputLabel } from '@material-ui/core';
@@ -15,31 +16,18 @@ import Swal from 'sweetalert2'
 
 import Axios from "axios";
 
-function CadastroInventario() {
+function ConsultaInventario() {
 
     const history = useHistory();
 
+    let { id, tipo } = useParams();
+    console.log(id, tipo);
+
     //checkbox
-    const [statusVendido, setStatusVedido] = useState(false);
-    const [statusComprado, setStatusComprado] = useState(false);
+    const [statusVendido, setStatusVedido] = useState();
+    const [statusComprado, setStatusComprado] = useState();
 
-    // tipo - produto ou servico
-    const [tipo, setTipo] = useState(0);
 
-    const onChangeHandlerTipo = event => {
-        setTipo(event.target.value);
-        console.log(event.target.value);
-
-        if (event.target.value == "servico") {
-            setTipoFiscal(9);
-            setICMS_ISSQN(1);
-            setNBS(1);
-
-        } else {
-            setTipoFiscal(-1);
-            setICMS_ISSQN(-1);
-        }
-    };
 
     // Informações Gerais
     const [nome, setNome] = useState("");
@@ -54,7 +42,6 @@ function CadastroInventario() {
 
 
     //Fiscal
-
     const [tipoFiscal, setTipoFiscal] = useState(-1);
     const [icmsOrigem, setICMSOrigem] = useState(-1);
     const [ncm, setNCM] = useState(-1);
@@ -67,111 +54,78 @@ function CadastroInventario() {
     const [deducoes, setDeducoes] = useState("");
     const [unidade, setUnidades] = useState("");
 
-    //comentario para testar git
-    // setICMS_ISSQN
-    //setNCM
 
-    const add = () => {
-        console.log(tipo);
+    useEffect(async () => {
+        async function fetchData() {
 
-        if (tipo === 'produto') {
+            if (tipo == "servico") {
 
-            Axios.post("http://localhost:3001/insertInventarioProduto", {
-                // Informações Gerais
-                Nome: nome,
-                PodeSerVendido: statusVendido,
-                PodeSerComprado: statusComprado,
-                Categoria: categoria,
-                Referencia: referencia,
-                CodigoBarras: codigoBarras,
-                Taxa: taxas,
-                PrecoVenda: precoVenda,
-                CustoCommpra: custoCompra,
-                Fornecedor: fornecedor,
-                //informações fiscais
-                TipoFiscal: tipoFiscal,
-                ICMSOrigem: icmsOrigem,
-                NCM: ncm,
-                ICMSouISSQN: icms_issqn,
-                GeneroFiscal: generoFiscal,
-                CEST: cest,
-                NBM: nbm,
-                DeducaoFiscal: deducoes,
-                Unidade: unidade,
+                const response = await fetch("http://localhost:3001/inventarioServico");
+                const dadosRetorno = await response.json();
 
-            }).then(data => {
+                setTipoFiscal(9);
+                setICMS_ISSQN(1);
+                setNBS(1);
 
-                console.log(data);
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Cadastro de  Produtos/Serviços',
-                    text: 'Cadastro realizado com sucesso!'
+                dadosRetorno.forEach(element => {
+
+                    if (element._id == id) {
+                        
+                        console.log(element);
+                       
+                    }
+    
                 });
 
-                history.goBack();
+            } else {
 
-            })
-                .catch(function (error) {
+                const response = await fetch("http://localhost:3001/inventarioProduto");
+                const dadosRetorno = await response.json();
 
-                    // Request made and server responded
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Remoção produtos',
-                        text: 'Não foi possível realizar a Remoção!' + error
-                    });
+                dadosRetorno.forEach(element => {
+
+                    if (element._id == id) {
+
+                        console.log(element.PodeSerVendido);
+
+                        setCest(element.Cest);
+                        setCategoria(element.Categoria);
+                        setCodigoBarras(element.CodigoBarras);
+                        setCustoCompra(element.CustoCompra);
+                        setDeducoes(element.DeducaoFiscal);
+                        setFornecedor(element.Fornecedor);
+                        setGeneroFiscal(element.GeneroFiscal);
+                        setICMSOrigem(element.ICMSOrigem);
+                        setICMS_ISSQN(element.ICMSouISSQN);
+                        setNBM(element.NBM);
+                        setNCM(element.NCM);
+                        setNome(element.Nome);
+                        setStatusVedido(element.PodeSerVendido);
+                        setStatusComprado(element.PsodeSerComprado);
+                        setPrecoVenda(element.PrecoVenda);
+                        setCustoCompra(element.CustoCompra);
+                        setReferencia(element.Referencia);
+                        setTaxas(element.Taxa);
+                        setTipoFiscal(element.TipoFiscal);
+                        setUnidades(element.Unidade);
+
+
+                    }
+    
                 });
-
-        
-
-        } else {
-            Axios.post("http://localhost:3001/insertInventarioServico", {
-                // Informações Gerais
-                Nome: nome,
-                PodeSerVendido: statusVendido,
-                PodeSerComprado: statusComprado,
-                Categoria: categoria,
-                Referencia: referencia,
-                CodigoBarras: codigoBarras,
-                Taxa: taxas,
-                PrecoVenda: precoVenda,
-                CustoCommpra: custoCompra,
-                Fornecedor: fornecedor,
-                //informações fiscais
-                TipoFiscal: tipoFiscal,
-                ICMSOrigem: icmsOrigem,
-                NCM: ncm,
-                ICMSouISSQN: icms_issqn,
-                GeneroFiscal: generoFiscal,
-                CEST: cest,
-                NBM: nbm,
-                NBS: nbm,
-                TipoServico: nbm,
-                DeducaoFiscal: deducoes,
-                Unidade: unidade,
-            }).then(data => {
-
-                console.log(data);
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Cadastro de  Produtos/Serviços',
-                    text: 'Cadastro realizado com sucesso!'
-                });
-
-                history.goBack();
-
-            })
-                .catch(function (error) {
-
-                    // Request made and server responded
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Remoção produtos',
-                        text: 'Não foi possível realizar a Remoção!' + error
-                    });
-                });
+            }
+            
+            
 
         }
-    };
+        fetchData()
+
+    }, []);
+
+    const salvar = async () => {
+
+
+    }
 
     return (
         <>
@@ -186,14 +140,14 @@ function CadastroInventario() {
                         </div>
 
                         <div>
-                            <TextField id="nome" label="Nome" onChange={(event) => {
+                            <TextField value={nome} id="nome" label="Nome" onChange={(event) => {
                                 setNome(event.target.value);
                             }} />
                             <FormGroup>
-                                <FormControlLabel onChange={(event) => {
+                                <FormControlLabel value={statusVendido} onChange={(event) => {
                                     setStatusVedido(event.target.checked);
                                 }} control={<Checkbox />} label="Pode ser vendido" />
-                                <FormControlLabel onChange={(event) => {
+                                <FormControlLabel value={statusComprado} onChange={(event) => {
                                     setStatusComprado(event.target.checked);
                                 }} control={<Checkbox />} label="Pode ser comprado" />
                             </FormGroup>
@@ -205,16 +159,6 @@ function CadastroInventario() {
                         <h2>Informações Gerais</h2>
                         <div class="info-gerais-conteudo">
                             <div class="info-gerais-1">
-
-                                <FormControl>
-                                    <Select onChange={(event) => {
-                                        onChangeHandlerTipo(event);
-                                    }} value={tipo}>
-                                        <MenuItem disabled value={0}>Selecione...</MenuItem>
-                                        <MenuItem value={"produto"}>Produto</MenuItem>
-                                        <MenuItem value={"servico"}>Serviço</MenuItem>
-                                    </Select>
-                                </FormControl>
 
                                 <TextField onChange={(event) => {
                                     setCategoria(event.target.value);
@@ -395,7 +339,7 @@ function CadastroInventario() {
                     </div>
 
                     <div class="btn-salvar">
-                        <Button onClick={add} variant="success">Salvar</Button>
+                        <Button onClick={salvar} variant="success">Salvar</Button>
                         <Button onClick={() => history.goBack()} variant="danger">Cancel</Button>
                     </div>
 
@@ -409,4 +353,4 @@ function CadastroInventario() {
 
 }
 
-export default CadastroInventario;
+export default ConsultaInventario;
