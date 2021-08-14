@@ -20,7 +20,7 @@ mongoose.connect(
 )
 
 
-app.get("/notaFiscal", async (req, res) =>    {
+app.get("/notaFiscal", async(req, res) => {
     Fiscal.find((error, data) => {
         if (error) {
             return next(error)
@@ -31,7 +31,7 @@ app.get("/notaFiscal", async (req, res) =>    {
 })
 
 
-app.get("/pessoaFisica", async (req, res) =>    {
+app.get("/pessoaFisica", async(req, res) => {
     PessoaFisicaModel.find((error, data) => {
         if (error) {
             return next(error)
@@ -41,7 +41,7 @@ app.get("/pessoaFisica", async (req, res) =>    {
     })
 })
 
-app.get("/pessoaJuridica", async (req, res) =>    {
+app.get("/pessoaJuridica", async(req, res) => {
     PessoaJuridicaModel.find((error, data) => {
         if (error) {
             return next(error)
@@ -51,7 +51,7 @@ app.get("/pessoaJuridica", async (req, res) =>    {
     })
 })
 
-app.get("/inventarioServico", async (req, res) =>    {
+app.get("/inventarioServico", async(req, res) => {
     InventarioServico.find((error, data) => {
         if (error) {
             return next(error)
@@ -62,7 +62,7 @@ app.get("/inventarioServico", async (req, res) =>    {
 })
 
 
-app.get("/inventarioProduto", async (req, res) =>    {
+app.get("/inventarioProduto", async(req, res) => {
     InventarioProduto.find((error, data) => {
         if (error) {
             return next(error)
@@ -71,6 +71,18 @@ app.get("/inventarioProduto", async (req, res) =>    {
         }
     })
 })
+
+app.get("/configuracao", async(req, res) => {
+    ConfiguracaoModel.find({}, (error, data) => {
+        if (error) {
+            return next(error)
+        } else {
+            res.json(data)
+        }
+    })
+})
+
+
 
 
 
@@ -300,7 +312,7 @@ app.post("/insertConfiguracao", async(req, res) => {
     const nomelegal = req.body.NomeLegal;
     const cnpj = req.body.CNPJ;
     const inscricaoestadual = req.body.InscricaoEstadual;
-    const inscricaomunicipal = req.body.InscricaoMunicipal; 
+    const inscricaomunicipal = req.body.InscricaoMunicipal;
     const telefone = req.body.Telefone;
     const celular = req.body.Celular;
     const email = req.body.Email;
@@ -373,7 +385,88 @@ app.post("/insertConfiguracao", async(req, res) => {
         res.sendStatus(503, err);    }
 })
 
-app.put("/updatePFisica", async (req, res) => {
+app.post("/insertFiscal", async(req, res) => {
+    //Tipodoc
+    const Operacao = req.body.operacao;
+    const Finalidade = req.body.finalidade;
+
+    const ConsumidorFinal = req.body.consumidorFinal;
+    console.log(ConsumidorFinal);
+    const PresencaComprador = req.body.presencaComprador;
+    const TipoDocumento = req.body.tipoDoc;
+    const ChaveDocumento = req.body.chave;
+    const Serie = req.body.serieDoc;
+
+    //ids
+    const configid = req.body.configid;
+    const parceiroid = req.body.parceiroid;
+    const produtoservicoid = req.body.produtoservicoid;
+
+    //totais
+
+    const ICMSBase = req.body.ICMSBase;
+    const ICMSValue = req.body.ICMSValue;
+    const IPIBase = req.body.IPIBase;
+    const IPIValue = req.body.IPIValue;
+    const ISSQNBase = req.body.ISSQNBase;
+    const ISSQNValue = req.body.ISSQNValue;
+    const PISBase = req.body.PISBase;
+    const PISValue = req.body.PISValue;
+    const COFINSBase = req.body.COFINSBase;
+    const COFINSValue = req.body.COFINSValue;
+    const CSLLBase = req.body.CSLLBase;
+    const CSLLValue = req.body.CSLLValue;
+    const IRPJBase = req.body.IRPJBase;
+    const IRPJValue = req.body.IRPJValue;
+    const INSSBase = req.body.INSSBase;
+    const INSSValue = req.body.INSSValue;
+    const ValorBruto = req.body.ValorBruto;
+    const Imposto = req.body.Imposto;
+    const Total = req.body.Total;
+
+    const fiscal = new Fiscal({
+        Operacao: Operacao,
+        Finalidade: Finalidade,
+        ConsumidorFinal: ConsumidorFinal,
+        PresencaComprador: PresencaComprador,
+        TipoDocumento: TipoDocumento,
+        ChaveDocumento: ChaveDocumento,
+        Serie: Serie,
+        Compania_id: configid,
+        Comprador_id: parceiroid,
+        Produto_id: produtoservicoid,
+
+        //Fiscal
+        ICMSBase: ICMSBase,
+        ICMSValue: ICMSValue,
+        IPIBase: IPIBase,
+        IPIValue: IPIValue,
+        ISSQNBase: ISSQNBase,
+        ISSQNValue: ISSQNValue,
+        PISBase: PISBase,
+        PISValue: PISValue,
+        COFINSBase: COFINSBase,
+        COFINSValue: COFINSValue,
+        CSSLBase: CSLLBase,
+        CSSLValue: CSLLValue,
+        IRPJBase: IRPJBase,
+        IRPJValue: IRPJValue,
+        INSSBase: INSSBase,
+        INSSValue: INSSValue,
+        ValorBruto: ValorBruto,
+        ValorDesconto: Imposto,
+        ValorSeguro: Total
+    });
+
+    try {
+        await fiscal.save();
+        res.send("insert Data");
+    } catch (err) {
+        console.log(err);
+    }
+})
+
+app.put("/updatePFisica", async(req, res) => {
     const id = req.body.id;
     const nome = req.body.nome;
     const cpf = req.body.cpf;
@@ -400,32 +493,32 @@ app.put("/updatePFisica", async (req, res) => {
     try {
         await PessoaFisicaModel.findById(id, (err, updateFisica) => {
             updateFisica.Nome = nome,
-            updateFisica.CPF = cpf,
-            updateFisica.Rg = rg,
-            updateFisica.Cargo = cargo,
-            updateFisica.Telefone = telefone,
-            updateFisica.Celular = celular,
-            updateFisica.Email = email,
-            updateFisica.WebSite = website,
-            updateFisica.PerfilFiscal = perfilFiscal,
-            updateFisica.Empresa = empresa,
-            //endereço
-            updateFisica.CEP = cep,
-            updateFisica.Rua = rua,
-            updateFisica.Numero = numero,
-            updateFisica.Complemento = complemento,
-            updateFisica.Distrito = distrito,
-            updateFisica.Cidade = cidade,
-            updateFisica.Estado = estado,
-            updateFisica.Pais = pais,
-            updateFisica.save();
+                updateFisica.CPF = cpf,
+                updateFisica.Rg = rg,
+                updateFisica.Cargo = cargo,
+                updateFisica.Telefone = telefone,
+                updateFisica.Celular = celular,
+                updateFisica.Email = email,
+                updateFisica.WebSite = website,
+                updateFisica.PerfilFiscal = perfilFiscal,
+                updateFisica.Empresa = empresa,
+                //endereço
+                updateFisica.CEP = cep,
+                updateFisica.Rua = rua,
+                updateFisica.Numero = numero,
+                updateFisica.Complemento = complemento,
+                updateFisica.Distrito = distrito,
+                updateFisica.Cidade = cidade,
+                updateFisica.Estado = estado,
+                updateFisica.Pais = pais,
+                updateFisica.save();
             res.send("Update Data");
         });
     } catch (err) {
         res.sendStatus(503, err);    }
 });
 
-app.put("/updatePJuridica", async (req, res) => {
+app.put("/updatePJuridica", async(req, res) => {
     const id = req.body.id;
     const nome = req.body.nome;
     const cnpj = req.body.cnpj;
@@ -451,58 +544,58 @@ app.put("/updatePJuridica", async (req, res) => {
     try {
         await PessoaJuridicaModel.findById(id, (err, updateJuridica) => {
             updateJuridica.Nome = nome,
-            updateJuridica.CNPJ = cnpj,
-            updateJuridica.NomeLegal = nomelegal,
-            updateJuridica.IE = ie,
-            updateJuridica.Telefone = telefone,
-            updateJuridica.Celular = celular,
-            updateJuridica.Email = email,
-            updateJuridica.WebSite = website,
-            updateJuridica.PerfilFiscal = perfilFiscal,
-            updateJuridica.Tx = tx,
-    
-            //endereço
-            updateJuridica.CEP = cep,
-            updateJuridica.Rua = rua,
-            updateJuridica.Numero = numero,
-            updateJuridica.Complemento = complemento,
-            updateJuridica.Distrito = distrito,
-            updateJuridica.Cidade = cidade,
-            updateJuridica.Estado = estado,
-            updateJuridica.País = pais,
-            updateJuridica.save();
+                updateJuridica.CNPJ = cnpj,
+                updateJuridica.NomeLegal = nomelegal,
+                updateJuridica.IE = ie,
+                updateJuridica.Telefone = telefone,
+                updateJuridica.Celular = celular,
+                updateJuridica.Email = email,
+                updateJuridica.WebSite = website,
+                updateJuridica.PerfilFiscal = perfilFiscal,
+                updateJuridica.Tx = tx,
+
+                //endereço
+                updateJuridica.CEP = cep,
+                updateJuridica.Rua = rua,
+                updateJuridica.Numero = numero,
+                updateJuridica.Complemento = complemento,
+                updateJuridica.Distrito = distrito,
+                updateJuridica.Cidade = cidade,
+                updateJuridica.Estado = estado,
+                updateJuridica.País = pais,
+                updateJuridica.save();
             res.send("Update Data");
         });
     } catch (err) {
         res.sendStatus(503, err);    }
 });
 
-app.delete("/deletePFisica/:id", async (req, res) => {
+app.delete("/deletePFisica/:id", async(req, res) => {
     const id = req.params.id;
 
     await PessoaFisicaModel.findByIdAndRemove(id).exec();
-     res.send("Deleted");
+    res.send("Deleted");
 });
 
-app.delete("/deletePJuridica/:id", async (req, res) => {
+app.delete("/deletePJuridica/:id", async(req, res) => {
     const id = req.params.id;
 
     await PessoaJuridicaModel.findByIdAndRemove(id).exec();
-     res.send("Deleted");
+    res.send("Deleted");
 });
 
-app.delete("/deleteIProduto/:id", async (req, res) => {
+app.delete("/deleteIProduto/:id", async(req, res) => {
     const id = req.params.id;
 
     await InventarioProduto.findByIdAndRemove(id).exec();
-     res.send("Deleted");
+    res.send("Deleted");
 });
 
-app.delete("/deleteIServico/:id", async (req, res) => {
+app.delete("/deleteIServico/:id", async(req, res) => {
     const id = req.params.id;
 
     await InventarioServico.findByIdAndRemove(id).exec();
-     res.send("Deleted");
+    res.send("Deleted");
 });
 
 app.listen(3001, () => {

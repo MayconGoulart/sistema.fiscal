@@ -448,7 +448,7 @@ function CadastroParceiro() {
 
         </>
     );
-
+                    
 }
 
 export default CadastroParceiro;
