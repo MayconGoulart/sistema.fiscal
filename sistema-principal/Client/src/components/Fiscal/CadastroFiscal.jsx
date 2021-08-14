@@ -720,13 +720,8 @@ function CadastroFiscal() {
 
                     </div>
 
-<<<<<<< HEAD
                     <div className="button-save">
                         <Button variant="success">Salvar</Button>
-=======
-                    <div>
-                        <Button onClick={addFiscal} variant="success">Salvar</Button>
->>>>>>> f79286c ([FIX] Rebase)
                         <Button onClick={() => history.goBack()} variant="danger">Cancel</Button>
                     </div>
 
