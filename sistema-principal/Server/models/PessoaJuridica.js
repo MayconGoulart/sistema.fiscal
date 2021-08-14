@@ -60,7 +60,7 @@ const PessoaJuridicaSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    País: {
+    Pais: {
         type: String,
         required: true,
     },
